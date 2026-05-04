@@ -378,17 +378,19 @@ img {
     box-shadow: 0 10px 20px rgba(13, 43, 94, 0.2);
 }
 
-.tile-number {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: rgba(0,0,0,0.05);
+.tile-logo {
+    width: 45px;
+    height: auto;
+    opacity: 0.15;
     transition: var(--transition);
-    line-height: 1;
+    filter: grayscale(100%);
+    object-fit: contain;
 }
 
-.premium-tile:hover .tile-number {
-    color: var(--secondary-color);
+.premium-tile:hover .tile-logo {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.05);
 }
 
 .premium-tile h3 {
@@ -1015,6 +1017,7 @@ img {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+    text-shadow: none !important; /* Forces the shadow to be removed from the gradient text */
     filter: drop-shadow(0px 4px 10px rgba(0, 114, 255, 0.4));
 }
 
