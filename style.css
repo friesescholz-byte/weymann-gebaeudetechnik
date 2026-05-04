@@ -1011,11 +1011,11 @@ img {
 }
 
 .text-gradient-premium {
-    background: linear-gradient(180deg, #ffffff 0%, #a2c6ce 100%);
+    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
-    filter: drop-shadow(0px 8px 15px rgba(0, 168, 204, 0.4));
+    filter: drop-shadow(0px 4px 10px rgba(0, 114, 255, 0.4));
 }
 
 .hero-content-left .lead {
