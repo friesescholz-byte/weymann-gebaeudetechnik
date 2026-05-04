@@ -1012,13 +1012,23 @@ img {
         0px 25px 50px rgba(0,0,0,0.3);
 }
 
-.text-gradient-premium {
-    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.text-underline-yellow {
+    position: relative;
     display: inline-block;
-    text-shadow: none !important; /* Forces the shadow to be removed from the gradient text */
-    filter: drop-shadow(0px 4px 10px rgba(0, 114, 255, 0.4));
+    z-index: 1;
+}
+
+.text-underline-yellow::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 8px; /* Slightly above the bottom edge */
+    width: 100%;
+    height: 14px;
+    background-color: #ffcc00; /* Yellow from logo */
+    z-index: -1;
+    transform: skew(-10deg);
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
 }
 
 .hero-content-left .lead {
@@ -1105,7 +1115,7 @@ img {
 
 .hero-contact-premium a:hover {
     opacity: 1;
-    color: var(--accent-color);
+    color: #ffcc00;
 }
 
 /* Right Side Glass Cards */
