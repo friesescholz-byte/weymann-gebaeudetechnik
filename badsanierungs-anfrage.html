@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badsanierung anfragen | Karl Weymann GmbH</title>
+    <meta name="description" content="Ihr neues Bad vom Fachbetrieb. Fragen Sie Ihre Badsanierung unverbindlich bei der Karl Weymann GmbH in Lehrte an.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/logo.png" alt="Karl Weymann GmbH Logo">
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Zurück zur Startseite</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="subpage-hero">
+        <div class="container">
+            <h1>Badsanierung anfragen – Ihr neues Bad vom Fachbetrieb</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">Komplettbad, Teilsanierung oder barrierearm: Wir gestalten und installieren Bäder, die perfekt zu Ihnen passen.</p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section style="padding-bottom: 6rem;">
+        <div class="container">
+            <div class="form-section">
+                <div style="margin-bottom: 3rem;">
+                    <h2 style="margin-bottom: 1rem;">Erzählen Sie uns von Ihrem Wunschbad</h2>
+                    <p class="text-muted">Geben Sie uns ein paar erste Informationen. Wir melden uns für eine unverbindliche Beratung bei Ihnen.</p>
+                </div>
+                
+                <form>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <input type="text" class="form-control" placeholder="Name" required>
+                        <input type="tel" class="form-control" placeholder="Telefonnummer" required>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <input type="email" class="form-control" placeholder="E-Mail" required>
+                        <input type="text" class="form-control" placeholder="Adresse / Ort" required>
+                    </div>
+                    
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <select class="form-control" required>
+                            <option value="" disabled selected>Art der Sanierung</option>
+                            <option>Komplettbad (alles neu)</option>
+                            <option>Teilsanierung</option>
+                            <option>Gäste-WC</option>
+                            <option>Barrierearmer / altersgerechter Umbau</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder="Ungefähre Badgröße in m²">
+                    </div>
+                    
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Gewünschter Stil</option>
+                            <option>Modern / Minimalistisch</option>
+                            <option>Klassisch / Zeitlos</option>
+                            <option>Natur / Spa-Feeling</option>
+                            <option>Noch unentschlossen</option>
+                        </select>
+                        <select class="form-control">
+                            <option value="" disabled selected>Gewünschter Zeitraum</option>
+                            <option>So schnell wie möglich</option>
+                            <option>In 3 bis 6 Monaten</option>
+                            <option>Im nächsten Jahr</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option value="" disabled selected>Ungefährer Budgetrahmen (optional)</option>
+                            <option>Bis 10.000 €</option>
+                            <option>10.000 € - 20.000 €</option>
+                            <option>20.000 € - 35.000 €</option>
+                            <option>Über 35.000 €</option>
+                            <option>Keine Angabe / Offen</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Besondere Wünsche (z.B. bodengleiche Dusche, freistehende Wanne)?" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; color:var(--text-muted);">Foto des aktuellen Bads (optional)</label>
+                        <input type="file" class="form-control" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group" style="margin: 2rem 0;">
+                        <label style="font-size: 0.85rem; color: var(--text-muted); display:flex; gap:0.5rem; align-items:start;">
+                            <input type="checkbox" required style="margin-top:3px;">
+                            <span>Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme gemäß der Datenschutzerklärung zu.</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Badsanierung unverbindlich anfragen</button>
+                </form>
+            </div>
+            
+            <div style="margin-top: 4rem; text-align: center;">
+                <h3 style="margin-bottom: 2rem;">Inspiration</h3>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=600&auto=format&fit=crop" style="border-radius:12px; height:200px; object-fit:cover;" alt="Modernes Bad">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop" style="border-radius:12px; height:200px; object-fit:cover;" alt="Minimalistisches Bad">
+                    <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=600&auto=format&fit=crop" style="border-radius:12px; height:200px; object-fit:cover;" alt="Spa Bad">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-bottom" style="border:none; padding-top:0;">
+            <p>&copy; 2026 Karl Weymann GmbH. <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

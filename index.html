@@ -3,124 +3,612 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weymann GmbH | Moderne Gebäudetechnik</title>
-    <meta name="description" content="Weymann GmbH - Ihr professioneller Partner für innovative und zuverlässige Gebäudetechnik, Smart Home und Energieeffizienz.">
+    <title>Karl Weymann GmbH Lehrte | Heizung, Wärmepumpe, Bad & Gebäudetechnik</title>
+    <meta name="description" content="Karl Weymann GmbH in Lehrte: Ihr Fachbetrieb für Heizung, Wärmepumpen, Sanitär, Badsanierung, Klima, Lüftung, Solar und Elektro in der Region Hannover. Jetzt Beratung anfragen.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/logo.png" alt="Weymann GmbH Logo" id="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="logo-text" style="display: none;">WEYMANN</span>
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/logo.png" alt="Karl Weymann GmbH Logo" onerror="this.src='https://via.placeholder.com/200x50?text=Karl+Weymann+GmbH'">
             </a>
-            <ul class="nav-links">
-                <li><a href="#leistungen">Leistungen</a></li>
-                <li><a href="#ueber-uns">Über uns</a></li>
-                <li><a href="#referenzen">Referenzen</a></li>
-                <li><a href="#kontakt" class="btn-primary">Kontaktieren</a></li>
-            </ul>
-            <div class="burger-menu" id="burger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+            
+            <nav class="nav-menu">
+                <a href="#leistungen" class="nav-link">Leistungen</a>
+                <a href="waermepumpen-anfrage.html" class="nav-link">Wärmepumpe</a>
+                <a href="heizungs-anfrage.html" class="nav-link">Heizung</a>
+                <a href="badsanierungs-anfrage.html" class="nav-link">Bad</a>
+                <a href="#referenzen" class="nav-link">Referenzen</a>
+                <a href="#b2b" class="nav-link">Für Architekten</a>
+                <a href="#karriere" class="nav-link">Karriere</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#kontakt" class="nav-link">Kontakt</a>
+            </nav>
 
-    <!-- Hero Section -->
-    <header class="hero" id="home">
-        <div class="hero-bg">
-            <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/hero-bg.jpg" alt="Moderne Gebäudetechnik" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=2070&auto=format&fit=crop';">
-            <div class="overlay"></div>
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-title">Zukunftsorientierte <br><span class="highlight">Gebäudetechnik</span></h1>
-            <p class="hero-subtitle">Effizient, nachhaltig und intelligent. Wir planen und installieren die Technik für Gebäude von morgen.</p>
-            <div class="hero-cta">
-                <a href="#leistungen" class="btn-primary btn-large">Unsere Leistungen entdecken</a>
-                <a href="#kontakt" class="btn-secondary btn-large">Jetzt beraten lassen</a>
+            <a href="#kontakt" class="btn btn-primary">Angebot anfordern</a>
+            
+            <div class="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scrollen</span>
-            <div class="mouse"></div>
         </div>
     </header>
 
-    <!-- Leistungen Section -->
-    <section class="services" id="leistungen">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop" alt="Moderne Gebäudetechnik">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-trust">
+                <span>Über 60 Jahre Erfahrung</span> &middot; 
+                <span>Fachbetrieb aus Lehrte</span> &middot; 
+                <span>Planung, Montage, Wartung & Service aus einer Hand</span>
+            </div>
+            <h1>Moderne Gebäudetechnik für Zuhause, Gewerbe und Zukunft.</h1>
+            <p class="lead">Karl Weymann GmbH ist Ihr Fachbetrieb für Heizung, Sanitär, Klima, Lüftung, Solar und Elektro in Lehrte, Hannover und Umgebung – mit persönlicher Beratung, sauberer Planung und zuverlässiger Umsetzung.</p>
+            
+            <div class="hero-buttons">
+                <a href="#kontakt" class="btn btn-primary btn-large">Kostenlose Beratung anfragen</a>
+                <a href="waermepumpen-anfrage.html" class="btn btn-secondary btn-large">Wärmepumpen-Angebot sichern</a>
+                <a href="#karriere" class="btn btn-outline btn-large" style="color:white; border-color:white;">Jetzt bewerben</a>
+            </div>
+            
+            <div class="hero-contact">
+                <a href="tel:051322018"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> 05132 2018</a>
+                <a href="mailto:info@karl-weymann-gmbh.de"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> info@karl-weymann-gmbh.de</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Select Area -->
+    <section class="quick-select">
         <div class="container">
-            <div class="section-header">
-                <h2>Unsere <span class="highlight">Expertise</span></h2>
-                <p>Maßgeschneiderte Lösungen für Industrie, Gewerbe und Privatkunden.</p>
+            <div class="quick-grid">
+                <a href="waermepumpen-anfrage.html" class="quick-card">
+                    <h3>Wärmepumpe planen</h3>
+                    <p>Effizient heizen, Energiekosten senken und zukunftssicher modernisieren.</p>
+                    <span class="btn btn-outline" style="width:100%">Wärmepumpe anfragen</span>
+                </a>
+                <a href="heizungs-anfrage.html" class="quick-card">
+                    <h3>Heizung modernisieren</h3>
+                    <p>Neue Heizungsanlage, Austausch, Wartung oder Reparatur – fachgerecht vom Profi.</p>
+                    <span class="btn btn-outline" style="width:100%">Heizung anfragen</span>
+                </a>
+                <a href="badsanierungs-anfrage.html" class="quick-card">
+                    <h3>Bad sanieren</h3>
+                    <p>Vom funktionalen Bad bis zum modernen Wohlfühlbad – sauber geplant und umgesetzt.</p>
+                    <span class="btn btn-outline" style="width:100%">Badsanierung anfragen</span>
+                </a>
+                <a href="#karriere" class="quick-card">
+                    <h3>Karriere starten</h3>
+                    <p>Fachkraft, Quereinsteiger oder Azubi? Bewirb dich unkompliziert beim Team Weymann.</p>
+                    <span class="btn btn-primary" style="width:100%">Jetzt bewerben</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Groups -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lösungen für Privatkunden, Unternehmen, Architekten und Bewerber</h2>
+            </div>
+            
+            <div class="target-grid">
+                <div class="target-card">
+                    <h3>Privatkunden</h3>
+                    <p>Moderne Heizungen, effiziente Wärmepumpen, schöne Bäder und zuverlässiger Service – persönlich beraten und sauber umgesetzt.</p>
+                </div>
+                <div class="target-card">
+                    <h3>Geschäftskunden</h3>
+                    <p>Gebäudetechnik für Büros, Gewerbeobjekte und größere Anlagen – mit Planung, Installation und Wartung.</p>
+                </div>
+                <div class="target-card">
+                    <h3>Architekten & Planer</h3>
+                    <p>Technische Unterstützung bei Heizung, Sanitär, Klima und Lüftung – zuverlässig, termintreu und praxisnah.</p>
+                </div>
+                <div class="target-card">
+                    <h3>Bewerber & Azubis</h3>
+                    <p>Ein sicherer Arbeitsplatz, moderne Technik und ein Team, das Handwerk mit Zukunft verbindet.</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#kontakt" class="btn btn-primary btn-large">Passende Lösung anfragen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="section-padding" id="leistungen">
+        <div class="container">
+            <div class="section-title">
+                <h2>Alles rund um moderne Gebäudetechnik – aus einer Hand</h2>
             </div>
             
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/icon-elektro.svg" alt="Elektrotechnik" onerror="this.style.display='none'">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Wärmepumpe" style="height:200px; width:100%; object-fit:cover;">
+                    <div class="service-content">
+                        <h3>Wärmepumpen</h3>
+                        <p>Wir prüfen, planen und installieren Wärmepumpenlösungen, die zu Gebäude, Verbrauch und Zukunftsplänen passen.</p>
+                        <a href="waermepumpen-anfrage.html" class="btn btn-outline">Wärmepumpe anfragen</a>
                     </div>
-                    <h3>Elektrotechnik</h3>
-                    <p>Von der modernen Gebäudeinstallation bis zur komplexen Industrieanlage – sicher, normgerecht und leistungsstark.</p>
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/icon-klima.svg" alt="Klimatechnik" onerror="this.style.display='none'">
+                    <img src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=800&auto=format&fit=crop" alt="Heizung" style="height:200px; width:100%; object-fit:cover;">
+                    <div class="service-content">
+                        <h3>Heizung</h3>
+                        <p>Neue Heizungsanlagen, Heizungsmodernisierung, Austausch, Wartung und Reparatur – zuverlässig vom Fachbetrieb.</p>
+                        <a href="heizungs-anfrage.html" class="btn btn-outline">Heizung anfragen</a>
                     </div>
-                    <h3>Heizung & Klima</h3>
-                    <p>Innovative Wärmepumpen, effiziente Lüftungssysteme und Klimatechnik für das perfekte Raumklima.</p>
                 </div>
-
+                
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/icon-smarthome.svg" alt="Smart Home" onerror="this.style.display='none'">
+                    <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format&fit=crop" alt="Badsanierung" style="height:200px; width:100%; object-fit:cover;">
+                    <div class="service-content">
+                        <h3>Badsanierung</h3>
+                        <p>Komplettbad, Teilsanierung oder barrierearmes Bad – wir machen aus Ihrem Bad einen Raum zum Wohlfühlen.</p>
+                        <a href="badsanierungs-anfrage.html" class="btn btn-outline">Bad planen</a>
                     </div>
-                    <h3>Smart Building</h3>
-                    <p>Intelligente Vernetzung, Gebäudeautomation und Energiemanagement für maximale Effizienz und Komfort.</p>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1606132717805-4f76269ca874?q=80&w=800&auto=format&fit=crop" alt="Klima und Lüftung" style="height:200px; width:100%; object-fit:cover;">
+                    <div class="service-content">
+                        <h3>Klima & Lüftung</h3>
+                        <p>Für angenehmes Raumklima in Wohnhäusern, Büros und Gewerbeobjekten.</p>
+                        <a href="#kontakt" class="btn btn-outline">Beratung anfragen</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1585058178125-9fc6a20d43c3?q=80&w=800&auto=format&fit=crop" alt="Sanitärtechnik" style="height:200px; width:100%; object-fit:cover;">
+                    <div class="service-content">
+                        <h3>Sanitärtechnik</h3>
+                        <p>Installation, Modernisierung und Reparatur im Sanitärbereich – sauber, zuverlässig und fachgerecht.</p>
+                        <a href="#kontakt" class="btn btn-outline">Kontakt aufnehmen</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=800&auto=format&fit=crop" alt="Wartung" style="height:200px; width:100%; object-fit:cover;">
+                    <div class="service-content">
+                        <h3>Wartung & Service</h3>
+                        <p>Regelmäßige Wartung, schnelle Hilfe und zuverlässiger Service für technische Anlagen.</p>
+                        <a href="#kontakt" class="btn btn-outline">Service kontaktieren</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="cta-banner">
-        <div class="container cta-content">
-            <h2>Bereit für Ihr nächstes Projekt?</h2>
-            <p>Lassen Sie uns gemeinsam die optimale Lösung für Ihre technischen Anforderungen finden.</p>
-            <a href="#kontakt" class="btn-primary btn-large">Unverbindliches Gespräch vereinbaren</a>
+    <!-- Large Offers -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            
+            <div class="offer-section">
+                <div class="offer-image">
+                    <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=1000&auto=format&fit=crop" alt="Wärmepumpe">
+                </div>
+                <div class="offer-content">
+                    <h2>Wärmepumpe planen lassen – effizient, sauber, zukunftssicher</h2>
+                    <p>Sie möchten unabhängiger von Öl und Gas werden oder Ihre Heizkosten langfristig senken? Wir prüfen, welche Wärmepumpe zu Ihrem Gebäude passt, beraten persönlich und erstellen Ihnen ein passendes Angebot.</p>
+                    <a href="waermepumpen-anfrage.html" class="btn btn-primary">Zur Wärmepumpen-Anfrage</a>
+                </div>
+            </div>
+            
+            <div class="offer-section">
+                <div class="offer-image">
+                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1000&auto=format&fit=crop" alt="Heizungsmodernisierung">
+                </div>
+                <div class="offer-content">
+                    <h2>Neue Heizung oder Modernisierung? Wir finden die passende Lösung.</h2>
+                    <p>Ob Austausch, Modernisierung oder neue Heizungsanlage: Weymann plant und installiert Heizsysteme, die zu Gebäude, Budget und Zukunftsplänen passen.</p>
+                    <a href="heizungs-anfrage.html" class="btn btn-primary">Zur Heizungs-Anfrage</a>
+                </div>
+            </div>
+            
+            <div class="offer-section">
+                <div class="offer-image">
+                    <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1000&auto=format&fit=crop" alt="Badsanierung">
+                </div>
+                <div class="offer-content">
+                    <h2>Ihr neues Bad – sauber geplant, professionell umgesetzt</h2>
+                    <p>Von der Teilsanierung bis zum Komplettbad: Wir gestalten Bäder, die funktional, modern und langlebig sind – passend zu Ihren Wünschen und Ihrem Budget.</p>
+                    <a href="badsanierungs-anfrage.html" class="btn btn-primary">Zur Badsanierungs-Anfrage</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why Weymann -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Warum Kunden und Planer seit Jahrzehnten auf Weymann setzen</h2>
+            </div>
+            
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <h4>Über 60 Jahre Erfahrung</h4>
+                    <p class="text-muted">Ein regionaler Fachbetrieb mit gewachsener Kompetenz und technischem Know-how.</p>
+                </div>
+                <div class="trust-card">
+                    <h4>Planung & Umsetzung aus einer Hand</h4>
+                    <p class="text-muted">Von der ersten Beratung bis zur fertigen Anlage erhalten Kunden klare Abläufe und feste Ansprechpartner.</p>
+                </div>
+                <div class="trust-card">
+                    <h4>Qualität statt Schnellschuss</h4>
+                    <p class="text-muted">Moderne Technik, zuverlässige Ausführung und saubere Arbeit stehen im Mittelpunkt.</p>
+                </div>
+                <div class="trust-card">
+                    <h4>Für Privat, Gewerbe & Bauprojekte</h4>
+                    <p class="text-muted">Weymann betreut Einfamilienhäuser, Bürogebäude, Gewerbeobjekte und komplexe technische Anlagen.</p>
+                </div>
+                <div class="trust-card">
+                    <h4>Wartung & Service inklusive</h4>
+                    <p class="text-muted">Auch nach der Installation bleibt das Team Ansprechpartner für Wartung, Reparatur und Optimierung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References -->
+    <section class="section-padding bg-light" id="referenzen">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projekte, die zeigen, was wir können</h2>
+            </div>
+            
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <div class="ref-img">
+                        <img src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=800&auto=format&fit=crop" alt="Heizung">
+                    </div>
+                    <div class="ref-content">
+                        <div class="ref-meta"><span>Heizung</span><span>Lehrte</span></div>
+                        <h3>Heizungsmodernisierung in Lehrte</h3>
+                        <p class="text-muted">Austausch einer alten Heizungsanlage gegen eine moderne, effiziente Lösung.</p>
+                        <a href="#" class="btn btn-outline" style="margin-top:1rem; width:100%;">Projekt ansehen</a>
+                    </div>
+                </div>
+                
+                <div class="ref-card">
+                    <div class="ref-img">
+                        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format&fit=crop" alt="Bad">
+                    </div>
+                    <div class="ref-content">
+                        <div class="ref-meta"><span>Badsanierung</span><span>Region Hannover</span></div>
+                        <h3>Modernes Badezimmer im Privatobjekt</h3>
+                        <p class="text-muted">Komplettsanierung eines Badezimmers mit moderner Ausstattung und klarer Gestaltung.</p>
+                        <a href="#" class="btn btn-outline" style="margin-top:1rem; width:100%;">Projekt ansehen</a>
+                    </div>
+                </div>
+                
+                <div class="ref-card">
+                    <div class="ref-img">
+                        <img src="https://images.unsplash.com/photo-1606132717805-4f76269ca874?q=80&w=800&auto=format&fit=crop" alt="Klima">
+                    </div>
+                    <div class="ref-content">
+                        <div class="ref-meta"><span>Klima & Lüftung</span><span>Hannover Umgebung</span></div>
+                        <h3>Klima- und Lüftungstechnik für Gewerbe</h3>
+                        <p class="text-muted">Technische Lösung für angenehmes Raumklima in einem gewerblichen Objekt.</p>
+                        <a href="#" class="btn btn-outline" style="margin-top:1rem; width:100%;">Projekt ansehen</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 2rem;">
+                <p style="margin-bottom: 1rem; font-size: 1.1rem;">Sie planen ein ähnliches Projekt?</p>
+                <a href="#kontakt" class="btn btn-primary btn-large">Jetzt unverbindlich anfragen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B Section -->
+    <section class="section-padding" id="b2b">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Starker Technikpartner für Architekten, Planer und Unternehmen</h2>
+            <p class="text-muted" style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">Bei größeren Bau- und Modernisierungsprojekten zählt nicht nur handwerkliche Qualität, sondern auch verlässliche Planung, technische Abstimmung und termingerechte Umsetzung. Die Karl Weymann GmbH unterstützt Architekten, Planer und Geschäftskunden bei Heizungs-, Klima-, Lüftungs- und Sanitärtechnik.</p>
+            
+            <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom: 3rem;">
+                <span style="background:var(--bg-light); padding:0.5rem 1rem; border-radius:50px;">✓ technische Beratung</span>
+                <span style="background:var(--bg-light); padding:0.5rem 1rem; border-radius:50px;">✓ Planung von Gebäudetechnik</span>
+                <span style="background:var(--bg-light); padding:0.5rem 1rem; border-radius:50px;">✓ Abstimmung mit Gewerken</span>
+                <span style="background:var(--bg-light); padding:0.5rem 1rem; border-radius:50px;">✓ Wohn- und Gewerbeobjekte</span>
+                <span style="background:var(--bg-light); padding:0.5rem 1rem; border-radius:50px;">✓ Wartung und Betreuung</span>
+            </div>
+            
+            <a href="#kontakt" class="btn btn-primary btn-large">Projekt besprechen</a>
+        </div>
+    </section>
+
+    <!-- Career -->
+    <section class="section-padding bg-light" id="karriere">
+        <div class="container">
+            <div class="career-section">
+                <div class="career-content">
+                    <h2>Du suchst einen Job mit Zukunft? Komm ins Team Weymann.</h2>
+                    <p style="font-size: 1.1rem; opacity:0.9;">Ob Fachkraft, Quereinsteiger oder Azubi: Bei Weymann arbeitest du an moderner Gebäudetechnik, echten Projekten und in einem Team, das zusammenhält.</p>
+                    
+                    <ul class="career-list">
+                        <li>sicherer Arbeitsplatz in der Region</li>
+                        <li>moderne Technik und abwechslungsreiche Projekte</li>
+                        <li>Ausbildung mit Perspektive</li>
+                        <li>familiäres Team</li>
+                        <li>kurze Wege und klare Ansprechpartner</li>
+                        <li>Entwicklungsmöglichkeiten</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Wir suchen:</h3>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                        <span style="background:rgba(255,255,255,0.2); padding:0.5rem 1rem; border-radius:5px;">Anlagenmechaniker SHK</span>
+                        <span style="background:rgba(255,255,255,0.2); padding:0.5rem 1rem; border-radius:5px;">Kundendienstmonteur</span>
+                        <span style="background:rgba(255,255,255,0.2); padding:0.5rem 1rem; border-radius:5px;">Elektroniker / Techniker</span>
+                        <span style="background:rgba(255,255,255,0.2); padding:0.5rem 1rem; border-radius:5px;">Auszubildende</span>
+                        <span style="background:rgba(255,255,255,0.2); padding:0.5rem 1rem; border-radius:5px;">Initiativbewerbung</span>
+                    </div>
+                </div>
+                
+                <div class="career-form-box">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">In 60 Sekunden bewerben</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Telefonnummer" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-Mail" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Gewünschter Bereich</option>
+                                <option>Anlagenmechaniker SHK</option>
+                                <option>Kundendienstmonteur</option>
+                                <option>Elektroniker / Techniker</option>
+                                <option>Auszubildende(r)</option>
+                                <option>Initiativbewerbung</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Berufserfahrung</option>
+                                <option>Keine (Azubi/Quereinsteiger)</option>
+                                <option>1-3 Jahre</option>
+                                <option>Über 3 Jahre</option>
+                                <option>Meister / Techniker</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Nachricht (optional)" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; color:var(--text-muted);">Lebenslauf (optional)</label>
+                            <input type="file" class="form-control" accept=".pdf,.doc,.docx">
+                        </div>
+                        <p style="font-size: 0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Kein Anschreiben nötig. Wir melden uns schnell zurück.</p>
+                        <button type="submit" class="btn btn-secondary" style="width:100%;">Jetzt unkompliziert bewerben</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Von der ersten Anfrage bis zur fertigen Lösung</h2>
+            </div>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Anfrage senden</h4>
+                    <p class="text-muted">Sie wählen Ihr Anliegen aus und schicken uns die wichtigsten Eckdaten.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Beratung erhalten</h4>
+                    <p class="text-muted">Wir melden uns persönlich und klären Ihre Wünsche, Möglichkeiten und den nächsten Schritt.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Angebot bekommen</h4>
+                    <p class="text-muted">Nach Bedarf prüfen wir die Situation vor Ort und erstellen ein passendes Angebot.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Umsetzung starten</h4>
+                    <p class="text-muted">Unser Team plant, koordiniert und setzt Ihr Projekt fachgerecht um.</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="#kontakt" class="btn btn-primary btn-large">Jetzt Anfrage starten</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-padding bg-light" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Häufige Fragen – schnell beantwortet</h2>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Was kostet eine neue Heizung oder Wärmepumpe?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Das hängt von Gebäude, vorhandener Anlage, gewünschter Technik und Aufwand ab. Am besten senden Sie uns eine kurze Anfrage, damit wir eine realistische Einschätzung geben können.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Berät Weymann auch zu Wärmepumpen?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja. Wir prüfen, ob eine Wärmepumpe zu Ihrem Gebäude passt und welche Lösung technisch sinnvoll ist.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Übernimmt Weymann auch komplette Badsanierungen?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja. Von der Planung bis zur Umsetzung können Badsanierungen professionell begleitet werden.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Arbeitet Weymann auch für Geschäftskunden und größere Objekte?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja. Neben Privatkunden betreut Weymann auch Unternehmen, Gewerbeobjekte und technische Anlagen.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Können Architekten und Planer Weymann frühzeitig einbinden?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja. Gerade bei Gebäudetechnik ist eine frühe Abstimmung sinnvoll, damit Planung, Technik und Umsetzung sauber ineinandergreifen.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Gibt es Wartung und Reparatur?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja. Weymann bietet Wartungs- und Reparaturarbeiten für Heizungs-, Kälte-, Klima-, Lüftungs- und Sanitäranlagen an.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Wie schnell bekomme ich eine Rückmeldung?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nach Absenden der Anfrage meldet sich das Team persönlich zurück. Für dringende Anliegen ist die telefonische Kontaktaufnahme unter 05132 2018 sinnvoll.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Kann ich mich ohne Lebenslauf bewerben?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja. Eine unkomplizierte Kurzbewerbung ist möglich. Ein Lebenslauf kann optional hochgeladen oder später nachgereicht werden.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA & Contact -->
+    <section class="section-padding" id="kontakt">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bereit für Ihr Projekt? Sprechen wir darüber.</h2>
+                <p>Ob Wärmepumpe, neue Heizung, Badsanierung, Gebäudetechnik oder Bewerbung – die Karl Weymann GmbH freut sich auf Ihre Anfrage.</p>
+            </div>
+            
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; align-items: start;">
+                <div>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Kontaktinformationen</h3>
+                    <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                        <strong>Karl Weymann GmbH</strong><br>
+                        Burgdorfer Straße 110<br>
+                        31275 Lehrte
+                    </p>
+                    <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                        <strong>Telefon:</strong> <a href="tel:051322018" style="color:var(--primary-color);">05132 2018</a><br>
+                        <strong>E-Mail:</strong> <a href="mailto:info@karl-weymann-gmbh.de" style="color:var(--primary-color);">info@karl-weymann-gmbh.de</a>
+                    </p>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                        <strong>Öffnungszeiten:</strong><br>
+                        Montag bis Freitag 9:00–17:00 Uhr<br>
+                        Termine nach Vereinbarung
+                    </p>
+                    
+                    <div style="display:flex; flex-direction:column; gap:1rem;">
+                        <a href="waermepumpen-anfrage.html" class="btn btn-outline" style="justify-content: flex-start;">Wärmepumpe anfragen</a>
+                        <a href="heizungs-anfrage.html" class="btn btn-outline" style="justify-content: flex-start;">Heizung anfragen</a>
+                        <a href="badsanierungs-anfrage.html" class="btn btn-outline" style="justify-content: flex-start;">Badsanierung anfragen</a>
+                        <a href="mailto:info@karl-weymann-gmbh.de" class="btn btn-primary" style="justify-content: flex-start;">Allgemeine Beratung anfragen</a>
+                        <a href="#karriere" class="btn btn-secondary" style="justify-content: flex-start;">Jetzt bewerben</a>
+                    </div>
+                </div>
+                
+                <div style="height: 500px; background: #e9ecef; border-radius: var(--radius-lg); overflow:hidden;">
+                    <!-- Placeholder for Map -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2435.532398517228!2d9.970591715802264!3d52.37894297978701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b01b6c00000000%3A0x0!2sBurgdorfer%20Str.%20110%2C%2031275%20Lehrte!5e0!3m2!1sde!2sde!4v1680000000000!5m2!1sde!2sde" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container footer-grid">
-            <div class="footer-brand">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/logo.png" alt="Weymann GmbH Logo" class="footer-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <h3 style="display:none; color: white;">WEYMANN</h3>
-                <p>Ihr zuverlässiger Partner für innovative Gebäudetechnik.</p>
+            <div>
+                <h4>Karl Weymann GmbH</h4>
+                <p style="color:#a0aab2; margin-bottom: 1rem;">Heizung &middot; Sanitär &middot; Klima &middot; Lüftung &middot; Solar &middot; Elektro</p>
+                <p style="color:#a0aab2; margin-bottom: 0.5rem;">Burgdorfer Straße 110<br>31275 Lehrte</p>
+                <p style="color:#a0aab2; margin-bottom: 0.5rem;">Telefon: 05132 2018</p>
+                <p style="color:#a0aab2;">E-Mail: info@karl-weymann-gmbh.de</p>
             </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#home">Startseite</a></li>
-                    <li><a href="#leistungen">Leistungen</a></li>
-                    <li><a href="#ueber-uns">Über uns</a></li>
+            <div>
+                <h4>Leistungen</h4>
+                <ul class="footer-links">
+                    <li><a href="waermepumpen-anfrage.html">Wärmepumpen</a></li>
+                    <li><a href="heizungs-anfrage.html">Heizung & Solar</a></li>
+                    <li><a href="badsanierungs-anfrage.html">Badsanierung</a></li>
+                    <li><a href="#leistungen">Klima & Lüftung</a></li>
+                    <li><a href="#leistungen">Wartung & Service</a></li>
                 </ul>
             </div>
-            <div class="footer-contact">
-                <h4>Kontakt</h4>
-                <p>Weymann GmbH<br>Musterstraße 12<br>12345 Musterstadt</p>
-                <p>Tel: +49 123 456789<br>E-Mail: info@weymann-gmbh.de</p>
+            <div>
+                <h4>Rechtliches</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Impressum</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Weymann GmbH. Alle Rechte vorbehalten. | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Karl Weymann GmbH. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 

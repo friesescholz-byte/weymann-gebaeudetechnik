@@ -1,34 +1,60 @@
-// Navbar scroll effect
+// Sticky Header
 window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
+    const header = document.querySelector('.header');
     if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+        header.classList.add('scrolled');
     } else {
-        navbar.classList.remove('scrolled');
+        header.classList.remove('scrolled');
     }
 });
 
-// Simple mobile menu toggle (for demonstration)
-document.getElementById('burger-menu').addEventListener('click', function() {
-    alert('Mobile Menu wird hier geöffnet!');
-    // Hier würde die Logik für ein echtes Mobile Menu kommen
-});
+// Mobile Menu Toggle
+const burger = document.querySelector('.burger-menu');
+if(burger) {
+    burger.addEventListener('click', () => {
+        alert('Mobile Menu wird hier geöffnet!');
+    });
+}
 
-// Smooth scrolling for anchor links
+// Smooth Scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         if(targetId === '#') return;
         
         const targetElement = document.querySelector(targetId);
-        
         if (targetElement) {
+            e.preventDefault();
             window.scrollTo({
-                top: targetElement.offsetTop - 80, // offset for fixed navbar
+                top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
             });
         }
+    });
+});
+
+// FAQ Accordion
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+        // Close other items
+        faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+                otherItem.classList.remove('active');
+            }
+        });
+        // Toggle current item
+        item.classList.toggle('active');
+    });
+});
+
+// Simple Form Submission Prevent (for demo purposes)
+const forms = document.querySelectorAll('form');
+forms.forEach(form => {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze bei Ihnen.');
+        form.reset();
     });
 });

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heizungs-Anfrage | Karl Weymann GmbH</title>
+    <meta name="description" content="Neue Heizung, Modernisierung, Wartung oder Reparatur? Stellen Sie Ihre Anfrage an die Karl Weymann GmbH in Lehrte.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/logo.png" alt="Karl Weymann GmbH Logo">
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Zurück zur Startseite</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="subpage-hero">
+        <div class="container">
+            <h1>Heizungs-Anfrage stellen – modernisieren, austauschen oder warten lassen</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">Zuverlässige Heiztechnik vom Fachbetrieb. Wir beraten Sie zu neuen Anlagen, übernehmen den Austausch und sind für Wartung & Reparatur da.</p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section style="padding-bottom: 6rem;">
+        <div class="container">
+            <div class="form-section">
+                <div style="margin-bottom: 3rem;">
+                    <h2 style="margin-bottom: 1rem;">Was können wir für Sie tun?</h2>
+                    <p class="text-muted">Schildern Sie uns Ihr Anliegen. Wir melden uns zeitnah bei Ihnen mit einem Lösungsvorschlag.</p>
+                </div>
+                
+                <form>
+                    <div class="form-group">
+                        <select class="form-control" required style="border-color: var(--primary-color); border-width: 2px;">
+                            <option value="" disabled selected>Mein Anliegen</option>
+                            <option>Neue Heizung / Heizungsmodernisierung</option>
+                            <option>Austausch einer defekten Anlage</option>
+                            <option>Wartung / Inspektion</option>
+                            <option>Reparatur / Störung</option>
+                            <option>Allgemeine Beratung</option>
+                        </select>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <input type="text" class="form-control" placeholder="Name" required>
+                        <input type="tel" class="form-control" placeholder="Telefonnummer" required>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <input type="email" class="form-control" placeholder="E-Mail" required>
+                        <input type="text" class="form-control" placeholder="Adresse / Ort" required>
+                    </div>
+                    
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Objektart</option>
+                            <option>Einfamilienhaus</option>
+                            <option>Mehrfamilienhaus</option>
+                            <option>Gewerbe</option>
+                        </select>
+                        <select class="form-control">
+                            <option value="" disabled selected>Aktuelle Heizungsart</option>
+                            <option>Gas</option>
+                            <option>Öl</option>
+                            <option>Elektro</option>
+                            <option>Wärmepumpe</option>
+                            <option>Sonstige</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Dringlichkeit</option>
+                            <option>Akuter Notfall (Heizung ausgefallen)</option>
+                            <option>Zeitnah (innerhalb weniger Wochen)</option>
+                            <option>Planbar (nächste Monate)</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder="Wohn-/Nutzfläche in m²">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Bitte beschreiben Sie Ihr Anliegen kurz" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; color:var(--text-muted);">Foto der Anlage / Störung (optional)</label>
+                        <input type="file" class="form-control" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group" style="margin: 2rem 0;">
+                        <label style="font-size: 0.85rem; color: var(--text-muted); display:flex; gap:0.5rem; align-items:start;">
+                            <input type="checkbox" required style="margin-top:3px;">
+                            <span>Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme gemäß der Datenschutzerklärung zu.</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Heizungs-Angebot anfordern</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-bottom" style="border:none; padding-top:0;">
+            <p>&copy; 2026 Karl Weymann GmbH. <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
