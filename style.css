@@ -919,32 +919,22 @@ img {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    background-color: var(--primary-color);
+    background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_Hero.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding-top: 80px;
 }
 
-.hero-bg-premium {
+.hero-overlay-shape {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0; left: 0; width: 65%; height: 100%;
+    background: linear-gradient(135deg, rgba(13,43,94,0.98) 0%, rgba(13,43,94,0.85) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 1;
-}
-
-.hero-bg-premium img {
-    width: 100%; height: 100%; object-fit: cover;
-    animation: smoothZoom 25s linear infinite alternate;
-}
-
-@keyframes smoothZoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.15); }
-}
-
-.hero-overlay-premium {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(13,43,94,0.95) 0%, rgba(13,43,94,0.85) 50%, rgba(0,0,0,0.7) 100%);
-    z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    border-right: 1px solid rgba(255,255,255,0.05);
 }
 
 .hero-container-premium {
@@ -952,9 +942,10 @@ img {
     z-index: 3;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 900px;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 6rem 2rem;
 }
@@ -963,7 +954,8 @@ img {
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    max-width: 700px;
 }
 
 .trust-badge-premium {
@@ -1028,7 +1020,7 @@ img {
 
 .hero-action-premium {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 1.5rem;
     margin-bottom: 3rem;
@@ -1087,7 +1079,7 @@ img {
     font-size: 1.05rem;
     color: white;
     font-weight: 500;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .hero-contact-premium a {
@@ -1141,15 +1133,16 @@ img {
 
 @media (max-width: 1024px) {
     .hero-container-premium {
-        grid-template-columns: 1fr;
         padding-top: 8rem;
-        gap: 3rem;
     }
     .hero-content-left h1 {
         font-size: 3.5rem;
     }
-    .hero-content-right {
-        display: none;
+    .hero-overlay-shape {
+        width: 100%;
+        clip-path: none;
+        border-right: none;
+        background: linear-gradient(135deg, rgba(13,43,94,0.95) 0%, rgba(13,43,94,0.85) 100%);
     }
 }
 
@@ -1184,8 +1177,8 @@ img {
 }
 
 @keyframes logoloop-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-50% - (var(--logoloop-gap) / 2))); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .logoloop__track {
