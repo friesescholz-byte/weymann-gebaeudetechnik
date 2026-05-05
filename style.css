@@ -578,136 +578,158 @@ img {
     margin: 1rem auto;
 }
 
-/* Bento Grid System */
-.bento-grid {
+/* Marketing Powerhouse Grid System */
+.powerhouse-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 250px;
-    gap: 1.5rem;
+    gap: 2.5rem;
     position: relative;
     z-index: 2;
 }
 
-.bento-box {
+.powerhouse-card {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background-color: #050814; /* Deep space dark */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.5s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    min-height: 380px;
+    cursor: pointer;
 }
 
-.bento-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 15px rgba(255, 204, 0, 0.15);
+.powerhouse-card:hover {
+    transform: perspective(1000px) translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7), 
+                0 0 30px rgba(255, 204, 0, 0.25),
+                inset 0 0 20px rgba(255, 204, 0, 0.1);
+    border-color: #ffcc00;
 }
 
-.bento-img {
+.powerhouse-img {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.7s ease;
+    filter: grayscale(100%) opacity(0.2);
+    transition: filter 0.6s ease, transform 0.8s ease, opacity 0.6s ease;
     z-index: 0;
 }
 
-.bento-box:hover .bento-img {
+.powerhouse-card:hover .powerhouse-img {
+    filter: grayscale(0%) opacity(0.6);
+    transform: scale(1.1);
+}
+
+.powerhouse-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(5, 8, 20, 1) 0%, rgba(5, 8, 20, 0.8) 40%, transparent 100%);
+    z-index: 1;
+    transition: background 0.5s ease;
+}
+
+.powerhouse-card:hover .powerhouse-overlay {
+    background: linear-gradient(to top, rgba(5, 8, 20, 0.95) 0%, rgba(5, 8, 20, 0.4) 60%, transparent 100%);
+}
+
+.powerhouse-number {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 1;
+    line-height: 1;
+    font-family: var(--font-heading);
+    transition: color 0.5s ease, transform 0.5s ease;
+}
+
+.powerhouse-card:hover .powerhouse-number {
+    color: rgba(255, 204, 0, 0.1);
     transform: scale(1.05);
 }
 
-.bento-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(10, 17, 40, 0.95) 0%, rgba(10, 17, 40, 0.6) 40%, rgba(10, 17, 40, 0.2) 100%);
-    z-index: 1;
-    transition: background 0.4s ease;
-}
-
-.bento-box:hover .bento-overlay {
-    background: linear-gradient(to top, rgba(10, 17, 40, 0.98) 0%, rgba(10, 17, 40, 0.5) 50%, rgba(10, 17, 40, 0.1) 100%);
-}
-
-.bento-content {
+.powerhouse-content {
     position: relative;
     z-index: 2;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
 }
 
-.bento-content h3 {
+.powerhouse-content h3 {
     color: #ffffff;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
 }
 
-.bento-accent {
-    width: 30px;
+.powerhouse-card:hover .powerhouse-content h3 {
+    color: #ffcc00;
+}
+
+.powerhouse-content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.powerhouse-card:hover .powerhouse-content p {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.powerhouse-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffcc00;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.powerhouse-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
     height: 2px;
     background-color: #ffcc00;
-    margin-bottom: 1rem;
-    transition: width 0.3s ease;
+    transition: width 0.4s ease;
 }
 
-.bento-box:hover .bento-accent {
-    width: 50px;
+.powerhouse-card:hover .powerhouse-cta::after {
+    width: 100%;
 }
 
-.bento-content p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
+.cta-arrow {
+    transition: transform 0.4s ease;
 }
 
-/* Bento Sizes */
-.bento-large-h {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-.bento-large-v {
-    grid-column: span 1;
-    grid-row: span 2;
-}
-
-.bento-small {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-.bento-medium-h {
-    grid-column: span 2;
-    grid-row: span 1;
+.powerhouse-card:hover .cta-arrow {
+    transform: translateX(8px);
 }
 
 @media (max-width: 1024px) {
-    .bento-grid {
+    .powerhouse-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 220px;
-    }
-    .bento-large-h, .bento-large-v, .bento-medium-h {
-        grid-column: span 2;
-        grid-row: span 1;
     }
 }
 
 @media (max-width: 768px) {
-    .bento-grid {
+    .powerhouse-grid {
         grid-template-columns: 1fr;
-        grid-auto-rows: 250px;
     }
-    .bento-large-h, .bento-large-v, .bento-small, .bento-medium-h {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-}
-
-.glass-content p {
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-    margin: 0;
-    font-size: 0.95rem;
 }
 
 /* Large Offers */
