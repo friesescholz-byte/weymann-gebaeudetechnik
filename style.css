@@ -722,10 +722,26 @@ img {
     }
 }
 
-/* CM Gallery (Horizontal Scroll) */
+/* CM Gallery (Horizontal Scroll on Vertical Scroll) */
+.gallery-scroll-container {
+    height: 350vh; /* Determines how long the user scrolls vertically */
+    position: relative;
+    background: var(--bg-light);
+}
+
+.gallery-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .cm-gallery-section {
     position: relative;
-    overflow: hidden;
+    width: 100%;
 }
 
 .cm-gallery-heading {
@@ -759,27 +775,9 @@ img {
 .cm-gallery-track {
     display: flex;
     gap: 2rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 2rem calc(50vw - 600px); /* Align with container (max-width 1200px) */
-    padding-bottom: 3rem; /* Space for scrollbar */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: var(--secondary-color) rgba(0,0,0,0.05);
-}
-
-.cm-gallery-track::-webkit-scrollbar {
-    height: 8px;
-    display: block; /* Visible on PC */
-}
-
-.cm-gallery-track::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.05);
-    border-radius: 10px;
-}
-
-.cm-gallery-track::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-    border-radius: 10px;
+    width: max-content;
+    padding: 0 calc(50vw - 600px); /* Align with container (max-width 1200px) */
+    will-change: transform;
 }
 
 @media (max-width: 1240px) {

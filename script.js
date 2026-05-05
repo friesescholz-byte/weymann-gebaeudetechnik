@@ -58,3 +58,36 @@ forms.forEach(form => {
         form.reset();
     });
 });
+
+// Sticky Horizontal Scroll for CM Gallery
+const scrollContainer = document.querySelector('.gallery-scroll-container');
+const stickyWrapper = document.querySelector('.gallery-sticky-wrapper');
+const galleryTrack = document.getElementById('gallery-track');
+
+if (scrollContainer && stickyWrapper && galleryTrack) {
+    window.addEventListener('scroll', () => {
+        const containerTop = scrollContainer.offsetTop;
+        const containerHeight = scrollContainer.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // The scrollable distance inside the container
+        const scrollableDistance = containerHeight - windowHeight;
+        
+        // Current scroll position relative to the container
+        let scrollY = window.scrollY - containerTop;
+        
+        // Clamp scrollY between 0 and scrollableDistance
+        scrollY = Math.max(0, Math.min(scrollY, scrollableDistance));
+        
+        // Calculate progress (0 to 1)
+        const progress = scrollY / scrollableDistance;
+        
+        // Calculate max horizontal scroll distance
+        const maxScrollLeft = galleryTrack.offsetWidth - window.innerWidth;
+        
+        // Apply transform if there is enough content to scroll
+        if(maxScrollLeft > 0) {
+            galleryTrack.style.transform = `translate3d(-${progress * maxScrollLeft}px, 0, 0)`;
+        }
+    });
+}
