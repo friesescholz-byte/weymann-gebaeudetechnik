@@ -943,23 +943,27 @@ img {
 .hero-overlay-premium {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(13,43,94,0.95) 0%, rgba(13,43,94,0.7) 50%, rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(135deg, rgba(13,43,94,0.95) 0%, rgba(13,43,94,0.85) 50%, rgba(0,0,0,0.7) 100%);
     z-index: 2;
 }
 
 .hero-container-premium {
     position: relative;
     z-index: 3;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
     padding: 6rem 2rem;
 }
 
 .hero-content-left {
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .trust-badge-premium {
@@ -1012,24 +1016,6 @@ img {
         0px 25px 50px rgba(0,0,0,0.3);
 }
 
-.text-underline-yellow {
-    position: relative;
-    display: inline-block;
-    z-index: 1;
-}
-
-.text-underline-yellow::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 8px; /* Slightly above the bottom edge */
-    width: 100%;
-    height: 14px;
-    background-color: #ffcc00; /* Yellow from logo */
-    z-index: -1;
-    transform: skew(-10deg);
-    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
-}
 
 .hero-content-left .lead {
     font-size: 1.2rem;
@@ -1043,7 +1029,7 @@ img {
 .hero-action-premium {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
     margin-bottom: 3rem;
 }
@@ -1077,7 +1063,6 @@ img {
     font-size: 1.05rem;
     position: relative;
     padding-bottom: 4px;
-    margin-left: 1rem;
     transition: var(--transition);
 }
 
@@ -1102,6 +1087,7 @@ img {
     font-size: 1.05rem;
     color: white;
     font-weight: 500;
+    justify-content: center;
 }
 
 .hero-contact-premium a {
@@ -1118,68 +1104,6 @@ img {
     color: #ffcc00;
 }
 
-/* Right Side Glass Cards */
-.hero-content-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    position: relative;
-    padding-left: 2rem;
-}
-
-.glass-card-premium {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    color: white;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    transform: translateX(50px);
-    opacity: 0;
-    animation: slideInRight 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-}
-
-.glass-card-premium h4 {
-    color: white;
-    font-size: 1.25rem;
-    margin-bottom: 0.25rem;
-}
-
-.glass-card-premium p {
-    color: rgba(255,255,255,0.7);
-    font-size: 0.95rem;
-    margin: 0;
-}
-
-.glass-icon {
-    width: 65px; height: 65px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    flex-shrink: 0;
-}
-
-.float-1 { animation-delay: 0.2s; animation-name: slideInRight, float1; animation-duration: 1s, 6s; animation-iteration-count: 1, infinite; animation-direction: normal, alternate; }
-.float-2 { animation-delay: 0.4s; margin-left: -3rem; animation-name: slideInRight, float2; animation-duration: 1s, 7s; animation-iteration-count: 1, infinite; animation-direction: normal, alternate; }
-.float-3 { animation-delay: 0.6s; animation-name: slideInRight, float3; animation-duration: 1s, 5s; animation-iteration-count: 1, infinite; animation-direction: normal, alternate; }
-
-@keyframes slideInRight {
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes float1 { 0% { transform: translateY(0px) translateX(0); } 100% { transform: translateY(-15px) translateX(0); } }
-@keyframes float2 { 0% { transform: translateY(0px) translateX(0); } 100% { transform: translateY(-10px) translateX(0); } }
-@keyframes float3 { 0% { transform: translateY(0px) translateX(0); } 100% { transform: translateY(-12px) translateX(0); } }
 
 /* Fade Up Animations */
 .fade-up-1 { opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.1s; }
