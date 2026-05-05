@@ -578,156 +578,119 @@ img {
     margin: 1rem auto;
 }
 
-/* Marketing Powerhouse Grid System */
-.powerhouse-grid {
+/* Reveal Grid System */
+.reveal-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    gap: 2rem;
     position: relative;
     z-index: 2;
 }
 
-.powerhouse-card {
+.reveal-card {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background-color: #050814; /* Deep space dark */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                box-shadow 0.5s ease, 
-                border-color 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 380px;
+    background-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    min-height: 400px;
     cursor: pointer;
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
 }
 
-.powerhouse-card:hover {
-    transform: perspective(1000px) translateY(-10px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.7), 
-                0 0 30px rgba(255, 204, 0, 0.25),
-                inset 0 0 20px rgba(255, 204, 0, 0.1);
-    border-color: #ffcc00;
+.reveal-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255, 204, 0, 0.2);
+    transform: translateY(-5px);
 }
 
-.powerhouse-img {
+.reveal-img {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) opacity(0.2);
-    transition: filter 0.6s ease, transform 0.8s ease, opacity 0.6s ease;
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 0;
 }
 
-.powerhouse-card:hover .powerhouse-img {
-    filter: grayscale(0%) opacity(0.6);
-    transform: scale(1.1);
+.reveal-card:hover .reveal-img {
+    transform: scale(1.08);
 }
 
-.powerhouse-overlay {
+.reveal-glass {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(5, 8, 20, 1) 0%, rgba(5, 8, 20, 0.8) 40%, transparent 100%);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(13, 43, 94, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     z-index: 1;
     transition: background 0.5s ease;
 }
 
-.powerhouse-card:hover .powerhouse-overlay {
-    background: linear-gradient(to top, rgba(5, 8, 20, 0.95) 0%, rgba(5, 8, 20, 0.4) 60%, transparent 100%);
+.reveal-card:hover .reveal-glass {
+    background: rgba(13, 43, 94, 0.95);
 }
 
-.powerhouse-number {
-    position: absolute;
-    top: -10px;
-    right: 10px;
-    font-size: 8rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.03);
-    z-index: 1;
-    line-height: 1;
-    font-family: var(--font-heading);
-    transition: color 0.5s ease, transform 0.5s ease;
-}
-
-.powerhouse-card:hover .powerhouse-number {
-    color: rgba(255, 204, 0, 0.1);
-    transform: scale(1.05);
-}
-
-.powerhouse-content {
-    position: relative;
-    z-index: 2;
-    padding: 2.5rem 2rem;
-}
-
-.powerhouse-content h3 {
+.reveal-glass h3 {
     color: #ffffff;
-    font-size: 1.6rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    margin: 0;
     transition: color 0.3s ease;
 }
 
-.powerhouse-card:hover .powerhouse-content h3 {
+.reveal-card:hover .reveal-glass h3 {
     color: #ffcc00;
 }
 
-.powerhouse-content p {
-    color: rgba(255, 255, 255, 0.7);
+.reveal-text {
+    color: rgba(255, 255, 255, 0.85);
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
-    transition: color 0.3s ease;
+    margin: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.5s ease, margin 0.5s ease;
 }
 
-.powerhouse-card:hover .powerhouse-content p {
-    color: rgba(255, 255, 255, 0.95);
+.reveal-card:hover .reveal-text {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 1rem;
 }
 
-.powerhouse-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ffcc00;
-    font-weight: 600;
-    font-size: 1.05rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+/* Central CTA Area */
+.services-central-cta {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
+    z-index: 2;
 }
 
-.powerhouse-cta::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #ffcc00;
-    transition: width 0.4s ease;
+.services-central-cta h3 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-.powerhouse-card:hover .powerhouse-cta::after {
-    width: 100%;
-}
-
-.cta-arrow {
-    transition: transform 0.4s ease;
-}
-
-.powerhouse-card:hover .cta-arrow {
-    transform: translateX(8px);
+.services-central-cta p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
 }
 
 @media (max-width: 1024px) {
-    .powerhouse-grid {
+    .reveal-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .powerhouse-grid {
+    .reveal-grid {
         grid-template-columns: 1fr;
     }
 }
