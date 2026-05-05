@@ -452,63 +452,31 @@ img {
     margin-bottom: 1rem;
 }
 
-/* Trust / Why Weymann Section */
+/* Why Weymann */
 .trust-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
 }
 
-.premium-trust .trust-card {
-    position: relative;
-    background: #ffffff;
-    padding: 2.5rem;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border-bottom: 4px solid transparent;
-    text-align: left;
-    overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-    z-index: 1;
+.trust-card {
+    background: var(--bg-main);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--primary-color);
+    transition: var(--transition);
 }
 
-.premium-trust .trust-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-    border-bottom-color: #ffcc00;
+.trust-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
-.trust-number {
-    position: absolute;
-    top: -10px;
-    right: 5px;
-    font-size: 8rem;
-    font-weight: 900;
-    color: rgba(13, 43, 94, 0.04);
-    z-index: 0;
-    line-height: 1;
-    font-family: var(--font-heading);
-    transition: color 0.4s ease, transform 0.4s ease;
-}
-
-.premium-trust .trust-card:hover .trust-number {
-    color: rgba(255, 204, 0, 0.15);
-    transform: scale(1.05);
-}
-
-.premium-trust h4 {
-    position: relative;
-    z-index: 2;
-    font-size: 1.3rem;
+.trust-card h4 {
+    font-size: 1.1rem;
     margin-bottom: 1rem;
-    color: var(--primary-color);
-}
-
-.premium-trust p {
-    position: relative;
-    z-index: 2;
-    line-height: 1.6;
 }
 
 .feature-list {
@@ -794,11 +762,24 @@ img {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 2rem calc(50vw - 600px); /* Align with container (max-width 1200px) */
-    scrollbar-width: none; /* Firefox */
+    padding-bottom: 3rem; /* Space for scrollbar */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--secondary-color) rgba(0,0,0,0.05);
 }
 
 .cm-gallery-track::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    height: 8px;
+    display: block; /* Visible on PC */
+}
+
+.cm-gallery-track::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+.cm-gallery-track::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 10px;
 }
 
 @media (max-width: 1240px) {
@@ -851,36 +832,36 @@ img {
 
 .cm-gallery-info {
     position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
-    border-radius: 50px;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(13, 43, 94, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
-    gap: 1rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    gap: 0.8rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     z-index: 2;
     transition: transform 0.4s ease;
 }
 
 .cm-gallery-item:hover .cm-gallery-info {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }
 
 .cm-gallery-info span {
     color: #ffcc00;
-    font-weight: 900;
-    font-size: 1.3rem;
+    font-weight: 700;
+    font-size: 1rem;
     font-family: var(--font-heading);
 }
 
 .cm-gallery-info h3 {
     margin: 0;
-    font-size: 1.1rem;
-    color: var(--primary-color);
+    font-size: 1rem;
+    color: #ffffff;
 }
 
 /* Process */
