@@ -452,6 +452,65 @@ img {
     margin-bottom: 1rem;
 }
 
+/* Trust / Why Weymann Section */
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.premium-trust .trust-card {
+    position: relative;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-bottom: 4px solid transparent;
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    z-index: 1;
+}
+
+.premium-trust .trust-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    border-bottom-color: #ffcc00;
+}
+
+.trust-number {
+    position: absolute;
+    top: -10px;
+    right: 5px;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(13, 43, 94, 0.04);
+    z-index: 0;
+    line-height: 1;
+    font-family: var(--font-heading);
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.premium-trust .trust-card:hover .trust-number {
+    color: rgba(255, 204, 0, 0.15);
+    transform: scale(1.05);
+}
+
+.premium-trust h4 {
+    position: relative;
+    z-index: 2;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.premium-trust p {
+    position: relative;
+    z-index: 2;
+    line-height: 1.6;
+}
+
 .feature-list {
     display: flex;
     flex-direction: column;
