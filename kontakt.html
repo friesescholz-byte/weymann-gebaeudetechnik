@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektanfrage | Karl Weymann GmbH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .kontakt-flow-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%);
+            position: relative;
+        }
+        
+        .kontakt-bg-pattern {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .kontakt-box {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            max-width: 550px;
+            width: 100%;
+            padding: 3.5rem;
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+
+        .kontakt-box-header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .kontakt-box h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .kontakt-box p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .flow-form .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .flow-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .flow-form .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid transparent;
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .flow-form .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(210, 30, 38, 0.05);
+        }
+
+        .flow-form textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .flow-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            box-shadow: 0 10px 25px rgba(210, 30, 38, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .kontakt-box {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: white;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .back-link:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back to Home Link -->
+    <a href="index.html" class="back-link">
+        &larr; Zurück zur Startseite
+    </a>
+
+    <section class="kontakt-flow-section">
+        <div class="kontakt-bg-pattern"></div>
+        
+        <div class="kontakt-box">
+            <div class="kontakt-box-header">
+                <span style="color:var(--secondary-color); font-weight:700; text-transform:uppercase; letter-spacing:2px; font-size:0.85rem; display:block; margin-bottom:0.5rem;">Unverbindliche Anfrage</span>
+                <h1>Lassen Sie uns starten.</h1>
+                <p>Hinterlassen Sie kurz Ihre Eckdaten. Wir melden uns umgehend bei Ihnen zurück.</p>
+            </div>
+
+            <form class="flow-form" action="index.html" method="get">
+                <div class="form-group">
+                    <label for="name">Name / Firma</label>
+                    <input type="text" id="name" class="form-control" placeholder="Max Mustermann" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-Mail Adresse</label>
+                    <input type="email" id="email" class="form-control" placeholder="max@beispiel.de" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefon">Telefonnummer</label>
+                    <input type="tel" id="telefon" class="form-control" placeholder="0123 456789" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nachricht">Anmerkung / Wünsche</label>
+                    <textarea id="nachricht" class="form-control" placeholder="Worum geht es bei Ihrem Projekt?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary flow-btn">Anfrage kostenfrei absenden &rarr;</button>
+                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Ihre Daten werden sicher verschlüsselt übertragen.
+                </p>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>
