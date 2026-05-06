@@ -749,7 +749,7 @@ img {
 
 /* CM Gallery (Horizontal Scroll on Vertical Scroll) */
 .gallery-scroll-container {
-    height: 350vh; /* Determines how long the user scrolls vertically */
+    height: 200vh; /* Determines how long the user scrolls vertically - reduced for faster horizontal scrolling */
     position: relative;
     background: var(--bg-light);
 }
