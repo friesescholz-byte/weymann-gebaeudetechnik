@@ -887,49 +887,63 @@ img {
     color: #ffffff;
 }
 
-/* Process */
-.process-grid {
+/* Premium Process */
+.premium-process-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    position: relative;
+    margin-top: 3rem;
 }
 
-.process-grid::before {
-    content: '';
-    position: absolute;
-    top: 30px;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background-color: var(--border-color);
+.premium-process-step {
+    position: relative;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-bottom: 4px solid transparent;
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     z-index: 1;
 }
 
-.process-step {
-    text-align: center;
+.premium-process-step:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    border-bottom-color: #ffcc00;
+}
+
+.process-watermark {
+    position: absolute;
+    top: -10px;
+    right: 5px;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(13, 43, 94, 0.04);
+    z-index: 0;
+    line-height: 1;
+    font-family: var(--font-heading);
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.premium-process-step:hover .process-watermark {
+    color: rgba(255, 204, 0, 0.15);
+    transform: scale(1.05);
+}
+
+.premium-process-step h4 {
     position: relative;
     z-index: 2;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
 }
 
-.step-number {
-    width: 60px;
-    height: 60px;
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0 auto 1.5rem;
-    box-shadow: 0 0 0 10px var(--bg-main);
-}
-
-.process-step h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+.premium-process-step p {
+    position: relative;
+    z-index: 2;
+    line-height: 1.6;
 }
 
 /* Career */
