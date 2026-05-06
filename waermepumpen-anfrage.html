@@ -5,9 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wärmepumpe anfragen | Karl Weymann GmbH</title>
     <meta name="description" content="Effizient heizen mit Wärmepumpen von der Karl Weymann GmbH. Jetzt unverbindlich anfragen und Angebot sichern.">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_GmbH_Flavorcon.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* 1. Hero */
+        .wp-hero {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0a1128 100%);
+            color: white;
+            padding: 10rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .wp-hero-pattern {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: 0; pointer-events: none;
+        }
+        .wp-hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .wp-hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; color: white; line-height: 1.2; }
+        .wp-hero p { font-size: 1.25rem; opacity: 0.9; margin-bottom: 2.5rem; line-height: 1.6; }
+        
+        .trust-bar {
+            display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;
+        }
+        .trust-bar-item {
+            display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.8);
+        }
+
+        /* Generic Grids */
+        .wp-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .wp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .wp-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        
+        @media (max-width: 992px) {
+            .wp-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .wp-grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .wp-grid-4, .wp-grid-3, .wp-grid-2 { grid-template-columns: 1fr; }
+            .wp-hero h1 { font-size: 2.5rem; }
+        }
+
+        /* 2. Pain Area */
+        .pain-card {
+            background: #fff; border-radius: var(--radius-md); padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 4px solid var(--secondary-color);
+        }
+        .pain-card h4 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .pain-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* 3. Vision Area */
+        .vision-section { background-color: var(--bg-light); }
+        .vision-card {
+            background: #fff; padding: 1.5rem; border-radius: var(--radius-md);
+            display: flex; align-items: flex-start; gap: 1rem; border: 1px solid var(--border-color);
+        }
+        .vision-icon { color: #34A853; flex-shrink: 0; }
+        .vision-card h4 { margin-bottom: 0.25rem; font-size: 1.1rem; color: var(--primary-color); }
+        .vision-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+        /* 4. Funding Area */
+        .funding-banner {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #a0151c 100%);
+            color: white; padding: 4rem 2rem; border-radius: var(--radius-lg); text-align: center;
+            box-shadow: 0 20px 40px rgba(210, 30, 38, 0.2); margin: 4rem 0;
+        }
+        .funding-banner h2 { color: white; font-size: 2.5rem; margin-bottom: 1rem; }
+        .funding-banner p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; }
+
+        /* 8. Comparison Table */
+        .compare-table {
+            width: 100%; border-collapse: collapse; background: #fff;
+            border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .compare-table th, .compare-table td { padding: 1.5rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .compare-table th { background: var(--bg-dark); color: white; font-size: 1.2rem; width: 50%; }
+        .compare-table th.wp-col { background: var(--primary-color); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-bad { color: var(--secondary-color); font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+        .compare-good { color: #34A853; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* 11. Form Area */
+        .wp-form-section { background: var(--bg-dark); padding: 6rem 0; color: white; position: relative; overflow: hidden; }
+        .wp-form-box {
+            background: #fff; padding: 3rem; border-radius: var(--radius-lg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative; z-index: 2;
+        }
+        
+        .flow-form .form-group { margin-bottom: 1.2rem; text-align: left; }
+        .flow-form .form-control {
+            width: 100%; padding: 1rem; background: var(--bg-light); border: 2px solid transparent;
+            border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem; color: var(--text-main);
+        }
+        .flow-form .form-control:focus { outline: none; border-color: var(--secondary-color); background: #fff; }
+    </style>
 </head>
 <body>
 
@@ -23,97 +120,370 @@
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="subpage-hero">
-        <div class="container">
-            <h1>Wärmepumpe anfragen – effizient heizen mit Weymann</h1>
-            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">Unabhängiger werden und Heizkosten senken. Wir prüfen, planen und installieren die passende Wärmepumpe für Ihr Gebäude.</p>
+    <!-- 1. Hero -->
+    <section class="wp-hero">
+        <div class="wp-hero-pattern"></div>
+        <div class="container wp-hero-content">
+            <span style="display:inline-block; padding:0.4rem 1rem; background:rgba(255,204,0,0.15); color:#ffcc00; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:0.85rem; border-radius:50px; margin-bottom:1.5rem;">Zukunftssicher Heizen</span>
+            <h1>Wärmepumpe statt Heizkosten-Frust: Jetzt zukunftssicher heizen mit Weymann</h1>
+            <p>Senken Sie Ihre Abhängigkeit von fossilen Brennstoffen, nutzen Sie attraktive Fördermöglichkeiten und holen Sie sich eine Heizlösung, die wirklich zu Ihrem Haus passt – mit über 60 Jahren Erfahrung in moderner Gebäudetechnik.</p>
+            
+            <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+                <a href="#wp-form-section" class="btn btn-secondary btn-large" style="font-size: 1.1rem; padding: 1.2rem 2.5rem; box-shadow: 0 10px 25px rgba(210, 30, 38, 0.4);">Kostenlosen Wärmepumpen-Check anfragen</a>
+                <a href="#wp-form-section" class="btn btn-premium" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Förderung prüfen lassen</a>
+            </div>
+
+            <div class="trust-bar">
+                <div class="trust-bar-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Über 60 Jahre regionaler Fachbetrieb</div>
+                <div class="trust-bar-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Planung & Einbau aus einer Hand</div>
+                <div class="trust-bar-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Erfahrung mit Bestandsgebäuden</div>
+            </div>
         </div>
     </section>
 
-    <!-- Form Section -->
-    <section style="padding-bottom: 6rem;">
-        <div class="container">
-            <div class="form-section">
-                <div style="margin-bottom: 3rem;">
-                    <h2 style="margin-bottom: 1rem;">Ihre Anfrage in 2 Minuten</h2>
-                    <p class="text-muted">Füllen Sie das Formular aus. Wir melden uns umgehend bei Ihnen, um die Details zu besprechen und einen Vor-Ort-Termin zu vereinbaren.</p>
+    <!-- 2. Pain Area -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Ihre Heizung läuft noch? Ihr Geld leider auch.</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 4rem;">Alte Heizungen wirken oft zuverlässig – bis die nächste Rechnung kommt, die Reparatur ansteht oder klar wird: Die Technik ist längst nicht mehr zeitgemäß. Viele Eigentümer warten zu lange und zahlen Monat für Monat unnötig hohe Energiekosten.</p>
+            
+            <div class="wp-grid-4 text-left">
+                <div class="pain-card">
+                    <h4>Steigende Heizkosten</h4>
+                    <p>Öl und Gas bleiben ein unkalkulierbares Risiko für Ihr Haushaltsbudget.</p>
                 </div>
-                
-                <form>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <input type="text" class="form-control" placeholder="Name" required>
-                        <input type="tel" class="form-control" placeholder="Telefonnummer" required>
-                    </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <input type="email" class="form-control" placeholder="E-Mail" required>
-                        <input type="text" class="form-control" placeholder="Adresse / Ort" required>
-                    </div>
-                    
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <select class="form-control" required>
-                            <option value="" disabled selected>Objektart</option>
-                            <option>Einfamilienhaus</option>
-                            <option>Mehrfamilienhaus</option>
-                            <option>Gewerbe</option>
-                        </select>
-                        <input type="text" class="form-control" placeholder="Baujahr (ca.)">
-                    </div>
-                    
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <select class="form-control" required>
-                            <option value="" disabled selected>Aktuelle Heizung</option>
-                            <option>Gas</option>
-                            <option>Öl</option>
-                            <option>Elektro</option>
-                            <option>Sonstige</option>
-                        </select>
-                        <input type="text" class="form-control" placeholder="Wohnfläche in m²">
-                    </div>
-                    
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option value="" disabled selected>Gewünschter Zeitraum</option>
-                            <option>So schnell wie möglich</option>
-                            <option>In den nächsten 3 Monaten</option>
-                            <option>In den nächsten 6 Monaten</option>
-                            <option>Noch unklar / nur Information</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Ihre Nachricht / Besonderheiten (optional)" rows="4"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; color:var(--text-muted);">Foto vom Heizraum (optional)</label>
-                        <input type="file" class="form-control" accept="image/*">
-                    </div>
-                    
-                    <div class="form-group" style="margin: 2rem 0;">
-                        <label style="font-size: 0.85rem; color: var(--text-muted); display:flex; gap:0.5rem; align-items:start;">
-                            <input type="checkbox" required style="margin-top:3px;">
-                            <span>Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme gemäß der Datenschutzerklärung zu.</span>
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Wärmepumpen-Angebot anfordern</button>
-                </form>
+                <div class="pain-card">
+                    <h4>Unsichere Zukunft</h4>
+                    <p>Wer heute falsch in alte Technik investiert, ärgert sich morgen doppelt.</p>
+                </div>
+                <div class="pain-card">
+                    <h4>Alte Technik</h4>
+                    <p>Veraltete Anlagen arbeiten oft extrem ineffizient und sind störanfällig.</p>
+                </div>
+                <div class="pain-card">
+                    <h4>Förderung verpassen</h4>
+                    <p>Wer zu spät handelt, verschenkt möglicherweise bares Geld vom Staat.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; padding: 2rem; background: var(--bg-light); border-radius: var(--radius-md); font-weight: 600; font-size: 1.2rem; color: var(--primary-color);">
+                "Nicht die Wärmepumpe ist teuer. Teuer ist, zu lange an alter Technik festzuhalten."
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Vision Area -->
+    <section class="section-padding vision-section">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Heizen kann leise, sauber und clever sein.</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 4rem;">Eine moderne Wärmepumpe nutzt Energie aus der Umgebung und macht daraus angenehme Wärme für Ihr Zuhause. Kein Ölgeruch. Kein Gas-Stress. Stattdessen: effiziente Technik und ein Zuhause, das bereit ist für die nächsten Jahre.</p>
+            
+            <div class="wp-grid-3 text-left">
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Unabhängigkeit</h4><p>Weniger abhängig von Öl und Gas.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Effizienz</h4><p>Moderne Technik nutzt vorhandene Umweltenergie.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Zukunftssicherheit</h4><p>Eine Lösung, die zu modernen Gebäuden passt.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Wohnkomfort</h4><p>Konstante Wärme, moderne Steuerung.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Immobilienwert</h4><p>Eine moderne Heizungsanlage macht Ihr Haus attraktiver.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Förderung</h4><p>Je nach Voraussetzung hohe Zuschüsse möglich.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Funding Highlight -->
+    <section class="container">
+        <div class="funding-banner">
+            <h2>Bis zu 70 % Förderung möglich – wir prüfen, was für Sie drin ist.</h2>
+            <p>Der Umstieg auf eine klimafreundliche Heizung wird aktuell stark gefördert. Die KfW bietet für private Eigentümer bestehender Wohngebäude einen Zuschuss von bis zu 70 % der förderfähigen Kosten. Wichtig ist: Die Förderung muss sauber geplant werden.</p>
+            <a href="#wp-form-section" class="btn btn-premium" style="background: #fff; color: var(--secondary-color); font-weight: 700;">Jetzt Förderchancen prüfen lassen</a>
+            <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 2rem; margin-bottom: 0;">* Die tatsächliche Förderhöhe hängt von Gebäude, Ausgangsheizung und weiteren Voraussetzungen ab. Wir beraten Sie transparent.</p>
+        </div>
+    </section>
+
+    <!-- 5. Weymann Proof -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; color: var(--primary-color);">Wärmepumpe ist nicht einfach ein Gerät. Wärmepumpe ist Planungssache.</h2>
+                <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 1.5rem auto 0;">Eine Wärmepumpe funktioniert dann richtig gut, wenn sie richtig dimensioniert, sauber geplant und fachgerecht eingebunden wird. Genau dafür steht Weymann: technische Planung und ein Team, das Anlagen nicht nur verkauft, sondern versteht.</p>
             </div>
             
-            <div style="margin-top: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <h3 style="margin-bottom: 1.5rem; text-align:center;">Ihre Vorteile mit Weymann</h3>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div>
-                        <h4 style="color:var(--accent-green); margin-bottom:0.5rem;">✓ Fördermittelberatung</h4>
-                        <p class="text-muted">Wir unterstützen Sie bei der Beantragung staatlicher Zuschüsse.</p>
+            <div class="wp-grid-2">
+                <div class="premium-tile" style="text-align: left; padding: 3rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Über 60 Jahre Erfahrung</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">Gebäudetechnik aus der Region Hannover – seit Jahrzehnten gewachsen, bewährt und vertraut.</p>
+                </div>
+                <div class="premium-tile" style="text-align: left; padding: 3rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Technische Planung statt Bauchgefühl</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">Wir nutzen moderne EDV, Wärmebedarfs- und hydraulische Berechnungen. Wir prüfen, was Ihr Haus wirklich braucht.</p>
+                </div>
+                <div class="premium-tile" style="text-align: left; padding: 3rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Alles aus einer Hand</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">Heizung, Klima, Lüftung, Solar & Sanitär. Wir betrachten Ihr Gebäude ganzheitlich.</p>
+                </div>
+                <div class="premium-tile" style="text-align: left; padding: 3rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Referenzerfahrung</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">Wir realisieren auch komplexe Anlagen wie in der Kirchberg Klinik mit Wärmeerzeugung und Klimatisierung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Process -->
+    <section class="section-padding bg-pattern-light">
+        <div class="fade-from-dark" style="background: linear-gradient(to bottom, #fff, transparent);"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-title text-center">
+                <h2>In 5 Schritten zur neuen Wärmepumpe – ohne Technik-Chaos.</h2>
+            </div>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <span class="process-watermark">01</span>
+                    <div class="process-content">
+                        <h4>Anfrage stellen</h4>
+                        <p class="text-muted">Sie senden uns Ihre Anfrage – wir melden uns persönlich. Kein Callcenter, sondern ein ehrlicher Blick auf Ihr Vorhaben.</p>
                     </div>
-                    <div>
-                        <h4 style="color:var(--accent-green); margin-bottom:0.5rem;">✓ Alles aus einer Hand</h4>
-                        <p class="text-muted">Von der Demontage der Altanlage bis zur Inbetriebnahme der neuen Wärmepumpe.</p>
+                </div>
+                
+                <div class="process-step">
+                    <span class="process-watermark">02</span>
+                    <div class="process-content">
+                        <h4>Gebäude prüfen</h4>
+                        <p class="text-muted">Wir schauen, ob eine Wärmepumpe zu Ihrem Haus passt. Wir prüfen Heizlast, Bestand und technische Voraussetzungen.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <span class="process-watermark">03</span>
+                    <div class="process-content">
+                        <h4>Lösung planen</h4>
+                        <p class="text-muted">Sie bekommen ein Konzept, das zu Ihrem Zuhause passt: Wärmepumpe, Speicher, Hydraulik – sauber durchdacht.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <span class="process-watermark">04</span>
+                    <div class="process-content">
+                        <h4>Förderung berücksichtigen</h4>
+                        <p class="text-muted">Wir zeigen Ihnen, welche Förderung möglich sein kann, damit Sie wirtschaftlich sinnvoll investieren.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
+                    <span class="process-watermark">05</span>
+                    <div class="process-content text-center">
+                        <h4>Fachgerechter Einbau</h4>
+                        <p class="text-muted">Unser Team setzt die Anlage professionell um. Von der Planung bis zur Inbetriebnahme.</p>
                     </div>
                 </div>
             </div>
+
+            <div class="text-center" style="margin-top: 4rem;">
+                <a href="#wp-form-section" class="btn btn-primary btn-large">Jetzt Wärmepumpen-Check starten</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color);">„Funktioniert eine Wärmepumpe überhaupt bei meinem Haus?“</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Ist mein Haus zu alt für eine Wärmepumpe?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nicht automatisch. Entscheidend sind Wärmebedarf, Heizflächen, Vorlauftemperatur und der Zustand des Gebäudes. Viele Bestandsgebäude lassen sich mit der richtigen Planung sinnvoll modernisieren.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Muss ich zwingend eine Fußbodenheizung haben?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nicht immer. Große Heizkörper oder passende Systemtemperaturen können ebenfalls funktionieren. Wichtig ist eine technische Prüfung vorab.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Ist eine Wärmepumpe laut?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Moderne Anlagen können sehr leise arbeiten. Entscheidend sind Geräteauswahl, Aufstellort und fachgerechte Planung.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Was kostet eine Wärmepumpe?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Das hängt stark vom Gebäude, der bestehenden Heizungsanlage und dem notwendigen Umbau ab. Deshalb erstellen wir keine Fantasiepreise, sondern prüfen Ihr Projekt individuell.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Comparison -->
+    <section class="section-padding vision-section">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Alte Heizung behalten oder jetzt clever wechseln?</h2>
+            <p class="text-center text-muted" style="margin-bottom: 3rem; font-size: 1.1rem;">Ihre Heizung soll nicht nur heute laufen. Sie soll morgen noch Sinn ergeben.</p>
+            
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Alte Öl-/Gasheizung</th>
+                        <th class="wp-col">Moderne Wärmepumpe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="compare-bad"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Abhängig von fossilen Brennstoffen</td>
+                        <td class="compare-good"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Nutzt Umweltenergie</td>
+                    </tr>
+                    <tr>
+                        <td class="compare-bad"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Steigende Kosten schwer planbar</td>
+                        <td class="compare-good"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Zukunftsorientierte Technik</td>
+                    </tr>
+                    <tr>
+                        <td class="compare-bad"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Höheres Reparaturrisiko im Alter</td>
+                        <td class="compare-good"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Neue Anlage mit moderner Steuerung</td>
+                    </tr>
+                    <tr>
+                        <td class="compare-bad"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Schlechtere Perspektive beim Immobilienwert</td>
+                        <td class="compare-good"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Attraktiver für Käufer und Bewohner</td>
+                    </tr>
+                    <tr>
+                        <td class="compare-bad"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Modernisierung wird oft aufgeschoben</td>
+                        <td class="compare-good"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Förderung kann Investition erleichtern</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 9. References -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Technik, die nicht nur versprochen, sondern umgesetzt wird.</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem;">Weymann plant und realisiert moderne Gebäudetechnik für Wohnhäuser, Bürohäuser und Gewerbebauten in der Region Hannover.</p>
+            
+            <div class="wp-grid-3" style="margin-bottom: 4rem;">
+                <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=600&auto=format&fit=crop" style="border-radius:12px; height:250px; width:100%; object-fit:cover; box-shadow:0 10px 30px rgba(0,0,0,0.1);" alt="Wärmepumpe Außenaufstellung">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop" style="border-radius:12px; height:250px; width:100%; object-fit:cover; box-shadow:0 10px 30px rgba(0,0,0,0.1);" alt="Moderne Heizzentrale">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356f12?q=80&w=600&auto=format&fit=crop" style="border-radius:12px; height:250px; width:100%; object-fit:cover; box-shadow:0 10px 30px rgba(0,0,0,0.1);" alt="Gebäudetechnik">
+            </div>
+
+            <div style="background: var(--bg-light); padding: 3rem; border-radius: var(--radius-lg); border-left: 4px solid var(--secondary-color);">
+                <p style="font-size: 1.3rem; font-style: italic; color: var(--primary-color); margin-bottom: 1rem;">„Von der Beratung bis zur Inbetriebnahme hatten wir endlich das Gefühl, dass jemand unser Haus wirklich verstanden hat.“</p>
+                <span style="color: var(--text-muted); font-weight: 600;">Kunde aus der Region Hannover</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 & 11. Form Area (The Offer) -->
+    <section id="wp-form-section" class="wp-form-section">
+        <div class="wp-hero-pattern" style="opacity: 0.5;"></div>
+        <div class="container">
+            <div class="wp-grid-2" style="align-items: center;">
+                <div style="position: relative; z-index: 2;">
+                    <span style="display:inline-block; padding:0.4rem 1rem; background:rgba(255,204,0,0.15); color:#ffcc00; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:0.85rem; border-radius:50px; margin-bottom:1rem;">Das Angebot</span>
+                    <h2 style="font-size: 2.8rem; margin-bottom: 1.5rem; line-height: 1.2;">Der kostenlose Weymann Wärmepumpen-Check</h2>
+                    <p style="font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem;">Finden Sie heraus, ob Ihr Haus bereit für eine Wärmepumpe ist – und welche Lösung technisch, wirtschaftlich und förderfähig sinnvoll sein kann.</p>
+                    
+                    <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                            <span style="color: #ffcc00; font-size: 1.5rem;">✓</span>
+                            <div><strong style="display:block; font-size: 1.1rem;">Gebäude-Ersteinschätzung</strong><span style="opacity: 0.8;">Passt eine Wärmepumpe grundsätzlich zu Ihrem Haus?</span></div>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                            <span style="color: #ffcc00; font-size: 1.5rem;">✓</span>
+                            <div><strong style="display:block; font-size: 1.1rem;">Heizungs-Check</strong><span style="opacity: 0.8;">Was ist verbaut und was müsste angepasst werden?</span></div>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                            <span style="color: #ffcc00; font-size: 1.5rem;">✓</span>
+                            <div><strong style="display:block; font-size: 1.1rem;">Förder-Orientierung</strong><span style="opacity: 0.8;">Welche Zuschüsse könnten relevant sein?</span></div>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <span style="color: #ffcc00; font-size: 1.5rem;">✓</span>
+                            <div><strong style="display:block; font-size: 1.1rem;">Ehrliche Empfehlung</strong><span style="opacity: 0.8;">Klare Einschätzung statt Verkaufsdruck.</span></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="wp-form-box">
+                    <h3 style="color: var(--primary-color); font-size: 1.6rem; margin-bottom: 1.5rem;">Bereit für Ihre neue Heizung? Wir prüfen Ihr Projekt.</h3>
+                    <form class="flow-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Vor- & Nachname" required>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="form-group"><input type="tel" class="form-control" placeholder="Telefonnummer" required></div>
+                            <div class="form-group"><input type="email" class="form-control" placeholder="E-Mail" required></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Ort / PLZ" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Aktuelle Heizung</option>
+                                <option>Öl</option>
+                                <option>Gas</option>
+                                <option>Strom / Elektro</option>
+                                <option>Sonstiges</option>
+                            </select>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="form-group"><input type="text" class="form-control" placeholder="Baujahr des Hauses (ca.)"></div>
+                            <div class="form-group"><input type="text" class="form-control" placeholder="Wohnfläche in m²"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Ihre Nachricht an uns (optional)" rows="3"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-secondary btn-large" style="width: 100%; box-shadow: 0 10px 25px rgba(210, 30, 38, 0.3);">Wärmepumpen-Check anfragen &rarr;</button>
+                        <p style="text-align:center; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; margin-bottom: 0;">Kostenlos & unverbindlich. Persönliche Rückmeldung durch Weymann.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Final CTA -->
+    <section class="section-padding text-center">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">Die beste Zeit für eine neue Heizung?<br>Bevor die alte Probleme macht.</h2>
+            <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem;">Warten Sie nicht, bis Reparaturen teuer werden, Förderchancen verpasst sind oder die nächste Heizperiode vor der Tür steht. Lassen Sie jetzt prüfen, ob eine Wärmepumpe zu Ihrem Zuhause passt.</p>
+            <a href="#wp-form-section" class="btn btn-primary btn-large">Jetzt kostenlos prüfen lassen</a>
+            <p style="margin-top: 2rem; font-weight: 600; color: var(--text-main);">Weymann Gebäudetechnik – moderne Wärme für Menschen, die weiterdenken.</p>
         </div>
     </section>
 
@@ -132,5 +502,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Simple script for the FAQ accordion on this page specifically
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            })
+        });
+    </script>
 </body>
 </html>
