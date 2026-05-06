@@ -11,38 +11,47 @@
     <style>
         html { scroll-behavior: smooth; }
         
-        /* 1. Hero */
+        /* 1. Hero (New Blending Design) */
         .wp-hero {
             position: relative;
-            min-height: 100vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             background-image: url('https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1600&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            padding-top: 80px;
+            padding-top: 100px;
+            padding-bottom: 120px; /* Extra padding for the overlapping cards */
         }
         
-        .wp-hero-shape {
+        .wp-hero-overlay {
             position: absolute;
-            top: 0; left: 0; width: 65%; height: 100%;
-            background: linear-gradient(135deg, rgba(13,43,94,0.95) 0%, rgba(13,43,94,0.85) 100%);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(13,43,94,0.95) 0%, rgba(10,17,40,0.8) 100%);
             z-index: 1;
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-            border-right: 1px solid rgba(255,255,255,0.05);
         }
 
         .wp-hero-pattern {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: 2; pointer-events: none;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 2; pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Seamless fade to white at the bottom */
+        .wp-hero-fade {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 250px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
+            z-index: 3;
+            pointer-events: none;
         }
         
         .wp-hero-container {
             position: relative;
-            z-index: 3;
+            z-index: 4;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -50,7 +59,7 @@
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-            padding: 6rem 2rem;
+            padding: 2rem;
         }
 
         .wp-hero-content {
@@ -58,26 +67,18 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            max-width: 700px;
+            max-width: 750px;
         }
 
         .wp-hero h1 { 
             font-family: 'Outfit', sans-serif;
-            font-size: 4.2rem; 
-            font-weight: 700;
-            line-height: 1.05;
+            font-size: 4rem; 
+            font-weight: 800;
+            line-height: 1.1;
             letter-spacing: -0.02em;
             color: #ffffff;
             margin-bottom: 1.5rem;
-            text-shadow: 
-                0px 1px 0px #b0b0b0,
-                0px 2px 0px #a0a0a0,
-                0px 3px 0px #909090,
-                0px 4px 0px #808080,
-                0px 5px 0px #707070,
-                0px 6px 15px rgba(0,0,0,0.6),
-                0px 15px 30px rgba(0,0,0,0.4),
-                0px 25px 50px rgba(0,0,0,0.3);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         
         .wp-hero p { 
@@ -126,12 +127,35 @@
         }
 
         /* 2. Pain Area */
-        .pain-card {
-            background: #fff; border-radius: var(--radius-md); padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 4px solid var(--secondary-color);
+        .wp-pain-section {
+            background-color: #ffffff;
+            position: relative;
+            z-index: 10;
         }
-        .pain-card h4 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.2rem; }
-        .pain-card p { color: var(--text-muted); font-size: 0.95rem; }
+        
+        .pain-card {
+            background: #fff; border-radius: var(--radius-lg); padding: 2.5rem 2rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); border-top: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .pain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+        .pain-card-icon {
+            width: 50px; height: 50px; background: rgba(210,30,38,0.1); color: var(--secondary-color);
+            display: flex; align-items: center; justify-content: center; border-radius: 50%;
+            margin-bottom: 1.5rem;
+        }
+        .pain-card h4 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; font-weight: 700; }
+        .pain-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+
+        /* Overlap effect */
+        .pain-grid-wrapper {
+            margin-top: -120px;
+            margin-bottom: 4rem;
+        }
 
         /* 3. Vision Area */
         .vision-section { background-color: var(--bg-light); }
@@ -195,13 +219,13 @@
 
     <!-- 1. Hero -->
     <section class="wp-hero">
-        <div class="wp-hero-shape">
-            <div class="wp-hero-pattern"></div>
-        </div>
+        <div class="wp-hero-overlay"></div>
+        <div class="wp-hero-pattern"></div>
+        <div class="wp-hero-fade"></div> <!-- Seamless fade gradient -->
         
         <div class="wp-hero-container">
             <div class="wp-hero-content">
-                <span style="display:inline-block; padding:0.4rem 1rem; background:rgba(255,204,0,0.15); color:#ffcc00; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:0.85rem; border-radius:50px; margin-bottom:1.5rem;">Zukunftssicher Heizen</span>
+                <span style="display:inline-block; padding:0.4rem 1.2rem; background:rgba(255,204,0,0.15); color:#ffcc00; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:0.85rem; border-radius:50px; margin-bottom:1.5rem; backdrop-filter: blur(5px);">Zukunftssicher Heizen</span>
                 <h1>Wärmepumpe statt Heizkosten-Frust: Jetzt zukunftssicher heizen mit Weymann</h1>
                 <p>Senken Sie Ihre Abhängigkeit von fossilen Brennstoffen, nutzen Sie attraktive Fördermöglichkeiten und holen Sie sich eine Heizlösung, die wirklich zu Ihrem Haus passt – mit über 60 Jahren Erfahrung in moderner Gebäudetechnik.</p>
                 
@@ -221,31 +245,44 @@
     </section>
 
     <!-- 2. Pain Area -->
-    <section class="section-padding">
+    <section class="wp-pain-section">
         <div class="container text-center">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Ihre Heizung läuft noch? Ihr Geld leider auch.</h2>
-            <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 4rem;">Alte Heizungen wirken oft zuverlässig – bis die nächste Rechnung kommt, die Reparatur ansteht oder klar wird: Die Technik ist längst nicht mehr zeitgemäß. Viele Eigentümer warten zu lange und zahlen Monat für Monat unnötig hohe Energiekosten.</p>
             
-            <div class="wp-grid-4 text-left">
+            <div class="wp-grid-4 text-left pain-grid-wrapper">
                 <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
                     <h4>Steigende Heizkosten</h4>
                     <p>Öl und Gas bleiben ein unkalkulierbares Risiko für Ihr Haushaltsbudget.</p>
                 </div>
                 <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    </div>
                     <h4>Unsichere Zukunft</h4>
                     <p>Wer heute falsch in alte Technik investiert, ärgert sich morgen doppelt.</p>
                 </div>
                 <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
                     <h4>Alte Technik</h4>
-                    <p>Veraltete Anlagen arbeiten oft extrem ineffizient und sind störanfällig.</p>
+                    <p>Veraltete Anlagen arbeiten extrem ineffizient und sind störanfällig.</p>
                 </div>
                 <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
                     <h4>Förderung verpassen</h4>
                     <p>Wer zu spät handelt, verschenkt möglicherweise bares Geld vom Staat.</p>
                 </div>
             </div>
 
-            <div style="margin-top: 4rem; padding: 2rem; background: var(--bg-light); border-radius: var(--radius-md); font-weight: 600; font-size: 1.2rem; color: var(--primary-color);">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Ihre Heizung läuft noch? Ihr Geld leider auch.</h2>
+            <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem;">Alte Heizungen wirken oft zuverlässig – bis die nächste Rechnung kommt, die Reparatur ansteht oder klar wird: Die Technik ist längst nicht mehr zeitgemäß. Viele Eigentümer warten zu lange und zahlen Monat für Monat unnötig hohe Energiekosten.</p>
+
+            <div style="margin-top: 3rem; margin-bottom: 3rem; padding: 2rem; background: var(--bg-light); border-radius: var(--radius-md); font-weight: 600; font-size: 1.25rem; color: var(--primary-color); border-left: 4px solid var(--secondary-color);">
                 "Nicht die Wärmepumpe ist teuer. Teuer ist, zu lange an alter Technik festzuhalten."
             </div>
         </div>
