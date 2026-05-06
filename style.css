@@ -1590,3 +1590,44 @@ img {
     animation: none;
   }
 }
+
+/* Google Review Button */
+.google-review-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    padding: 12px 20px;
+    border-radius: 50px;
+    color: #3c4043;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 1px solid #dadce0;
+    width: fit-content;
+    margin-top: 1.5rem;
+}
+
+.google-review-btn:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    color: #3c4043;
+}
+
+.google-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-review-btn .stars {
+    color: #fbbc04;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+}
