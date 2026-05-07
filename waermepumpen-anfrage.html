@@ -307,6 +307,48 @@
         @media (max-width: 992px) {
             .lp-header-nav { display: none; }
         }
+
+        /* FAQ Section */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .faq-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: #fafafa;
+        }
+        .faq-answer p { margin-bottom: 1.5rem; color: var(--text-muted); }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
     </style>
 </head>
 <body>
@@ -348,7 +390,7 @@
             </div>
 
             <!-- The Floating Glass Card (like Xurya screenshot) -->
-            <a href="#foerderung" class="wp-glass-card" style="text-decoration: none; display: block;">
+            <a href="#foerderung" class="wp-glass-card" style="text-decoration: none;">
                 <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop" alt="Wärmepumpe Modern">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div>
@@ -464,7 +506,7 @@
     </section>
 
     <!-- 7. FAQ -->
-    <section class="section-padding" id="faq">
+    <section class="section-padding" id="faq" style="background-color: var(--bg-light);">
         <div class="container">
             <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color);">„Funktioniert eine Wärmepumpe überhaupt bei meinem Haus?“</h2>
             
