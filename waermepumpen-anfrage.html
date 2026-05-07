@@ -238,8 +238,8 @@
 
         /* Overlap effect */
         .pain-grid-wrapper {
-            margin-top: 2rem;
-            margin-bottom: 4rem;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
         }
 
         /* 3. Vision Area */
@@ -297,19 +297,34 @@
         @media (max-width: 768px) {
             .wp-grid-4, .wp-grid-3 { grid-template-columns: 1fr; }
         }
+        /* Landing Page Header */
+        .lp-header-nav {
+            display: flex; gap: 2.5rem; align-items: center; justify-content: center; flex: 1;
+        }
+        .lp-header-nav a.nav-link {
+            color: var(--primary-color); font-weight: 600; font-size: 1.05rem;
+        }
+        @media (max-width: 992px) {
+            .lp-header-nav { display: none; }
+        }
     </style>
 </head>
 <body>
 
     <!-- Header -->
     <header class="header">
-        <div class="container nav-container">
+        <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center;">
             <a href="index.html" class="logo">
                 <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_logo_transparent.png" alt="Karl Weymann GmbH Logo" style="height: 45px;">
             </a>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-link">&larr; Zurück zur Startseite</a>
+            
+            <nav class="nav-menu lp-header-nav">
+                <a href="#vorteile" class="nav-link">Vorteile</a>
+                <a href="#foerderung" class="nav-link">Förderung</a>
+                <a href="#faq" class="nav-link">FAQ</a>
             </nav>
+
+            <a href="waermepumpen-anfrage-kontakt.html" class="btn btn-secondary" style="padding: 0.8rem 1.8rem; white-space: nowrap;">Anfragen</a>
         </div>
     </header>
 
@@ -405,7 +420,7 @@
     </section>
 
     <!-- 3. Vision Area -->
-    <section class="section-padding vision-section">
+    <section class="section-padding vision-section" id="vorteile">
         <div class="container text-center">
             <div class="wp-grid-3 text-left" style="margin-bottom: 4rem;">
                 <div class="vision-card">
@@ -449,7 +464,7 @@
     </section>
 
     <!-- 7. FAQ -->
-    <section class="section-padding">
+    <section class="section-padding" id="faq">
         <div class="container">
             <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color);">„Funktioniert eine Wärmepumpe überhaupt bei meinem Haus?“</h2>
             
