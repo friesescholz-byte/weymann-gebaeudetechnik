@@ -247,6 +247,31 @@
         .vision-card {
             background: #fff; padding: 1.5rem; border-radius: var(--radius-md);
             display: flex; align-items: flex-start; gap: 1rem; border: 1px solid var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .vision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--secondary-color);
+        }
+        .vision-card .vision-icon {
+            color: #34A853; flex-shrink: 0;
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+        .vision-card:hover .vision-icon {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--secondary-color);
+        }
+        .vision-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(210,30,38,0.03) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .vision-card:hover::after {
+            opacity: 1;
         }
         .vision-icon { color: #34A853; flex-shrink: 0; }
         .vision-card h4 { margin-bottom: 0.25rem; font-size: 1.1rem; color: var(--primary-color); }
@@ -382,10 +407,7 @@
     <!-- 3. Vision Area -->
     <section class="section-padding vision-section">
         <div class="container text-center">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Heizen kann leise, sauber und clever sein.</h2>
-            <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 4rem;">Eine moderne Wärmepumpe nutzt Energie aus der Umgebung und macht daraus angenehme Wärme für Ihr Zuhause. Kein Ölgeruch. Kein Gas-Stress. Stattdessen: effiziente Technik und ein Zuhause, das bereit ist für die nächsten Jahre.</p>
-            
-            <div class="wp-grid-3 text-left">
+            <div class="wp-grid-3 text-left" style="margin-bottom: 4rem;">
                 <div class="vision-card">
                     <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
                     <div><h4>Mehr Unabhängigkeit</h4><p>Weniger abhängig von Öl und Gas.</p></div>
@@ -398,7 +420,22 @@
                     <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
                     <div><h4>Mehr Zukunftssicherheit</h4><p>Eine Lösung, die zu modernen Gebäuden passt.</p></div>
                 </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Wohnkomfort</h4><p>Konstante Wärme, moderne Steuerung.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Immobilienwert</h4><p>Eine moderne Heizungsanlage macht Ihr Haus attraktiver.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Förderung</h4><p>Je nach Voraussetzung hohe Zuschüsse möglich.</p></div>
+                </div>
             </div>
+
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Heizen kann leise, sauber und clever sein.</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto;">Eine moderne Wärmepumpe nutzt Energie aus der Umgebung und macht daraus angenehme Wärme für Ihr Zuhause. Kein Ölgeruch. Kein Gas-Stress. Stattdessen: effiziente Technik und ein Zuhause, das bereit ist für die nächsten Jahre.</p>
         </div>
     </section>
 
@@ -434,6 +471,26 @@
                     </div>
                     <div class="faq-answer">
                         <p>Das hängt stark vom Gebäude, der bestehenden Heizungsanlage und dem notwendigen Umbau ab. Deshalb erstellen wir keine Fantasiepreise, sondern prüfen Ihr Projekt individuell.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Muss ich zwingend eine Fußbodenheizung haben?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nicht immer. Große Heizkörper oder passende Systemtemperaturen können ebenfalls funktionieren. Wichtig ist eine technische Prüfung vorab.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Ist eine Wärmepumpe laut?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Moderne Anlagen können sehr leise arbeiten. Entscheidend sind Geräteauswahl, Aufstellort und fachgerechte Planung.</p>
                     </div>
                 </div>
             </div>
