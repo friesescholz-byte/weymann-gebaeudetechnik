@@ -1810,7 +1810,37 @@ img {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 3rem;
+}
+
+.mobile-filter-toggle {
+    display: none;
+    width: 100%;
+    background-color: var(--bg-main);
+    color: var(--primary-color);
+    border: 2px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    transition: var(--transition);
+}
+
+.mobile-filter-toggle:hover {
+    border-color: var(--primary-light);
+}
+
+.mobile-filter-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.mobile-filter-toggle.open svg {
+    transform: rotate(180deg);
 }
 
 .filter-btn {
@@ -1844,4 +1874,48 @@ img {
 /* Hidden class for JS filtering */
 .project-card.hidden {
     display: none !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-filter-toggle {
+        display: flex;
+    }
+    
+    .gallery-filter-container {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--bg-main);
+        padding: 1rem;
+        border-radius: 20px;
+        border: 2px solid var(--border-color);
+        gap: 0.5rem;
+        position: absolute;
+        z-index: 10;
+        box-shadow: var(--shadow-md);
+    }
+
+    .gallery-filter-container.open {
+        display: flex;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        text-align: left;
+        border-radius: 12px;
+        padding: 0.8rem 1.2rem;
+        border: none;
+        background: transparent;
+    }
+    
+    .filter-btn:hover {
+        background-color: rgba(13, 43, 94, 0.05);
+        color: var(--primary-color);
+        box-shadow: none;
+        transform: none;
+    }
+    
+    .filter-wrapper {
+        position: relative;
+    }
 }

@@ -48,13 +48,19 @@
     <!-- Gallery Section -->
     <section class="projects-gallery-section" style="padding: 6rem 0; background-color: var(--bg-main);">
         <div class="container">
-            <div class="gallery-filter-container" id="gallery-filters" style="display: none;">
-                <button class="filter-btn active" data-filter="all">Alle anzeigen</button>
-                <button class="filter-btn" data-filter="Wärmepumpen">Wärmepumpen</button>
-                <button class="filter-btn" data-filter="Heizung & Solar">Heizung & Solar</button>
-                <button class="filter-btn" data-filter="Badsanierung">Badsanierung</button>
-                <button class="filter-btn" data-filter="Klima & Lüftung">Klima & Lüftung</button>
-                <button class="filter-btn" data-filter="Wartung & Service">Wartung & Service</button>
+            <div class="filter-wrapper" id="gallery-filter-wrapper" style="display: none; margin-bottom: 3rem;">
+                <button class="mobile-filter-toggle" id="mobile-filter-toggle">
+                    <span id="mobile-filter-text">Alle anzeigen</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="gallery-filter-container" id="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">Alle anzeigen</button>
+                    <button class="filter-btn" data-filter="Wärmepumpen">Wärmepumpen</button>
+                    <button class="filter-btn" data-filter="Heizung & Solar">Heizung & Solar</button>
+                    <button class="filter-btn" data-filter="Badsanierung">Badsanierung</button>
+                    <button class="filter-btn" data-filter="Klima & Lüftung">Klima & Lüftung</button>
+                    <button class="filter-btn" data-filter="Wartung & Service">Wartung & Service</button>
+                </div>
             </div>
 
             <div class="projects-grid" id="dynamic-gallery">
@@ -132,7 +138,8 @@
                     return;
                 }
 
-                filterContainer.style.display = "flex";
+                const filterWrapper = document.getElementById("gallery-filter-wrapper");
+                filterWrapper.style.display = "block";
 
                 gallery.innerHTML = projects.map(p => {
                     const meta = p.customMetadata || {};
@@ -174,8 +181,27 @@
                                 }
                             }
                         });
+
+                        // Mobile Dropdown Logic Update
+                        const mobileText = document.getElementById('mobile-filter-text');
+                        if(mobileText) {
+                            mobileText.textContent = btn.textContent;
+                        }
+                        if (window.innerWidth <= 768) {
+                            filterContainer.classList.remove('open');
+                            document.getElementById('mobile-filter-toggle').classList.remove('open');
+                        }
                     });
                 });
+
+                // Mobile Toggle Click Logic
+                const mobileToggle = document.getElementById('mobile-filter-toggle');
+                if(mobileToggle) {
+                    mobileToggle.addEventListener('click', () => {
+                        mobileToggle.classList.toggle('open');
+                        filterContainer.classList.toggle('open');
+                    });
+                }
 
             } catch (err) {
                 console.error(err);
