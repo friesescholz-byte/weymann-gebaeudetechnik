@@ -135,10 +135,11 @@
 
                 gallery.innerHTML = projects.map(p => {
                     const meta = p.customMetadata || {};
+                    const encodedKey = p.key.split('/').map(encodeURIComponent).join('/');
                     const category = meta.category || 'Projekt';
                     return `
                         <div class="project-card" data-category="${category}">
-                            <img src="${r2PublicUrl}${p.key}" alt="${meta.title || 'Projekt'}" class="project-img" loading="lazy">
+                            <img src="${r2PublicUrl}${encodedKey}" alt="${meta.title || 'Projekt'}" class="project-img" loading="lazy">
                             <div class="project-overlay">
                                 <div class="project-info">
                                     <span class="project-category">${category}</span>
