@@ -3,109 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heizungs-Anfrage | Karl Weymann GmbH</title>
-    <meta name="description" content="Neue Heizung, Modernisierung, Wartung oder Reparatur? Stellen Sie Ihre Anfrage an die Karl Weymann GmbH in Lehrte.">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Heizung anfragen | Karl Weymann GmbH</title>
+    <meta name="description" content="Neue Heizung statt alter Sorgen. Wir prüfen, welche Heizlösung zu Ihrem Haus passt.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_GmbH_Flavorcon.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* 1. Hero (Modern Cutout Design) */
+        .wp-hero-wrapper {
+            padding: 1rem;
+            padding-bottom: 0;
+            background: #ffffff;
+        }
+        
+        .wp-hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-radius: 30px;
+            border-bottom-right-radius: 0; /* Cutout goes here */
+            overflow: hidden;
+            padding: 4rem 0;
+        }
+
+        .wp-hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(13,43,94,0.95) 0%, rgba(10,17,40,0.4) 100%);
+            z-index: 1;
+        }
+
+        .wp-hero-content {
+            position: relative;
+            z-index: 4;
+            color: white;
+            max-width: 680px;
+            padding-bottom: 5rem;
+        }
+
+        .wp-hero h1 { 
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.5rem; 
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 
+                0px 1px 0px #b0b0b0,
+                0px 2px 0px #a0a0a0,
+                0px 3px 0px #909090,
+                0px 4px 0px #808080,
+                0px 5px 0px #707070,
+                0px 6px 15px rgba(0,0,0,0.6),
+                0px 15px 30px rgba(0,0,0,0.4),
+                0px 25px 50px rgba(0,0,0,0.3);
+        }
+        
+        .wp-hero p { 
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .cta-pulse {
+            animation: ctaPulse 2s infinite;
+            background: linear-gradient(135deg, #e3222a 0%, #b3161f 100%);
+            border: 2px solid #ff4d54;
+            font-size: 1.2rem !important;
+            padding: 1.4rem 3rem !important;
+        }
+
+        @keyframes ctaPulse {
+            0% { box-shadow: 0 0 0 0 rgba(210, 30, 38, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 20px rgba(210, 30, 38, 0); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(210, 30, 38, 0); transform: scale(1); }
+        }
+
+        /* The Cutout */
+        .wp-hero-cutout {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80%;
+            height: 160px;
+            background: #ffffff;
+            border-top-left-radius: 40px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 2rem 0 3rem;
+        }
+
+        .wp-hero-cutout::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -40px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border-bottom-right-radius: 40px;
+            box-shadow: 15px 15px 0 15px #ffffff;
+        }
+
+        .wp-hero-cutout::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border-bottom-right-radius: 40px;
+            box-shadow: 15px 15px 0 15px #ffffff;
+        }
+
+        /* Cutout Stats */
+        .cutout-stat {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .cutout-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        .cutout-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        /* Glass Card */
+        .wp-glass-card {
+            position: absolute;
+            right: 6%;
+            top: 20%;
+            width: 320px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 24px;
+            padding: 1.5rem;
+            z-index: 4;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .wp-glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(210, 30, 38, 0.5);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 20px rgba(210, 30, 38, 0.2);
+        }
+        .wp-glass-card:hover .glass-card-icon {
+            background: var(--secondary-color) !important;
+            box-shadow: 0 0 15px rgba(210, 30, 38, 0.6);
+        }
+        .wp-glass-card:hover .glass-card-subtext {
+            color: #ffcccc !important;
+        }
+        .wp-glass-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+        .cta-pulse {
+            animation: ctaPulse 2s infinite;
+            background: linear-gradient(135deg, #e3222a 0%, #b3161f 100%);
+            border: 2px solid #ff4d54;
+            font-size: 1.2rem !important;
+            padding: 1.4rem 3rem !important;
+        }
+
+        @keyframes ctaPulse {
+            0% { box-shadow: 0 0 0 0 rgba(210, 30, 38, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 20px rgba(210, 30, 38, 0); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(210, 30, 38, 0); transform: scale(1); }
+        }
+
+        @media (max-width: 1200px) {
+            .wp-hero-cutout { width: 90%; }
+            .wp-glass-card { display: none; }
+        }
+        @media (max-width: 992px) {
+            .wp-hero-cutout { display: none; }
+            .wp-hero { border-radius: 20px; min-height: 60vh; padding: 2rem 0; }
+        }
+        @media (max-width: 768px) {
+            .wp-hero h1 { font-size: 2.5rem; }
+        }
+
+        /* 2. Pain Area */
+        .wp-pain-section {
+            background-color: #ffffff;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .pain-card {
+            background: #fff; border-radius: var(--radius-lg); padding: 2.5rem 2rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); border-top: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .pain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+        .pain-card-icon {
+            width: 50px; height: 50px; background: rgba(210,30,38,0.1); color: var(--secondary-color);
+            display: flex; align-items: center; justify-content: center; border-radius: 50%;
+            margin-bottom: 1.5rem;
+        }
+        .pain-card h4 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; font-weight: 700; }
+        .pain-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+
+        /* Overlap effect */
+        .pain-grid-wrapper {
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+        }
+
+        /* 3. Vision Area */
+        .vision-section { background-color: var(--bg-light); }
+        .vision-card {
+            background: #fff; padding: 1.5rem; border-radius: var(--radius-md);
+            display: flex; align-items: flex-start; gap: 1rem; border: 1px solid var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .vision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--secondary-color);
+        }
+        .vision-card .vision-icon {
+            color: #34A853; flex-shrink: 0;
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+        .vision-card:hover .vision-icon {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--secondary-color);
+        }
+        .vision-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(210,30,38,0.03) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .vision-card:hover::after {
+            opacity: 1;
+        }
+        .vision-icon { color: #34A853; flex-shrink: 0; }
+        .vision-card h4 { margin-bottom: 0.25rem; font-size: 1.1rem; color: var(--primary-color); }
+        .vision-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+        /* 4. Funding Area */
+        .funding-banner {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #a0151c 100%);
+            color: white; padding: 4rem 2rem; border-radius: var(--radius-lg); text-align: center;
+            box-shadow: 0 20px 40px rgba(210, 30, 38, 0.2); margin: 4rem 0;
+        }
+        .funding-banner h2 { color: white; font-size: 2.5rem; margin-bottom: 1rem; }
+        .funding-banner p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; }
+
+        /* Generic Grids */
+        .wp-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .wp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        
+        @media (max-width: 992px) {
+            .wp-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .wp-grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .wp-grid-4, .wp-grid-3 { grid-template-columns: 1fr; }
+        }
+        /* Landing Page Header */
+        .lp-header-nav {
+            display: flex; gap: 2.5rem; align-items: center; justify-content: center; flex: 1;
+        }
+        .lp-header-nav a.nav-link {
+            color: var(--primary-color); font-weight: 600; font-size: 1.05rem;
+        }
+        @media (max-width: 992px) {
+            .lp-header-nav { display: none; }
+        }
+
+        /* FAQ Section */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .faq-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: #fafafa;
+        }
+        .faq-answer p { margin-bottom: 1.5rem; color: var(--text-muted); }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header class="header">
-        <div class="container nav-container">
+        <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center;">
             <a href="index.html" class="logo">
                 <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_logo_transparent.png" alt="Karl Weymann GmbH Logo" style="height: 45px;">
             </a>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-link">&larr; Zurück zur Startseite</a>
+            
+            <nav class="nav-menu lp-header-nav">
+                <a href="#vorteile" class="nav-link">Vorteile</a>
+                <a href="#foerderung" class="nav-link">Förderung</a>
+                <a href="#faq" class="nav-link">FAQ</a>
             </nav>
+
+            <a href="heizungs-anfrage-kontakt.html" class="btn" style="background: #e3222a; color: white; border-color: #e3222a; padding: 0.8rem 1.8rem; white-space: nowrap; font-weight: 600;">Kostenlos anfragen</a>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="subpage-hero">
-        <div class="container">
-            <h1>Heizungs-Anfrage stellen – modernisieren, austauschen oder warten lassen</h1>
-            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">Zuverlässige Heiztechnik vom Fachbetrieb. Wir beraten Sie zu neuen Anlagen, übernehmen den Austausch und sind für Wartung & Reparatur da.</p>
+    <!-- 1. Hero -->
+    <div class="wp-hero-wrapper">
+        <section class="wp-hero">
+            <div class="wp-hero-overlay"></div>
+            
+            <div class="container" style="position: relative; z-index: 4; width: 100%;">
+                <div class="wp-hero-content text-left">
+                    <span style="display:inline-block; padding:0.4rem 1.2rem; background:rgba(255,204,0,0.15); color:#ffcc00; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:0.85rem; border-radius:50px; margin-bottom:1.5rem; backdrop-filter: blur(5px);">Moderne Heiztechnik für Ihr Zuhause</span>
+                    <h1>Neue Heizung statt alter Sorgen.</h1>
+                    <p>Ob Austausch, Modernisierung oder komplette Neuplanung: Wir prüfen, welche Heizlösung zu Ihrem Haus passt, welche Förderung möglich ist und wie Sie langfristig effizienter, sicherer und komfortabler heizen.</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="heizungs-anfrage-kontakt.html" class="btn btn-secondary btn-large cta-pulse" style="border-radius: 50px;">
+                            Kostenlosen Heizungs-Check anfragen &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Floating Glass Card (like Xurya screenshot) -->
+            <a href="#foerderung" class="wp-glass-card" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop" alt="Wärmepumpe Modern">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <h4 style="color:white; margin-bottom:0.2rem; font-size:1.1rem; line-height: 1;">Bis zu <span style="color: var(--secondary-color);">70%</span> Förderung</h4>
+                        <p class="glass-card-subtext" style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin:0; line-height: 1; transition: color 0.3s ease;">Staatliche Zuschüsse nutzen</p>
+                    </div>
+                    <div class="glass-card-icon" style="width:35px; height:35px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; transition: all 0.3s ease;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- The Cutout Stats Area -->
+            <div class="wp-hero-cutout">
+                <div class="cutout-stat">
+                    <div class="cutout-number">70<span style="font-size: 1.5rem;">%</span></div>
+                    <div class="cutout-label">Förderung<br>möglich</div>
+                </div>
+                <div class="cutout-stat">
+                    <div class="cutout-number" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: rgba(13,43,94,0.1); color: var(--primary-color); border-radius: 50%;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div class="cutout-label">Planung & Einbau<br>aus einer Hand</div>
+                </div>
+                <div class="cutout-stat">
+                    <div class="cutout-number" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: rgba(13,43,94,0.1); color: var(--primary-color); border-radius: 50%;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                    <div class="cutout-label">Persönliche<br>Beratung vor Ort</div>
+                </div>
+                <div class="cutout-stat">
+                    <div class="cutout-number" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: rgba(13,43,94,0.1); color: var(--primary-color); border-radius: 50%;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+                    <div class="cutout-label">Moderne Systeme<br>Bestand & Neubau</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 2. Pain Area -->
+    <section class="wp-pain-section">
+        <div class="container text-center">
+            
+            <div class="wp-grid-4 text-left pain-grid-wrapper">
+                <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
+                    <h4>Steigende Heizkosten</h4>
+                    <p>Alte Anlagen verbrauchen oft mehr Energie als nötig – und machen jede Abrechnung unangenehm spannend.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    </div>
+                    <h4>Unsichere Technik</h4>
+                    <p>Wenn die Heizung in die Jahre kommt, werden Reparaturen häufiger, teurer und schwerer planbar.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
+                    <h4>Falsche Entscheidung</h4>
+                    <p>Nicht jede neue Heizung passt zu jedem Haus. Wer ohne Prüfung kauft, zahlt später oft drauf.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h4>Förderung verpassen</h4>
+                    <p>Viele Zuschüsse müssen korrekt geplant und rechtzeitig beantragt werden.</p>
+                </div>
+            </div>
+
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Ihre alte Heizung läuft noch? Genau das kann teuer werden.</h2>
+            <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem;">Viele Heizungen funktionieren scheinbar zuverlässig – bis die nächste Reparatur kommt, die Energiekosten steigen oder Ersatzteile knapp werden. Wer frühzeitig plant, kann in Ruhe vergleichen, Fördermöglichkeiten prüfen und eine Lösung wählen, die wirklich zum Gebäude passt.</p>
         </div>
     </section>
 
-    <!-- Form Section -->
-    <section style="padding-bottom: 6rem;">
+    <!-- 3. Vision Area -->
+    <section class="section-padding vision-section" id="vorteile">
+        <div class="container text-center">
+            <div class="wp-grid-3 text-left">
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Effizienz</h4><p>Moderne Systeme nutzen Energie deutlich besser aus.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Geringere laufende Kosten</h4><p>Spürbare Einsparungen bei der Energierechnung.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Mehr Ausfallsicherheit</h4><p>Zuverlässige Technik statt ständiger Reparaturen.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Besserer Wohnkomfort</h4><p>Konstante Wärme und intelligente Steuerung.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Zukunftssichere Technik</h4><p>Optimal vorbereitet auf neue Anforderungen.</p></div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4>Förderung optimal nutzen</h4><p>Zuschüsse für Ihre neue Anlage sichern.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leistungsabschnitt -->
+    <section class="section-padding" style="background-color: #ffffff;">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">Welche Heizung passt zu Ihrem Zuhause?</h2>
+            <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem;">Wir beraten Sie nicht nach Schema F, sondern schauen uns Ihr Gebäude, Ihre bestehende Anlage und Ihre persönlichen Anforderungen an. Danach empfehlen wir eine Heizlösung, die technisch sinnvoll, wirtschaftlich vertretbar und zukunftsfähig ist.</p>
+            
+            <div class="wp-grid-3 text-left">
+                <div class="vision-card" style="border-left: 4px solid var(--secondary-color);">
+                    <div class="vision-icon" style="color: var(--secondary-color);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                    <div><h4 style="font-size: 1.2rem;">Wärmepumpe</h4></div>
+                </div>
+                <div class="vision-card" style="border-left: 4px solid var(--secondary-color);">
+                    <div class="vision-icon" style="color: var(--secondary-color);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 5 18 3-9h5"></path></svg></div>
+                    <div><h4 style="font-size: 1.2rem;">Hybridheizung</h4></div>
+                </div>
+                <div class="vision-card" style="border-left: 4px solid var(--secondary-color);">
+                    <div class="vision-icon" style="color: var(--secondary-color);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"></path></svg></div>
+                    <div><h4 style="font-size: 1.2rem;">Gas-Brennwerttechnik</h4></div>
+                </div>
+                <div class="vision-card" style="border-left: 4px solid var(--secondary-color);">
+                    <div class="vision-icon" style="color: var(--secondary-color);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+                    <div><h4 style="font-size: 1.2rem;">Fußbodenheizung & Heizkörper</h4></div>
+                </div>
+                <div class="vision-card" style="border-left: 4px solid var(--secondary-color);">
+                    <div class="vision-icon" style="color: var(--secondary-color);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+                    <div><h4 style="font-size: 1.2rem;">Warmwasserbereitung</h4></div>
+                </div>
+                <div class="vision-card" style="border-left: 4px solid var(--secondary-color);">
+                    <div class="vision-icon" style="color: var(--secondary-color);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <div><h4 style="font-size: 1.2rem;">Komplette Heizungsmodernisierung</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Funding Highlight -->
+    <section class="container" id="foerderung">
+        <div class="funding-banner">
+            <h2>Förderung sichern, bevor Sie Geld verschenken.</h2>
+            <p>Für den Einbau einer neuen klimafreundlichen Heizung können attraktive Zuschüsse möglich sein. Entscheidend ist, dass Technik, Antragstellung und Umsetzung sauber aufeinander abgestimmt sind. Wir prüfen mit Ihnen, welche Möglichkeiten für Ihr Projekt infrage kommen.</p>
+            <a href="heizungs-anfrage-kontakt.html" class="btn btn-premium" style="background: #fff; color: var(--secondary-color); font-weight: 700;">Jetzt Förderchancen prüfen lassen &rarr;</a>
+        </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section-padding" id="faq" style="background-color: #eaf1f8;">
         <div class="container">
-            <div class="form-section">
-                <div style="margin-bottom: 3rem;">
-                    <h2 style="margin-bottom: 1rem;">Was können wir für Sie tun?</h2>
-                    <p class="text-muted">Schildern Sie uns Ihr Anliegen. Wir melden uns zeitnah bei Ihnen mit einem Lösungsvorschlag.</p>
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color);">Häufige Fragen zur neuen Heizung</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Wann sollte ich meine Heizung austauschen?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Wenn die Anlage häufig repariert werden muss, hohe Verbrauchswerte hat oder älter als 15–20 Jahre ist, lohnt sich eine Prüfung. Oft ist ein geplanter Austausch günstiger als ein Notfall im Winter.</p>
+                    </div>
                 </div>
                 
-                <form>
-                    <div class="form-group">
-                        <select class="form-control" required style="border-color: var(--primary-color); border-width: 2px;">
-                            <option value="" disabled selected>Mein Anliegen</option>
-                            <option>Neue Heizung / Heizungsmodernisierung</option>
-                            <option>Austausch einer defekten Anlage</option>
-                            <option>Wartung / Inspektion</option>
-                            <option>Reparatur / Störung</option>
-                            <option>Allgemeine Beratung</option>
-                        </select>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Welche Heizung ist die richtige für mein Haus?
+                        <span class="faq-icon">+</span>
                     </div>
+                    <div class="faq-answer">
+                        <p>Das hängt von Gebäudezustand, Dämmung, Heizflächen, Verbrauch, Budget und Ihren Zukunftsplänen ab. Deshalb prüfen wir Ihr Projekt individuell.</p>
+                    </div>
+                </div>
 
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <input type="text" class="form-control" placeholder="Name" required>
-                        <input type="tel" class="form-control" placeholder="Telefonnummer" required>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Muss es immer eine Wärmepumpe sein?
+                        <span class="faq-icon">+</span>
                     </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <input type="email" class="form-control" placeholder="E-Mail" required>
-                        <input type="text" class="form-control" placeholder="Adresse / Ort" required>
+                    <div class="faq-answer">
+                        <p>Nein. Eine Wärmepumpe ist oft sinnvoll, aber nicht automatisch für jedes Gebäude die beste Lösung. Je nach Ausgangslage können auch Hybridlösungen oder andere moderne Systeme infrage kommen.</p>
                     </div>
-                    
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <select class="form-control">
-                            <option value="" disabled selected>Objektart</option>
-                            <option>Einfamilienhaus</option>
-                            <option>Mehrfamilienhaus</option>
-                            <option>Gewerbe</option>
-                        </select>
-                        <select class="form-control">
-                            <option value="" disabled selected>Aktuelle Heizungsart</option>
-                            <option>Gas</option>
-                            <option>Öl</option>
-                            <option>Elektro</option>
-                            <option>Wärmepumpe</option>
-                            <option>Sonstige</option>
-                        </select>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Was kostet eine neue Heizung?
+                        <span class="faq-icon">+</span>
                     </div>
-                    
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <select class="form-control">
-                            <option value="" disabled selected>Dringlichkeit</option>
-                            <option>Akuter Notfall (Heizung ausgefallen)</option>
-                            <option>Zeitnah (innerhalb weniger Wochen)</option>
-                            <option>Planbar (nächste Monate)</option>
-                        </select>
-                        <input type="text" class="form-control" placeholder="Wohn-/Nutzfläche in m²">
+                    <div class="faq-answer">
+                        <p>Das lässt sich seriös erst nach einer Prüfung sagen. Entscheidend sind Heizsystem, Gebäudesituation, notwendige Umbauten und mögliche Förderungen.</p>
                     </div>
-                    
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Bitte beschreiben Sie Ihr Anliegen kurz" rows="4"></textarea>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Gibt es Förderung für meine neue Heizung?
+                        <span class="faq-icon">+</span>
                     </div>
-                    
-                    <div class="form-group">
-                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; color:var(--text-muted);">Foto der Anlage / Störung (optional)</label>
-                        <input type="file" class="form-control" accept="image/*">
+                    <div class="faq-answer">
+                        <p>Für klimafreundliche Heizsysteme können Zuschüsse möglich sein. Wir prüfen, welche Förderung zu Ihrem Vorhaben passt.</p>
                     </div>
-                    
-                    <div class="form-group" style="margin: 2rem 0;">
-                        <label style="font-size: 0.85rem; color: var(--text-muted); display:flex; gap:0.5rem; align-items:start;">
-                            <input type="checkbox" required style="margin-top:3px;">
-                            <span>Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme gemäß der Datenschutzerklärung zu.</span>
-                        </label>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Wie lange dauert der Einbau?
+                        <span class="faq-icon">+</span>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Heizungs-Angebot anfordern</button>
-                </form>
+                    <div class="faq-answer">
+                        <p>Der reine Einbau dauert je nach Projekt meist wenige Tage. Wichtiger ist die saubere Planung vorab, damit später alles effizient läuft.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- 12. Final CTA -->
+    <section class="section-padding text-center">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">Die beste Zeit für eine neue Heizung?<br>Bevor die alte ausfällt.</h2>
+            <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem;">Warten Sie nicht, bis Ihre Heizung mitten in der Heizperiode Probleme macht. Lassen Sie jetzt prüfen, welche moderne Heizlösung zu Ihrem Zuhause passt.</p>
+            <a href="heizungs-anfrage-kontakt.html" class="btn btn-primary btn-large">Jetzt kostenlose Heizungsanfrage starten &rarr;</a>
+            <p style="margin-top: 2rem; font-weight: 600; color: var(--text-main);">Weymann Gebäudetechnik – Neue Heizung. Weniger Sorgen. Mehr Zukunft.</p>
         </div>
     </section>
 
