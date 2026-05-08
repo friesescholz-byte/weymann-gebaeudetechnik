@@ -137,18 +137,18 @@
                     const meta = p.customMetadata || {};
                     const encodedKey = p.key.split('/').map(encodeURIComponent).join('/');
                     const category = meta.category || 'Projekt';
-                    return \`
-                        <div class="project-card" data-category="\${category}">
-                            <img src="\${r2PublicUrl}\${encodedKey}" alt="\${meta.title || 'Projekt'}" class="project-img" loading="lazy">
+                    return `
+                        <div class="project-card" data-category="${category}">
+                            <img src="${r2PublicUrl}${encodedKey}" alt="${meta.title || 'Projekt'}" class="project-img" loading="lazy">
                             <div class="project-overlay">
                                 <div class="project-info">
-                                    <span class="project-category">\${category}</span>
-                                    <h3>\${meta.title || 'Ohne Titel'}</h3>
-                                    <p>\${meta.description || ''}</p>
+                                    <span class="project-category">${category}</span>
+                                    <h3>${meta.title || 'Ohne Titel'}</h3>
+                                    <p>${meta.description || ''}</p>
                                 </div>
                             </div>
                         </div>
-                    \`;
+                    `;
                 }).join("");
 
                 // Setup Filter Logic
