@@ -69,44 +69,9 @@
             font-weight: 300;
         }
 
-        .team-image-wrapper {
-            margin-top: -8rem;
-            position: relative;
-            z-index: 25;
-            text-align: center;
-        }
-
-        /* Ambient spotlight gradient behind the team image to bridge dark and light sections */
-        .team-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%;
-            height: 70%;
-            background: radial-gradient(circle, rgba(13, 43, 94, 0.3) 0%, transparent 70%);
-            filter: blur(60px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Deep, rich navy-tinted shadow for natural integration */
-        .team-main-image {
-            width: 100%;
-            height: auto;
-            border-radius: var(--radius-lg);
-            display: block;
-            box-shadow: 
-                0 30px 60px rgba(13, 43, 94, 0.22), 
-                0 12px 25px rgba(0, 0, 0, 0.08),
-                0 0 1px rgba(13, 43, 94, 0.15);
-            border: 1px solid rgba(13, 43, 94, 0.06);
-        }
-
         /* Team Grid & Section Background Contrast */
         .team-grid-section {
-            padding: 9rem 0 7rem;
+            padding: 6rem 0;
             background-color: var(--bg-light); /* Soft contrast against white cards */
         }
 
@@ -285,12 +250,6 @@
         </div>
     </section>
 
-    <!-- Group Photo Section -->
-    <section class="team-image-wrapper">
-        <div class="container">
-            <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann-Team.png" alt="Team der Karl Weymann GmbH" class="team-main-image" loading="eager" decoding="async">
-        </div>
-    </section>
 
     <!-- Team Members Grid -->
     <section class="team-grid-section">
@@ -305,10 +264,10 @@
                 <!-- Geschäftsführer -->
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_3298_ergebnis.webp" alt="Christian Weymann" loading="lazy" decoding="async">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100%' height='100%' fill='%23f1f5f9'/><circle cx='50' cy='38' r='18' fill='%23cbd5e1'/><path d='M20 80c0-16 12-25 30-25s30 9 30 25z' fill='%23cbd5e1'/></svg>" alt="Max Mustermann" loading="lazy" decoding="async">
                     </div>
                     <div class="team-info">
-                        <h3>Christian Weymann</h3>
+                        <h3>Max Mustermann</h3>
                         <span class="team-role">Geschäftsführer & Meister SHK</span>
                     </div>
                 </div>
@@ -327,10 +286,10 @@
                 <!-- Projektleiter / Service -->
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_6877_ergebnis.webp" alt="Marc Weymann" loading="lazy" decoding="async">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100%' height='100%' fill='%23f1f5f9'/><circle cx='50' cy='38' r='18' fill='%23cbd5e1'/><path d='M20 80c0-16 12-25 30-25s30 9 30 25z' fill='%23cbd5e1'/></svg>" alt="Max Mustermann" loading="lazy" decoding="async">
                     </div>
                     <div class="team-info">
-                        <h3>Marc Weymann</h3>
+                        <h3>Max Mustermann</h3>
                         <span class="team-role">Projektleiter & Kundendienstmeister</span>
                     </div>
                 </div>
@@ -420,6 +379,17 @@
                     <div class="team-info">
                         <h3>Lennard Lieske</h3>
                         <span class="team-role">Auszubildender SHK</span>
+                    </div>
+                </div>
+
+                <!-- Team in Aktion -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Marvin%2C%20Noah%2C%20Erika_ergebnis.webp" alt="Marvin, Noah, Erika" loading="lazy" decoding="async">
+                    </div>
+                    <div class="team-info">
+                        <h3>Marvin, Noah & Erika</h3>
+                        <span class="team-role">Team in Aktion</span>
                     </div>
                 </div>
             </div>
