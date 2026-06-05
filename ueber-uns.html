@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über uns | Karl Weymann GmbH Lehrte</title>
+    <meta name="description" content="Lernen Sie das Team hinter der Karl Weymann GmbH in Lehrte kennen. Über 60 Jahre Erfahrung im Heizungs-, Sanitär- und TGA-Handwerk.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_GmbH_Flavorcon.png">
+    <script src="script.js" defer></script>
+    <style>
+        /* Page specific styling */
+        .ueber-hero {
+            position: relative;
+            padding: 12rem 0 6rem;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .ueber-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ueber-hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ueber-hero h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .ueber-hero p.lead {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .team-image-wrapper {
+            margin-top: -4rem;
+            position: relative;
+            z-index: 20;
+            text-align: center;
+        }
+
+        .team-image-wrapper img {
+            max-width: 950px;
+            width: 90%;
+            height: auto;
+            margin: 0 auto;
+            border-radius: var(--radius-lg);
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
+            border: 4px solid #ffffff;
+        }
+
+        /* Team Grid */
+        .team-grid-section {
+            padding: 6rem 0;
+            background-color: var(--bg-main);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .team-card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(13, 43, 94, 0.1);
+        }
+
+        .team-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 125%; /* 4:5 Aspect Ratio */
+            overflow: hidden;
+            background: #f0f3f6;
+        }
+
+        .team-img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .team-card:hover .team-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 0.35rem;
+        }
+
+        .team-role {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            padding: 8rem 0;
+            background-color: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .philosophy-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .philosophy-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .philosophy-images {
+            position: relative;
+            height: 450px;
+        }
+
+        .phil-img-1 {
+            width: 75%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            border: 4px solid white;
+        }
+
+        .phil-img-2 {
+            width: 75%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            border: 4px solid white;
+        }
+
+        @media (max-width: 1024px) {
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            .philosophy-images {
+                height: 380px;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_logo_transparent.png" alt="Karl Weymann GmbH Logo">
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="index.html#leistungen" class="nav-link">Leistungen</a>
+                <a href="index.html#referenzen" class="nav-link">Projekte</a>
+                <a href="ueber-uns.html" class="nav-link active">Über uns</a>
+                <a href="karriere.html" class="nav-link">Karriere</a>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+            </nav>
+
+            <a href="kontakt.html" class="btn btn-primary">Angebot anfordern</a>
+            
+            <div class="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="ueber-hero">
+        <div class="container ueber-hero-content">
+            <span class="feature-badge" style="color: #ffcc00; background: rgba(255,204,0,0.15); border: none;">Karl Weymann GmbH</span>
+            <h1>Das Team hinter der Technik.</h1>
+            <p class="lead">Seit über 60 Jahren stehen wir für Qualität, ehrliches Handwerk und partnerschaftliche Zusammenarbeit in Lehrte, Hannover und Region. Lernen Sie uns kennen.</p>
+        </div>
+    </section>
+
+    <!-- Group Photo Section -->
+    <section class="team-image-wrapper">
+        <div class="container">
+            <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann-Team.png" alt="Team der Karl Weymann GmbH">
+        </div>
+    </section>
+
+    <!-- Team Members Grid -->
+    <section class="team-grid-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Ihre Ansprechpartner & Experten</h2>
+                <div class="title-accent-center"></div>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; margin-top: 1rem;">Meister, Planer, Monteure und Azubis – gemeinsam für Ihr Projekt.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Geschäftsführer -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_3298_ergebnis.webp" alt="Christian Weymann">
+                    </div>
+                    <div class="team-info">
+                        <h3>Christian Weymann</h3>
+                        <span class="team-role">Geschäftsführer & Meister SHK</span>
+                    </div>
+                </div>
+
+                <!-- Projektleiter -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/D%C3%BChlmeyer,%20Nils_ergebnis.webp" alt="Nils Dühlmeyer">
+                    </div>
+                    <div class="team-info">
+                        <h3>Nils Dühlmeyer</h3>
+                        <span class="team-role">Projektleiter & Meister</span>
+                    </div>
+                </div>
+
+                <!-- Projektleiter / Service -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_6877_ergebnis.webp" alt="Marc Weymann">
+                    </div>
+                    <div class="team-info">
+                        <h3>Marc Weymann</h3>
+                        <span class="team-role">Projektleiter & Kundendienstmeister</span>
+                    </div>
+                </div>
+
+                <!-- Monteur 1 -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Becker,%20Noah_ergebnis.webp" alt="Noah Becker">
+                    </div>
+                    <div class="team-info">
+                        <h3>Noah Becker</h3>
+                        <span class="team-role">Anlagenmechaniker SHK</span>
+                    </div>
+                </div>
+
+                <!-- Monteur 2 -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Behrens,%20Finn_ergebnis.webp" alt="Finn Behrens">
+                    </div>
+                    <div class="team-info">
+                        <h3>Finn Behrens</h3>
+                        <span class="team-role">Kundendiensttechniker</span>
+                    </div>
+                </div>
+
+                <!-- Monteur 3 -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Bornkamm,%20Resul_ergebnis.webp" alt="Resul Bornkamm">
+                    </div>
+                    <div class="team-info">
+                        <h3>Resul Bornkamm</h3>
+                        <span class="team-role">Anlagenmechaniker SHK</span>
+                    </div>
+                </div>
+
+                <!-- Monteur 4 -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Knebel,%20Nils_ergebnis.webp" alt="Nils Knebel">
+                    </div>
+                    <div class="team-info">
+                        <h3>Nils Knebel</h3>
+                        <span class="team-role">Kundendienstmonteur</span>
+                    </div>
+                </div>
+
+                <!-- Monteur 5 -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lajen,%20Dear_ergebnis.webp" alt="Dear Lajen">
+                    </div>
+                    <div class="team-info">
+                        <h3>Dear Lajen</h3>
+                        <span class="team-role">Anlagenmechaniker SHK</span>
+                    </div>
+                </div>
+
+                <!-- Monteur 6 (Elektro) -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Giffey,%20Felix_ergebnis.webp" alt="Felix Giffey">
+                    </div>
+                    <div class="team-info">
+                        <h3>Felix Giffey</h3>
+                        <span class="team-role">Elektroinstallateur</span>
+                    </div>
+                </div>
+
+                <!-- Azubi 1 -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Dag,%20Mohamed_ergebnis.webp" alt="Mohamed Dag">
+                    </div>
+                    <div class="team-info">
+                        <h3>Mohamed Dag</h3>
+                        <span class="team-role">Auszubildender SHK</span>
+                    </div>
+                </div>
+
+                <!-- Azubi 2 -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lieske,%20Lennard_ergebnis.webp" alt="Lennard Lieske">
+                    </div>
+                    <div class="team-info">
+                        <h3>Lennard Lieske</h3>
+                        <span class="team-role">Auszubildender SHK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy & Craft Section -->
+    <section class="philosophy-section">
+        <div class="container philosophy-grid">
+            <div class="philosophy-text">
+                <span class="feature-badge">Unsere Philosophie</span>
+                <h2>Handwerk mit Herz, Präzision und Verstand.</h2>
+                <p>Als Meisterbetrieb mit jahrzehntelanger Geschichte sind uns zwei Dinge besonders wichtig: echte, kompromisslose Handwerksqualität und ein starkes Miteinander. TGA-Projekte (Heizung, Sanitär, Klima, Lüftung, Solar und Elektro) sind heute komplexer denn je. Deshalb arbeiten unsere Planer, Meister und Monteure Hand in Hand.</p>
+                <p>Egal ob es um die Installation einer Wärmepumpe für ein Einfamilienhaus, die Badsanierung oder die komplette technische Gebäudeausrüstung eines Industriebtriebs geht: Wir planen vorausschauend, führen sauber aus und sind auch nach dem Einbau verlässlich als Service-Partner an Ihrer Seite.</p>
+                
+                <div style="margin-top: 2.5rem;">
+                    <a href="kontakt.html" class="btn btn-primary">Jetzt Projekt besprechen &rarr;</a>
+                </div>
+            </div>
+            
+            <div class="philosophy-images">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/beim%20Arbeiten/IMG_0550_ergebnis.webp" alt="Weymann Mitarbeiter bei Rohrleitungsinstallation" class="phil-img-1">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/beim%20Arbeiten/IMG_5045_ergebnis.webp" alt="Mitarbeiter beim Arbeiten" class="phil-img-2">
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA & Contact -->
+    <section class="section-padding" id="kontakt">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bereit für Ihr Projekt? Sprechen wir darüber.</h2>
+                <p>Ob Wärmepumpe, neue Heizung, Badsanierung, Gebäudetechnik oder Bewerbung – die Karl Weymann GmbH freut sich auf Ihre Anfrage.</p>
+            </div>
+            
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; align-items: start;">
+                <div>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Kontaktinformationen</h3>
+                    <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                        <strong>Karl Weymann GmbH</strong><br>
+                        Burgdorfer Straße 110<br>
+                        31275 Lehrte
+                    </p>
+                    <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                        <strong>Telefon:</strong> <a href="tel:051322018" style="color:var(--primary-color);">05132 2018</a><br>
+                        <strong>E-Mail:</strong> <a href="mailto:info@karl-weymann-gmbh.de" style="color:var(--primary-color);">info@karl-weymann-gmbh.de</a>
+                    </p>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                        <strong>Öffnungszeiten:</strong><br>
+                        Montag bis Freitag 9:00–17:00 Uhr<br>
+                        Termine nach Vereinbarung
+                    </p>
+                    
+                    <div style="display:flex; flex-direction:column; gap:1rem;">
+                        <a href="kontakt.html" class="btn btn-primary btn-large" style="justify-content: center; width: 100%;">Kostenlose Beratung anfragen</a>
+                        <div style="text-align: center; margin-top: 0.5rem;">
+                            <a href="karriere.html" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem; border-bottom: 1px solid var(--primary-color); padding-bottom: 2px;">
+                                Jetzt bewerben &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="height: 500px; background: #e9ecef; border-radius: var(--radius-lg); overflow:hidden;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2435.532398517228!2d9.970591715802264!3d52.37894297978701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b01b6c00000000%3A0x0!2sBurgdorfer%20Str.%20110%2C%2031275%20Lehrte!5e0!3m2!1sde!2sde!4v1680000000000!5m2!1sde!2sde" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_logo_transparent.png" alt="Karl Weymann GmbH Logo" style="height: 45px; filter: brightness(0) invert(1); margin-bottom: 1.5rem;">
+                <h4>Karl Weymann GmbH</h4>
+                <p style="color:#a0aab2; margin-bottom: 1rem;">Heizung &middot; Sanitär &middot; Klima &middot; Lüftung &middot; Solar &middot; Elektro</p>
+                <p style="color:#a0aab2; margin-bottom: 0.5rem;">Burgdorfer Straße 110<br>31275 Lehrte</p>
+                <p style="color:#a0aab2; margin-bottom: 0.5rem;">Telefon: 05132 2018</p>
+                <p style="color:#a0aab2;">E-Mail: info@karl-weymann-gmbh.de</p>
+            </div>
+            <div>
+                <h4>Leistungen</h4>
+                <ul class="footer-links">
+                    <li><a href="waermepumpen-anfrage.html">Wärmepumpen</a></li>
+                    <li><a href="heizungs-anfrage.html">Heizung & Solar</a></li>
+                    <li><a href="badsanierungs-anfrage.html">Badsanierung</a></li>
+                    <li><a href="index.html#leistungen">Klima & Lüftung</a></li>
+                    <li><a href="index.html#leistungen">Wartung & Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Rechtliches</h4>
+                <ul class="footer-links" style="margin-bottom: 2rem;">
+                    <li><a href="#">Impressum</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+                
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #fff;">Zufrieden mit uns?</h4>
+                <a href="https://search.google.com/local/writereview?placeid=ChIJIcrbwEIPsEcRIf-D8oBROV8" target="_blank" rel="noopener noreferrer" class="google-review-btn">
+                    <div class="google-icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    </div>
+                    <span>Auf Google bewerten</span>
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Karl Weymann GmbH. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
