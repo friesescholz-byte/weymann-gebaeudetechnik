@@ -126,6 +126,8 @@
             opacity: 1;
         }
     </style>
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -144,25 +146,31 @@
                 <p>Hinterlassen Sie kurz Ihre Eckdaten. Wir melden uns umgehend bei Ihnen zurück.</p>
             </div>
 
-            <form class="flow-form" action="index.html" method="get">
+            <form class="flow-form" action="#" method="POST" id="kontakt-form">
+                <input type="hidden" name="formType" value="kontakt">
                 <div class="form-group">
                     <label for="name">Name / Firma</label>
-                    <input type="text" id="name" class="form-control" placeholder="Max Mustermann" required>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Max Mustermann" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="email">E-Mail Adresse</label>
-                    <input type="email" id="email" class="form-control" placeholder="max@beispiel.de" required>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="max@beispiel.de" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="telefon">Telefonnummer</label>
-                    <input type="tel" id="telefon" class="form-control" placeholder="0123 456789" required>
+                    <input type="tel" id="telefon" name="phone" class="form-control" placeholder="0123 456789" required>
                 </div>
 
                 <div class="form-group">
                     <label for="nachricht">Anmerkung / Wünsche</label>
-                    <textarea id="nachricht" class="form-control" placeholder="Worum geht es bei Ihrem Projekt?"></textarea>
+                    <textarea id="nachricht" name="message" class="form-control" placeholder="Worum geht es bei Ihrem Projekt?"></textarea>
+                </div>
+
+                <!-- Turnstile Widget -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAADfUUdahhiaJWyzX" data-theme="light"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary flow-btn">Anfrage kostenfrei absenden &rarr;</button>
@@ -173,5 +181,6 @@
         </div>
     </section>
 
+    <script src="script.js"></script>
 </body>
 </html>
