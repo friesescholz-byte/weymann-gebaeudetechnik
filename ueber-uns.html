@@ -13,7 +13,7 @@
         /* Page specific styling */
         .ueber-hero {
             position: relative;
-            padding: 12rem 0 6rem;
+            padding: 13rem 0 8rem;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%);
             color: white;
             text-align: center;
@@ -27,51 +27,93 @@
             background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 50px 50px;
-            z-index: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Ambient Glow Effect */
+        .ueber-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(13, 43, 94, 0.85) 0%, rgba(210, 30, 38, 0.18) 50%, transparent 100%);
+            filter: blur(90px);
+            z-index: 2;
             pointer-events: none;
         }
 
         .ueber-hero-content {
             position: relative;
             z-index: 10;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
         .ueber-hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: #ffffff;
             margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            font-weight: 700;
         }
 
         .ueber-hero p.lead {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
-            line-height: 1.6;
+            line-height: 1.65;
+            font-weight: 300;
         }
 
         .team-image-wrapper {
-            margin-top: -4rem;
+            margin-top: -8rem;
             position: relative;
-            z-index: 20;
+            z-index: 25;
             text-align: center;
         }
 
-        .team-image-wrapper img {
-            max-width: 950px;
-            width: 90%;
-            height: auto;
+        /* Edge-to-Edge Framed Card with Hover Zoom and Premium Shadow */
+        .team-image-card {
+            max-width: 1000px;
+            width: 92%;
             margin: 0 auto;
-            border-radius: var(--radius-lg);
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
-            border: 4px solid #ffffff;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 0; /* No padding for clean border transition */
+            box-shadow: 0 30px 70px rgba(13, 43, 94, 0.15), 0 15px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden; /* Clips image corners to match card */
+            display: block;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1.2s cubic-bezier(0.21, 1.02, 0.43, 1.01) forwards 0.3s;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s ease;
         }
 
-        /* Team Grid */
+        .team-image-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 45px 90px rgba(13, 43, 94, 0.22), 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .team-image-card:hover img {
+            transform: scale(1.02); /* Clean, modern hover zoom */
+        }
+
+        /* Team Grid & Section Background Contrast */
         .team-grid-section {
-            padding: 6rem 0;
-            background-color: var(--bg-main);
+            padding: 9rem 0 7rem;
+            background-color: var(--bg-light); /* Soft contrast against white cards */
         }
 
         .team-grid {
@@ -84,17 +126,17 @@
         .team-card {
             background: #ffffff;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(13, 43, 94, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(13, 43, 94, 0.04);
             overflow: hidden;
-            transition: var(--transition);
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s ease, border-color 0.5s ease;
             display: flex;
             flex-direction: column;
         }
 
         .team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(13, 43, 94, 0.12);
             border-color: rgba(13, 43, 94, 0.1);
         }
 
@@ -242,15 +284,15 @@
     <!-- Hero Section -->
     <section class="ueber-hero">
         <div class="container ueber-hero-content">
-            <span class="feature-badge" style="color: #ffcc00; background: rgba(255,204,0,0.15); border: none;">Karl Weymann GmbH</span>
-            <h1>Das Team hinter der Technik.</h1>
-            <p class="lead">Seit über 60 Jahren stehen wir für Qualität, ehrliches Handwerk und partnerschaftliche Zusammenarbeit in Lehrte, Hannover und Region. Lernen Sie uns kennen.</p>
+            <span class="feature-badge fade-up-1" style="color: #ffcc00; background: rgba(255,204,0,0.15); border: none;">Karl Weymann GmbH</span>
+            <h1 class="fade-up-2">Das Team hinter der Technik.</h1>
+            <p class="lead fade-up-3">Seit über 60 Jahren stehen wir für Qualität, ehrliches Handwerk und partnerschaftliche Zusammenarbeit in Lehrte, Hannover und Region. Lernen Sie uns kennen.</p>
         </div>
     </section>
 
     <!-- Group Photo Section -->
     <section class="team-image-wrapper">
-        <div class="container">
+        <div class="team-image-card">
             <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann-Team.png" alt="Team der Karl Weymann GmbH">
         </div>
     </section>
@@ -266,7 +308,7 @@
 
             <div class="team-grid">
                 <!-- Geschäftsführer -->
-                <div class="team-card">
+                <div class="team-card reveal">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_3298_ergebnis.webp" alt="Christian Weymann">
                     </div>
@@ -277,7 +319,7 @@
                 </div>
 
                 <!-- Projektleiter -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.05s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/D%C3%BChlmeyer,%20Nils_ergebnis.webp" alt="Nils Dühlmeyer">
                     </div>
@@ -288,7 +330,7 @@
                 </div>
 
                 <!-- Projektleiter / Service -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.1s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_6877_ergebnis.webp" alt="Marc Weymann">
                     </div>
@@ -299,7 +341,7 @@
                 </div>
 
                 <!-- Monteur 1 -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.15s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Becker,%20Noah_ergebnis.webp" alt="Noah Becker">
                     </div>
@@ -310,7 +352,7 @@
                 </div>
 
                 <!-- Monteur 2 -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.2s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Behrens,%20Finn_ergebnis.webp" alt="Finn Behrens">
                     </div>
@@ -321,7 +363,7 @@
                 </div>
 
                 <!-- Monteur 3 -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.25s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Bornkamm,%20Resul_ergebnis.webp" alt="Resul Bornkamm">
                     </div>
@@ -332,7 +374,7 @@
                 </div>
 
                 <!-- Monteur 4 -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.3s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Knebel,%20Nils_ergebnis.webp" alt="Nils Knebel">
                     </div>
@@ -343,7 +385,7 @@
                 </div>
 
                 <!-- Monteur 5 -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.35s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lajen,%20Dear_ergebnis.webp" alt="Dear Lajen">
                     </div>
@@ -354,7 +396,7 @@
                 </div>
 
                 <!-- Monteur 6 (Elektro) -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.4s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Giffey,%20Felix_ergebnis.webp" alt="Felix Giffey">
                     </div>
@@ -365,7 +407,7 @@
                 </div>
 
                 <!-- Azubi 1 -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.45s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Dag,%20Mohamed_ergebnis.webp" alt="Mohamed Dag">
                     </div>
@@ -376,7 +418,7 @@
                 </div>
 
                 <!-- Azubi 2 -->
-                <div class="team-card">
+                <div class="team-card reveal" style="transition-delay: 0.5s;">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lieske,%20Lennard_ergebnis.webp" alt="Lennard Lieske">
                     </div>
@@ -390,7 +432,7 @@
     </section>
 
     <!-- Philosophy & Craft Section -->
-    <section class="philosophy-section">
+    <section class="philosophy-section reveal">
         <div class="container philosophy-grid">
             <div class="philosophy-text">
                 <span class="feature-badge">Unsere Philosophie</span>
@@ -411,7 +453,7 @@
     </section>
 
     <!-- Final CTA & Contact -->
-    <section class="section-padding" id="kontakt">
+    <section class="section-padding reveal" id="kontakt">
         <div class="container">
             <div class="section-title">
                 <h2>Bereit für Ihr Projekt? Sprechen wir darüber.</h2>
