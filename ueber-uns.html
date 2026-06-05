@@ -76,38 +76,12 @@
             text-align: center;
         }
 
-        /* Edge-to-Edge Framed Card with Hover Zoom and Premium Shadow */
-        .team-image-card {
-            max-width: 1000px;
-            width: 92%;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 0; /* No padding for clean border transition */
-            box-shadow: 0 30px 70px rgba(13, 43, 94, 0.15), 0 15px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden; /* Clips image corners to match card */
-            display: block;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUp 1.2s cubic-bezier(0.21, 1.02, 0.43, 1.01) forwards 0.3s;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s ease;
-        }
-
-        .team-image-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 45px 90px rgba(13, 43, 94, 0.22), 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-image-card img {
+        .team-main-image {
             width: 100%;
             height: auto;
+            border-radius: var(--radius-lg);
             display: block;
-            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .team-image-card:hover img {
-            transform: scale(1.02); /* Clean, modern hover zoom */
+            box-shadow: var(--shadow-md);
         }
 
         /* Team Grid & Section Background Contrast */
@@ -292,8 +266,8 @@
 
     <!-- Group Photo Section -->
     <section class="team-image-wrapper">
-        <div class="team-image-card">
-            <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann-Team.png" alt="Team der Karl Weymann GmbH">
+        <div class="container">
+            <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann-Team.png" alt="Team der Karl Weymann GmbH" class="team-main-image">
         </div>
     </section>
 
@@ -308,7 +282,7 @@
 
             <div class="team-grid">
                 <!-- Geschäftsführer -->
-                <div class="team-card reveal">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_3298_ergebnis.webp" alt="Christian Weymann">
                     </div>
@@ -319,7 +293,7 @@
                 </div>
 
                 <!-- Projektleiter -->
-                <div class="team-card reveal" style="transition-delay: 0.05s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/D%C3%BChlmeyer,%20Nils_ergebnis.webp" alt="Nils Dühlmeyer">
                     </div>
@@ -330,7 +304,7 @@
                 </div>
 
                 <!-- Projektleiter / Service -->
-                <div class="team-card reveal" style="transition-delay: 0.1s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_6877_ergebnis.webp" alt="Marc Weymann">
                     </div>
@@ -341,7 +315,7 @@
                 </div>
 
                 <!-- Monteur 1 -->
-                <div class="team-card reveal" style="transition-delay: 0.15s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Becker,%20Noah_ergebnis.webp" alt="Noah Becker">
                     </div>
@@ -352,7 +326,7 @@
                 </div>
 
                 <!-- Monteur 2 -->
-                <div class="team-card reveal" style="transition-delay: 0.2s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Behrens,%20Finn_ergebnis.webp" alt="Finn Behrens">
                     </div>
@@ -363,7 +337,7 @@
                 </div>
 
                 <!-- Monteur 3 -->
-                <div class="team-card reveal" style="transition-delay: 0.25s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Bornkamm,%20Resul_ergebnis.webp" alt="Resul Bornkamm">
                     </div>
@@ -374,7 +348,7 @@
                 </div>
 
                 <!-- Monteur 4 -->
-                <div class="team-card reveal" style="transition-delay: 0.3s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Knebel,%20Nils_ergebnis.webp" alt="Nils Knebel">
                     </div>
@@ -385,7 +359,7 @@
                 </div>
 
                 <!-- Monteur 5 -->
-                <div class="team-card reveal" style="transition-delay: 0.35s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lajen,%20Dear_ergebnis.webp" alt="Dear Lajen">
                     </div>
@@ -396,7 +370,7 @@
                 </div>
 
                 <!-- Monteur 6 (Elektro) -->
-                <div class="team-card reveal" style="transition-delay: 0.4s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Giffey,%20Felix_ergebnis.webp" alt="Felix Giffey">
                     </div>
@@ -407,7 +381,7 @@
                 </div>
 
                 <!-- Azubi 1 -->
-                <div class="team-card reveal" style="transition-delay: 0.45s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Dag,%20Mohamed_ergebnis.webp" alt="Mohamed Dag">
                     </div>
@@ -418,7 +392,7 @@
                 </div>
 
                 <!-- Azubi 2 -->
-                <div class="team-card reveal" style="transition-delay: 0.5s;">
+                <div class="team-card">
                     <div class="team-img-wrapper">
                         <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lieske,%20Lennard_ergebnis.webp" alt="Lennard Lieske">
                     </div>
