@@ -103,15 +103,16 @@
             box-shadow: 0 10px 30px rgba(13, 43, 94, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
             border: 1px solid rgba(13, 43, 94, 0.04);
             overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+            transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.25s ease;
             display: flex;
             flex-direction: column;
+            will-change: transform, box-shadow; /* Promotes element to its own GPU composite layer */
         }
 
         .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(13, 43, 94, 0.12);
-            border-color: rgba(13, 43, 94, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(13, 43, 94, 0.1);
+            border-color: rgba(13, 43, 94, 0.08);
         }
 
         .team-img-wrapper {
@@ -129,11 +130,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: none !important; /* No transition to prevent GPU rendering lag */
         }
 
         .team-card:hover .team-img-wrapper img {
-            transform: scale(1.06);
+            transform: none !important; /* No scale to prevent GPU texture scaling lag */
         }
 
         .team-info {
