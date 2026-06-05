@@ -76,12 +76,32 @@
             text-align: center;
         }
 
+        /* Ambient spotlight gradient behind the team image to bridge dark and light sections */
+        .team-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(13, 43, 94, 0.3) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Deep, rich navy-tinted shadow for natural integration */
         .team-main-image {
             width: 100%;
             height: auto;
             border-radius: var(--radius-lg);
             display: block;
-            box-shadow: var(--shadow-md);
+            box-shadow: 
+                0 30px 60px rgba(13, 43, 94, 0.22), 
+                0 12px 25px rgba(0, 0, 0, 0.08),
+                0 0 1px rgba(13, 43, 94, 0.15);
+            border: 1px solid rgba(13, 43, 94, 0.06);
         }
 
         /* Team Grid & Section Background Contrast */
@@ -112,7 +132,7 @@
         .team-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 40px rgba(13, 43, 94, 0.1);
-            border-color: rgba(13, 43, 94, 0.08);
+            /* Static border color to avoid layout repaints during animation */
         }
 
         .team-img-wrapper {
