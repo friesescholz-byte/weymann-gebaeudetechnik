@@ -2824,13 +2824,9 @@ img {
 }
 
 .about-teaser-img-container:hover .teaser-experience-badge {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 30px 60px rgba(0, 13, 35, 0.18);
-    border-color: rgba(210, 30, 38, 0.15);
-}
-
-.about-teaser-img-container:hover .teaser-experience-badge .badge-num {
-    transform: scale(1.06);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 25px 45px rgba(0, 13, 35, 0.14);
+    border-color: rgba(210, 30, 38, 0.1);
 }
 
 @media (max-width: 992px) {
