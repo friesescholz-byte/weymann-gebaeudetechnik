@@ -10,6 +10,679 @@
     <link rel="icon" type="image/png" href="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Weymann_GmbH_Flavorcon.png">
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        /* Hero Section Redesign */
+        .karriere-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 13rem 0 9rem;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-glow-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .red-blob {
+            top: -150px;
+            right: -100px;
+            background: var(--secondary-color);
+        }
+
+        .blue-blob {
+            bottom: -200px;
+            left: -100px;
+            background: var(--primary-light);
+        }
+
+        .hero-grid-pattern {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .karriere-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background-color: rgba(210, 30, 38, 0.12);
+            border: 1px solid rgba(210, 30, 38, 0.25);
+            color: var(--secondary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            border-radius: 50px;
+            margin-bottom: 1.8rem;
+        }
+
+        .karriere-hero h1 {
+            font-size: 3.8rem;
+            font-family: var(--font-heading);
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            color: white;
+            line-height: 1.15;
+        }
+
+        .hero-subtitle {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #ffcc00;
+            margin-bottom: 1.8rem;
+            font-family: var(--font-heading);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            line-height: 1.75;
+            font-weight: 300;
+            color: var(--text-light);
+        }
+
+        /* Filter Tabs */
+        .job-filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .job-filter-tab {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+        }
+
+        .job-filter-tab:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .job-filter-tab.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 8px 20px rgba(13, 43, 94, 0.15);
+        }
+
+        /* Detailed Job Cards (Careers Page) */
+        .job-openings-section {
+            padding: 7rem 0 5rem;
+            background-color: var(--bg-main);
+        }
+
+        .jobs-list-detailed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .job-detail-card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            background: white;
+            box-shadow: 0 10px 30px rgba(13, 43, 94, 0.02);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .job-detail-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(13, 43, 94, 0.06);
+            border-color: rgba(13, 43, 94, 0.15);
+        }
+
+        .job-detail-card.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 50px rgba(13, 43, 94, 0.08);
+        }
+
+        .job-card-header {
+            padding: 2rem 2.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .job-detail-card.active .job-card-header {
+            background-color: var(--bg-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .job-card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .job-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(13, 43, 94, 0.05);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .job-detail-card:hover .job-icon-box {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .job-detail-card.active .job-icon-box {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .job-card-header h4 {
+            margin: 0;
+            font-size: 1.35rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .job-tag {
+            font-size: 0.75rem;
+            background: var(--bg-light);
+            color: var(--text-muted);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .job-detail-card.active .job-tag {
+            background: white;
+        }
+
+        .job-card-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-weight: 300;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .job-detail-card:hover .job-card-toggle {
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .job-detail-card.active .job-card-toggle {
+            transform: rotate(45deg);
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        /* Modern Grid Height Transition */
+        .job-card-body-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .job-detail-card.active .job-card-body-wrapper {
+            grid-template-rows: 1fr;
+        }
+
+        .job-card-body {
+            overflow: hidden;
+            min-height: 0;
+            padding: 0 2.5rem;
+            transition: padding 0.4s ease;
+        }
+
+        .job-detail-card.active .job-card-body {
+            padding: 2.5rem;
+        }
+
+        .job-intro {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed rgba(13, 43, 94, 0.1);
+        }
+
+        .job-details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .job-details-column h5 {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.6rem;
+            font-weight: 700;
+        }
+
+        .job-details-column ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .job-details-column li {
+            position: relative;
+            padding-left: 1.8rem;
+            line-height: 1.6;
+            list-style: none;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
+        }
+
+        .job-details-column li svg {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+        }
+
+        .job-details-column li svg.check-icon {
+            color: var(--accent-green);
+        }
+
+        .job-details-column li svg.star-icon {
+            color: #ffcc00;
+        }
+
+        .job-apply-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+            padding: 0.9rem 2.2rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(13, 43, 94, 0.15);
+        }
+
+        .job-apply-trigger:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(227, 34, 42, 0.25);
+        }
+
+        /* Benefits Section Redesign */
+        .benefits-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(210, 30, 38, 0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(210, 30, 38, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(210, 30, 38, 0.1);
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            background: var(--secondary-color);
+            color: white;
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .benefit-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.6rem;
+            font-family: var(--font-heading);
+        }
+
+        .benefit-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Career Content & Form Section */
+        .career-wrapper-section {
+            padding: 8rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .career-section {
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: var(--radius-xl);
+            padding: 4.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 5rem;
+            align-items: flex-start;
+            box-shadow: 0 30px 70px rgba(13, 43, 94, 0.04), 0 1px 3px rgba(0, 0, 0, 0.01);
+            border: 1px solid rgba(13, 43, 94, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .career-content {
+            padding: 0;
+        }
+
+        .career-content h2 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .career-benefits {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            padding: 0;
+        }
+
+        .career-benefits li {
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-main);
+        }
+
+        .career-benefits .check {
+            color: var(--secondary-color);
+            background: rgba(210, 30, 38, 0.15);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .career-form-box {
+            background: var(--bg-light);
+            padding: 3.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(13, 43, 94, 0.03);
+        }
+
+        .career-form-box h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            font-family: var(--font-heading);
+        }
+
+        .flow-form .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .flow-form .form-control {
+            width: 100%;
+            padding: 1.1rem 1.3rem;
+            border: 1px solid rgba(13, 43, 94, 0.1);
+            background: white;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .flow-form .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 20px rgba(210, 30, 38, 0.04), 0 0 0 4px rgba(210, 30, 38, 0.08);
+        }
+
+        .flow-form select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            background-size: 16px;
+            padding-right: 3rem;
+            cursor: pointer;
+        }
+
+        .flow-form textarea.form-control {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .flow-form label.upload-label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .flow-form input[type="file"].form-control {
+            background: white;
+            padding: 0.9rem 1.1rem;
+            cursor: pointer;
+        }
+
+        .flow-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            box-shadow: 0 10px 25px rgba(210, 30, 38, 0.25);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .career-section {
+                padding: 3.5rem;
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .career-section {
+                grid-template-columns: 1fr;
+                padding: 3rem;
+                gap: 3rem;
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .karriere-hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .job-details-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .job-card-header {
+                padding: 1.5rem;
+            }
+            .job-card-title-group {
+                gap: 1rem;
+            }
+            .job-icon-box {
+                width: 40px;
+                height: 40px;
+                flex-shrink: 0;
+            }
+            .job-card-header h4 {
+                font-size: 1.15rem;
+            }
+            .job-card-body {
+                padding: 0 1.5rem;
+            }
+            .job-detail-card.active .job-card-body {
+                padding: 1.5rem;
+            }
+            .benefits-section {
+                padding: 6rem 0;
+            }
+            .benefits-grid {
+                gap: 1rem;
+            }
+            .career-wrapper-section {
+                padding: 5rem 0;
+            }
+            .career-section {
+                padding: 2.5rem 1.5rem;
+            }
+            .career-form-box {
+                padding: 2.5rem 1.5rem;
+            }
+            .career-content h2 {
+                font-size: 2.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .job-filter-tab {
+                padding: 0.7rem 1.3rem;
+                font-size: 0.85rem;
+            }
+            .karriere-hero h1 {
+                font-size: 2.3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -48,123 +721,264 @@
     </header>
 
     <!-- Hero -->
-    <section class="subpage-hero" style="background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%); color: white; padding: 11rem 0 8rem; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: 0; pointer-events: none;"></div>
-        <div class="container" style="position: relative; z-index: 1; text-align: center;">
-            <span style="display: inline-block; padding: 0.4rem 1rem; background-color: rgba(255, 204, 0, 0.15); color: #ffcc00; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; border-radius: 50px; margin-bottom: 1.5rem;">Karriere bei Weymann</span>
-            <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: white;">Karriere in der Karl Weymann GmbH</h1>
-            <p style="font-size: 1.25rem; font-weight: 600; color: #ffcc00; margin-bottom: 1.5rem;">30 Kollegen. Ein Team. Moderne Technik.</p>
-            <p style="font-size: 1.15rem; max-width: 800px; margin: 0 auto; opacity: 0.9; line-height: 1.65; font-weight: 300;">Ob Anlagenmechaniker SHK, Servicetechniker, Azubi, Ingenieur oder Bürofachkraft – bei uns arbeitest du an modernen Projekten rund um Heizung, Wärmepumpen, Klima und Bad. Regional, zukunftssicher und in einem Team, auf das man sich verlassen kann.</p>
+    <section class="karriere-hero">
+        <div class="hero-glow-blob red-blob"></div>
+        <div class="hero-glow-blob blue-blob"></div>
+        <div class="hero-grid-pattern"></div>
+        <div class="container">
+            <div class="hero-content-wrapper">
+                <span class="karriere-badge fade-up-1">Karriere bei Weymann</span>
+                <h1 class="fade-up-2">Karriere in der Karl Weymann GmbH</h1>
+                <p class="hero-subtitle fade-up-3">30 Kollegen. Ein Team. Moderne Technik.</p>
+                <p class="hero-description fade-up-4">Ob Anlagenmechaniker SHK, Servicetechniker, Azubi, Ingenieur oder Bürofachkraft – bei uns arbeitest du an modernen Projekten rund um Heizung, Wärmepumpen, Klima und Bad. Regional, zukunftssicher und in einem Team, auf das man sich verlassen kann.</p>
+            </div>
         </div>
     </section>
 
     <!-- Open Positions Section -->
     <section class="job-openings-section reveal">
         <div class="container">
-            <div class="section-title text-center" style="margin-bottom: 3rem;">
+            <div class="section-title text-center" style="margin-bottom: 2.5rem;">
                 <span class="feature-badge" style="background: rgba(13, 43, 94, 0.05); color: var(--primary-color);">Offene Stellen</span>
                 <h2>Deine Karriere-Chancen bei uns</h2>
                 <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.5rem;">Finde die passende Stelle und werde Teil unseres TGA-Expertenteams.</p>
             </div>
+
+            <!-- Job Filters -->
+            <div class="job-filter-container fade-up-5">
+                <button class="job-filter-tab active" data-category="all">Alle Stellen</button>
+                <button class="job-filter-tab" data-category="shk">Heizung &amp; Sanitär</button>
+                <button class="job-filter-tab" data-category="service">Kundendienst</button>
+                <button class="job-filter-tab" data-category="elektro">Elektrotechnik</button>
+                <button class="job-filter-tab" data-category="azubi">Ausbildung</button>
+            </div>
             
             <div class="jobs-list-detailed">
-                <!-- Job 1 -->
-                <div class="job-detail-card active">
+                <!-- Job 1: Anlagenmechaniker -->
+                <div class="job-detail-card active" data-category="shk">
                     <div class="job-card-header">
-                        <h4>Anlagenmechaniker SHK / Heizungsbauer / Gas- und Wasserinstallateur (m/w/d)</h4>
-                        <div class="job-card-toggle">+</div>
-                    </div>
-                    <div class="job-card-body">
-                        <div class="job-details-grid">
-                            <div class="job-details-column">
-                                <h5>Deine Aufgaben bei uns</h5>
-                                <ul>
-                                    <li>Installation moderner Heizungssysteme &amp; Wärmepumpen</li>
-                                    <li>Sanitärinstallationen und Durchführung kompletter Badsanierungen</li>
-                                    <li>Inbetriebnahme, Wartung und Kundendienst von TGA-Anlagen</li>
-                                    <li>Selbstständiges Arbeiten nach technischen Zeichnungen und Plänen</li>
-                                </ul>
+                        <div class="job-card-title-group">
+                            <div class="job-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
                             </div>
-                            <div class="job-details-column">
-                                <h5>Das bieten wir dir (Deine Benefits)</h5>
-                                <ul>
-                                    <li>Übertarifliche, leistungsgerechte Bezahlung &amp; unbefristeter Vertrag</li>
-                                    <li>Top-ausgestattetes Firmenfahrzeug und hochwertiges Werkzeug (Hilti etc.)</li>
-                                    <li>30 Tage Urlaub für echte Erholung</li>
-                                    <li>Betriebliche Altersvorsorge &amp; vermögenswirksame Leistungen</li>
-                                    <li>Regelmäßige Fortbildungen &amp; Weiterbildungsmöglichkeiten</li>
-                                </ul>
+                            <div>
+                                <h4>Anlagenmechaniker SHK / Heizungsbauer / Gas- und Wasserinstallateur (m/w/d)</h4>
+                                <div class="job-tags">
+                                    <span class="job-tag">Vollzeit</span>
+                                    <span class="job-tag">Lehrte &amp; Region Hannover</span>
+                                    <span class="job-tag">Ab sofort</span>
+                                </div>
                             </div>
                         </div>
-                        <div style="text-align: right;">
-                            <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                        <div class="job-card-toggle">+</div>
+                    </div>
+                    <div class="job-card-body-wrapper">
+                        <div class="job-card-body">
+                            <p class="job-intro">Egal ob du dich als Anlagenmechaniker SHK, Heizungsbauer oder Gas- und Wasserinstallateur bezeichnest – wenn du dein Handwerk beherrschst, bist du bei uns richtig.</p>
+                            <div class="job-details-grid">
+                                <div class="job-details-column">
+                                    <h5>Deine Aufgaben</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Du installierst moderne Heizungsanlagen, Wärmepumpen und hochwertige Bäder in der Region Hannover.</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Umbau und Sanierung von Bädern</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Montage von Rohrleitungssystemen und Komponenten</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Selbstständige Abwicklung von Projekten im Team</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Dokumentation der ausgeführten Arbeiten</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das solltest du mitbringen</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Eine Ausbildung als Anlagenmechaniker SHK, Heizungsbauer, Zentralheizungs- und Lüftungsbauer oder Gas- und Wasserinstallateur</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Freude am Handwerk und an sauberer Arbeit</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Führerschein Klasse B</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Zuverlässigkeit und Teamgeist</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das erwartet dich bei uns</h5>
+                                    <ul>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Unbefristeter Arbeitsvertrag</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Hochwertiges Werkzeug und moderne Arbeitskleidung</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Feste Ansprechpartner und kurze Entscheidungswege</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Weiterbildungsmöglichkeiten im Bereich Wärmepumpen und moderne Gebäudetechnik</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Ein familiäres Team mit rund 30 Kollegen</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Job 2 -->
-                <div class="job-detail-card">
+                <!-- Job 2: Kundendiensttechniker -->
+                <div class="job-detail-card" data-category="service">
                     <div class="job-card-header">
-                        <h4>Servicetechniker / Kundendienstmonteur SHK (m/w/d)</h4>
-                        <div class="job-card-toggle">+</div>
-                    </div>
-                    <div class="job-card-body">
-                        <div class="job-details-grid">
-                            <div class="job-details-column">
-                                <h5>Deine Aufgaben bei uns</h5>
-                                <ul>
-                                    <li>Fehlersuche, Reparatur und Wartung von Heizungs- und Sanitäranlagen</li>
-                                    <li>Durchführung von Abgasmessungen und Funktionsprüfungen</li>
-                                    <li>Betreuung unserer Privat- und Gewerbekunden in der Region Hannover</li>
-                                    <li>Teilnahme an unserem kundenfreundlichen Notdienst-Modell</li>
-                                </ul>
+                        <div class="job-card-title-group">
+                            <div class="job-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                             </div>
-                            <div class="job-details-column">
-                                <h5>Das bieten wir dir (Deine Benefits)</h5>
-                                <ul>
-                                    <li>Attraktives Grundgehalt zzgl. Notdienst-Zulagen</li>
-                                    <li>Eigenes Service-Fahrzeug mit moderner Ausstattung</li>
-                                    <li>Eigenverantwortliches Arbeiten mit freier Zeiteinteilung</li>
-                                    <li>Kollegiale Unterstützung und super Arbeitsklima</li>
-                                    <li>30 Tage Jahresurlaub</li>
-                                </ul>
+                            <div>
+                                <h4>Kundendiensttechniker SHK (m/w/d)</h4>
+                                <div class="job-tags">
+                                    <span class="job-tag">Vollzeit</span>
+                                    <span class="job-tag">Privat- &amp; Gewerbekunden</span>
+                                    <span class="job-tag">Ab sofort</span>
+                                </div>
                             </div>
                         </div>
-                        <div style="text-align: right;">
-                            <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                        <div class="job-card-toggle">+</div>
+                    </div>
+                    <div class="job-card-body-wrapper">
+                        <div class="job-card-body">
+                            <p class="job-intro">Du bist der Profi, wenn es um Wartung, Reparatur und Instandhaltung geht? Dann komm in unser Team!</p>
+                            <div class="job-details-grid">
+                                <div class="job-details-column">
+                                    <h5>Deine Aufgaben</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Wartung und Instandsetzung von Heizungsanlagen (Gas, Öl, Wärmepumpen)</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Fehlersuche und Störungsbehebung</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Inbetriebnahme von Neuanlagen</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Beratung unserer Kunden vor Ort</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das solltest du mitbringen</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Abgeschlossene Ausbildung im SHK-Bereich</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Erfahrung im Kundendienst</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Sicherer Umgang mit Mess- und Regeltechnik</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Führerschein Klasse B</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Kundenorientiertes Auftreten</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das erwartet dich bei uns</h5>
+                                    <ul>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Eigenes, voll ausgestattetes Kundendienstfahrzeug</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Abwechslungsreiche Aufgaben bei Privat- und Gewerbekunden</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Regelmäßige Schulungen direkt bei den Herstellern</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Attraktive Vergütung und Notdienst-Zuschläge</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Job 3 -->
-                <div class="job-detail-card">
+                <!-- Job 3: Elektroniker -->
+                <div class="job-detail-card" data-category="elektro">
                     <div class="job-card-header">
-                        <h4>Auszubildende(r) zum Anlagenmechaniker SHK (m/w/d)</h4>
-                        <div class="job-card-toggle">+</div>
-                    </div>
-                    <div class="job-card-body">
-                        <div class="job-details-grid">
-                            <div class="job-details-column">
-                                <h5>Das lernst du bei uns</h5>
-                                <ul>
-                                    <li>Planung und Installation von Heizungs-, Klima- und Sanitärtechnik</li>
-                                    <li>Umgang mit modernsten Systemen (Wärmepumpen, Solarthermie)</li>
-                                    <li>Rohrleitungsverlegung, Schweißtechniken und Elektro-Grundlagen</li>
-                                    <li>Kundenkommunikation und professioneller Kundendienst</li>
-                                </ul>
+                        <div class="job-card-title-group">
+                            <div class="job-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
                             </div>
-                            <div class="job-details-column">
-                                <h5>Deine Azubi-Benefits</h5>
-                                <ul>
-                                    <li>Hohe Ausbildungsvergütung zzgl. Fahrtkostenzuschuss</li>
-                                    <li>Eigener Werkzeugkoffer zur freien Verfügung</li>
-                                    <li>Übernahmegarantie bei guten Leistungen in Betrieb und Schule</li>
-                                    <li>Unterstützung bei der Prüfungsvorbereitung durch erfahrene Meister</li>
-                                </ul>
+                            <div>
+                                <h4>Elektroniker für Energie- und Gebäudetechnik (m/w/d)</h4>
+                                <div class="job-tags">
+                                    <span class="job-tag">Vollzeit</span>
+                                    <span class="job-tag">Smart Home &amp; WP-Anbindung</span>
+                                    <span class="job-tag">Ab sofort</span>
+                                </div>
                             </div>
                         </div>
-                        <div style="text-align: right;">
-                            <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                        <div class="job-card-toggle">+</div>
+                    </div>
+                    <div class="job-card-body-wrapper">
+                        <div class="job-card-body">
+                            <p class="job-intro">Wir brauchen deine Power für die elektrische Anbindung unserer Heizsysteme und Smart-Home-Lösungen.</p>
+                            <div class="job-details-grid">
+                                <div class="job-details-column">
+                                    <h5>Deine Aufgaben</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Elektrischer Anschluss von Heizungsanlagen und Wärmepumpen</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Installation von Mess-, Steuer- und Regelungstechnik</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Allgemeine Elektroinstallationen im Rahmen von Sanierungen</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Fehlersuche in elektrischen Systemen</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das solltest du mitbringen</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Ausbildung als Elektroniker für Energie- und Gebäudetechnik oder vergleichbar</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Interesse an moderner Haustechnik</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Selbstständige Arbeitsweise</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Führerschein Klasse B</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das erwartet dich bei uns</h5>
+                                    <ul>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Spezialisierung auf zukunftssichere Technologien (Wärmepumpen, PV-Anbindung)</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Modernste Messgeräte</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Sicherer Arbeitsplatz in einem wachsenden Markt</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 4: Auszubildende -->
+                <div class="job-detail-card" data-category="azubi">
+                    <div class="job-card-header">
+                        <div class="job-card-title-group">
+                            <div class="job-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                            </div>
+                            <div>
+                                <h4>Auszubildende zum Anlagenmechaniker SHK (m/w/d)</h4>
+                                <div class="job-tags">
+                                    <span class="job-tag">Ausbildung</span>
+                                    <span class="job-tag">Zukunftssicher</span>
+                                    <span class="job-tag">Start 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job-card-toggle">+</div>
+                    </div>
+                    <div class="job-card-body-wrapper">
+                        <div class="job-card-body">
+                            <p class="job-intro">Starte deine Karriere im Handwerk und werde Experte für Klima und Wasser.</p>
+                            <div class="job-details-grid">
+                                <div class="job-details-column">
+                                    <h5>Das lernst du bei uns</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Wie man moderne Heizsysteme plant und installiert</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Die Gestaltung von Wohlfühlbädern</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Den Umgang mit nachhaltigen Energien wie Wärmepumpen</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Alles über Rohrleitungsbau und Technik</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das bringst du mit</h5>
+                                    <ul>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Einen guten Haupt- oder Realschulabschluss</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Handwerkliches Geschick und technisches Verständnis</li>
+                                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Lust, im Team zu arbeiten und anzupacken</li>
+                                    </ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>Das bieten wir dir</h5>
+                                    <ul>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Eine fundierte Ausbildung mit Zukunftsperspektive</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Übernahmechance nach erfolgreichem Abschluss</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Unterstützung bei der Prüfungsvorbereitung</li>
+                                        <li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Azubi-Projekte und ein tolles Team</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,35 +986,127 @@
         </div>
     </section>
 
+    <!-- Benefits Section -->
+    <section class="benefits-section reveal">
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="section-title text-center" style="margin-bottom: 1rem;">
+                <span style="display: inline-block; padding: 0.4rem 1rem; background-color: rgba(210, 30, 38, 0.12); border: 1px solid rgba(210, 30, 38, 0.25); color: var(--secondary-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; border-radius: 50px; margin-bottom: 1.5rem;">Benefits</span>
+                <h2 style="color: white; font-size: 2.8rem; font-family: var(--font-heading);">Unsere Benefits für alle Mitarbeiter</h2>
+            </div>
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h4>Attraktive Vergütung</h4>
+                    <p>Pünktliche und faire Bezahlung.</p>
+                </div>
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h4>30 Tage Urlaub</h4>
+                    <p>Zeit für Erholung und Familie.</p>
+                </div>
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <h4>Hochwertige Ausstattung</h4>
+                    <p>Moderne Fahrzeuge, Markenwerkzeug und Arbeitskleidung von Engelbert Strauss.</p>
+                </div>
+                <!-- Benefit 4 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h4>Betriebliche Altersvorsorge</h4>
+                    <p>Wir unterstützen deine Absicherung für später.</p>
+                </div>
+                <!-- Benefit 5 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+                    </div>
+                    <h4>JobRad</h4>
+                    <p>Lease dein Wunschrad über die Firma.</p>
+                </div>
+                <!-- Benefit 6 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    </div>
+                    <h4>Fortbildung</h4>
+                    <p>Wir fördern deine Entwicklung durch interne und externe Schulungen.</p>
+                </div>
+                <!-- Benefit 7 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h4>Team-Events</h4>
+                    <p>Gemeinsame Grillabende, Weihnachtsfeiern und Ausflüge.</p>
+                </div>
+                <!-- Benefit 8 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    </div>
+                    <h4>Getränke &amp; Snacks</h4>
+                    <p>Kostenloser Kaffee, Wasser und Obst im Betrieb.</p>
+                </div>
+                <!-- Benefit 9 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"></path><line x1="12" y1="2" x2="12" y2="9"></line><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line><line x1="1" y1="18" x2="3" y2="18"></line><line x1="21" y1="18" x2="23" y2="18"></line><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line></svg>
+                    </div>
+                    <h4>Kurze Freitage</h4>
+                    <p>Wir starten früher ins Wochenende.</p>
+                </div>
+                <!-- Benefit 10 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h4>Familiäres Klima</h4>
+                    <p>Bei uns bist du keine Nummer, sondern Teil der Familie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Career Content & Form Section -->
-    <section style="padding-bottom: 6rem;" id="bewerben">
+    <section class="career-wrapper-section" id="bewerben">
         <div class="container">
-            <div class="career-section" style="position: relative; z-index: 10; box-shadow: 0 40px 80px rgba(0,0,0,0.2); background-color: #ffffff; color: var(--text-main); border: 1px solid var(--border-color);">
-                <div class="career-content" style="padding: 2rem;">
-                    <h2 style="color: var(--primary-color);">Gute Arbeit verdient gute Bedingungen.</h2>
-                    <ul class="career-benefits" style="font-size: 1.1rem; margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
-                        <li><span class="check" style="color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin-right: 0.5rem;">✓</span> Ein sicherer Arbeitsplatz in der Region</li>
-                        <li><span class="check" style="color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin-right: 0.5rem;">✓</span> Moderne Technik und abwechslungsreiche Projekte</li>
-                        <li><span class="check" style="color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin-right: 0.5rem;">✓</span> Übertarifliche Bezahlung &amp; Firmenwagen</li>
-                        <li><span class="check" style="color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin-right: 0.5rem;">✓</span> Familiäres, hilfsbereites Team</li>
+            <div class="career-section">
+                <div class="career-content">
+                    <h2>Gute Arbeit verdient gute Bedingungen.</h2>
+                    <ul class="career-benefits">
+                        <li><span class="check">✓</span> Ein sicherer Arbeitsplatz in der Region</li>
+                        <li><span class="check">✓</span> Moderne Technik und abwechslungsreiche Projekte</li>
+                        <li><span class="check">✓</span> Übertarifliche Bezahlung &amp; Firmenwagen</li>
+                        <li><span class="check">✓</span> Familiäres, hilfsbereites Team</li>
                     </ul>
                 </div>
                 
-                <div class="career-form-box" style="background: var(--bg-light); border-radius: var(--radius-lg); padding: 3rem;">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-color); font-size: 1.8rem;">In 60 Sekunden bewerben</h3>
+                <div class="career-form-box">
+                    <h3>In 60 Sekunden bewerben</h3>
                     <form class="flow-form" action="#" method="POST" enctype="multipart/form-data" id="karriere-form">
                         <input type="hidden" name="formType" value="karriere">
-                        <div class="form-group" style="margin-bottom: 1rem;">
-                            <input type="text" name="name" class="form-control" placeholder="Dein Vor- und Nachname" style="padding: 1rem; width: 100%; border: 2px solid transparent; border-radius: var(--radius-md); font-family: var(--font-body);" required>
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Dein Vor- und Nachname" required>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1rem;">
-                            <input type="tel" name="phone" class="form-control" placeholder="Deine Telefonnummer" style="padding: 1rem; width: 100%; border: 2px solid transparent; border-radius: var(--radius-md); font-family: var(--font-body);" required>
+                        <div class="form-group">
+                            <input type="tel" name="phone" class="form-control" placeholder="Deine Telefonnummer" required>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1rem;">
-                            <input type="email" name="email" class="form-control" placeholder="Deine E-Mail Adresse" style="padding: 1rem; width: 100%; border: 2px solid transparent; border-radius: var(--radius-md); font-family: var(--font-body);" required>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Deine E-Mail Adresse" required>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1rem;">
-                            <select name="position" class="form-control" style="padding: 1rem; width: 100%; border: 2px solid transparent; border-radius: var(--radius-md); font-family: var(--font-body);" required>
+                        <div class="form-group">
+                            <select name="position" class="form-control" required>
                                 <option value="" disabled selected>Als was möchtest du starten?</option>
                                 <option>Anlagenmechaniker SHK</option>
                                 <option>Kundendienstmonteur</option>
@@ -209,8 +1115,8 @@
                                 <option>Initiativbewerbung</option>
                             </select>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1rem;">
-                            <select name="erfahrung" class="form-control" style="padding: 1rem; width: 100%; border: 2px solid transparent; border-radius: var(--radius-md); font-family: var(--font-body);" required>
+                        <div class="form-group">
+                            <select name="erfahrung" class="form-control" required>
                                 <option value="" disabled selected>Deine Berufserfahrung</option>
                                 <option>Keine (Azubi/Quereinsteiger)</option>
                                 <option>1-3 Jahre</option>
@@ -218,12 +1124,12 @@
                                 <option>Meister / Techniker</option>
                             </select>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1rem;">
-                            <textarea name="message" class="form-control" placeholder="Kurze Nachricht an uns (optional)" rows="3" style="padding: 1rem; width: 100%; border: 2px solid transparent; border-radius: var(--radius-md); font-family: var(--font-body);"></textarea>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" placeholder="Kurze Nachricht an uns (optional)" rows="3"></textarea>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1.5rem;">
-                            <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; color:var(--text-muted); font-weight: 600;">Lebenslauf hochladen (optional)</label>
-                            <input type="file" name="resume" class="form-control" accept=".pdf,.doc,.docx" style="background: white; padding: 0.8rem; width: 100%; border-radius: var(--radius-md);">
+                        <div class="form-group">
+                            <label class="upload-label">Lebenslauf hochladen (optional)</label>
+                            <input type="file" name="resume" class="form-control" accept=".pdf,.doc,.docx">
                         </div>
                         
                         <!-- Turnstile Widget -->
@@ -232,7 +1138,7 @@
                         </div>
 
                         <p style="font-size: 0.85rem; color:var(--text-muted); margin-bottom:1.5rem; text-align: center;">Kein Anschreiben nötig. Wir melden uns schnell zurück.</p>
-                        <button type="submit" class="btn btn-primary flow-btn" style="width:100%; padding: 1.2rem; font-size: 1.1rem; box-shadow: 0 10px 25px rgba(13, 43, 94, 0.3);">Jetzt unkompliziert bewerben &rarr;</button>
+                        <button type="submit" class="btn btn-primary flow-btn">Jetzt unkompliziert bewerben &rarr;</button>
                     </form>
                 </div>
             </div>

@@ -288,21 +288,51 @@ if (track && btnLeft && btnRight) {
     });
 }
 
-// Careers Page Detailed Job Cards Accordion
+// Careers Page: Category Filter & Detailed Job Cards Accordion
 const jobCards = document.querySelectorAll('.job-detail-card');
-jobCards.forEach(card => {
-    const header = card.querySelector('.job-card-header');
-    if (header) {
-        header.addEventListener('click', () => {
-            jobCards.forEach(otherCard => {
-                if (otherCard !== card) {
-                    otherCard.classList.remove('active');
+if (jobCards.length > 0) {
+    jobCards.forEach(card => {
+        const header = card.querySelector('.job-card-header');
+        if (header) {
+            header.addEventListener('click', () => {
+                jobCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('active');
+                    }
+                });
+                card.classList.toggle('active');
+            });
+        }
+    });
+
+    // Category Filter Logic
+    const filterTabs = document.querySelectorAll('.job-filter-tab');
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            filterTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const category = tab.dataset.category;
+            
+            jobCards.forEach(card => {
+                // Close active cards when filtering
+                card.classList.remove('active');
+                
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(10px)';
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
                 }
             });
-            card.classList.toggle('active');
         });
-    }
-});
+    });
+}
 
 // Scroll Reveal Observer
 const revealElements = document.querySelectorAll('.reveal');
