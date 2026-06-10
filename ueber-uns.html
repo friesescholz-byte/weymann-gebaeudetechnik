@@ -13,11 +13,11 @@
         /* Page specific styling */
         .ueber-hero {
             position: relative;
-            padding: 13rem 0 6rem;
+            padding: 13rem 0 5rem;
             background: linear-gradient(180deg, var(--bg-dark) 0%, #050814 100%);
             color: white;
             text-align: center;
-            overflow: visible;
+            overflow: hidden;
         }
 
         .ueber-hero::before {
@@ -318,12 +318,18 @@
             }
         }
 
-        /* Hero Team Photo (integrated) */
+        /* Hero Team Photo Bridge */
+        .hero-photo-bridge {
+            background: linear-gradient(to bottom, #050814 0%, #0a0f1e 35%, #ffffff 100%);
+            padding: 0 0 4rem;
+            position: relative;
+        }
+
         .hero-team-photo {
             position: relative;
             z-index: 10;
             max-width: 1000px;
-            margin: 3.5rem auto 0;
+            margin: 0 auto;
             padding: 0 2rem;
         }
 
@@ -343,7 +349,7 @@
 
         /* Designer Divider */
         .designer-divider {
-            padding: 5rem 0 0;
+            padding: 2rem 0 0;
             background: #ffffff;
             position: relative;
         }
@@ -374,15 +380,17 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero-photo-bridge {
+                padding: 0 0 3rem;
+            }
             .hero-team-photo {
-                margin-top: 2.5rem;
                 padding: 0 1rem;
             }
             .hero-team-photo .team-photo-frame {
                 border-radius: var(--radius-md);
             }
             .designer-divider {
-                padding: 3rem 0 0;
+                padding: 1.5rem 0 0;
             }
         }
     </style>
@@ -431,8 +439,10 @@
             <h1 class="fade-up-2">Seit über 60 Jahren für die Region Hannover.</h1>
             <p class="lead fade-up-3">Ob Heizung, Wärmepumpe, Klima oder Bad – bei der Karl Weymann Gebäudetechnik erhalten Sie feste Ansprechpartner, eigene Fachkräfte und eine zuverlässige Umsetzung aus einer Hand.</p>
         </div>
+    </section>
 
-        <!-- Team Photo inside Hero -->
+    <!-- Team Photo Bridge -->
+    <section class="hero-photo-bridge">
         <div class="hero-team-photo fade-up-3">
             <div class="team-photo-frame">
                 <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Team_Weymann.png" alt="Das Team der Karl Weymann GmbH" loading="eager">
