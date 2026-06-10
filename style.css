@@ -374,6 +374,8 @@ img {
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
 }
 
 .premium-tile:hover {
@@ -1522,7 +1524,7 @@ img {
   position: relative;
   overflow: hidden;
   --logoloop-gap: 50px;
-  --logoloop-logoHeight: 65px;
+  --logoloop-logoHeight: 90px;
   --logoloop-fadeColorAuto: #f4f7f6; /* Matches bg-light */
 }
 
@@ -2568,8 +2570,8 @@ img {
     transition: var(--transition);
 }
 .premium-tile.featured-tile:hover .tile-badge-bottom {
-    background: var(--primary-color);
-    box-shadow: 0 6px 15px rgba(13, 43, 94, 0.3);
+    background: #a3151c;
+    box-shadow: 0 6px 15px rgba(163, 21, 28, 0.35);
 }
 .reveal-badge {
     position: absolute;
