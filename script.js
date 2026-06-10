@@ -223,13 +223,108 @@ const track = document.querySelector('.references-carousel-track');
 const btnLeft = document.getElementById('carousel-btn-left');
 const btnRight = document.getElementById('carousel-btn-right');
 
-if (track && btnLeft && btnRight) {
-    let scrollAmount = 0;
-    const cardWidth = 452; // Card width 420px + gap 32px
+let loadedHomepageProjects = [];
 
+// Modal functions exposed globally - only on pages with the carousel track to avoid clashing with subpages
+if (track) {
+    window.openProjectModal = function(index) {
+        const p = loadedHomepageProjects[index];
+        if (!p) return;
+        
+        const meta = p.customMetadata || {};
+        const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
+        
+        // Set text content
+        document.getElementById('modal-title').textContent = meta.title || 'Ohne Titel';
+        document.getElementById('modal-category').textContent = meta.category || 'Projekt';
+        document.getElementById('modal-desc').textContent = meta.description || '';
+        
+        // Format body text
+        const bodyContainer = document.getElementById('modal-body');
+        if (meta.bodyText) {
+            bodyContainer.innerHTML = meta.bodyText.split('\n')
+                .filter(para => para.trim().length > 0)
+                .map(para => `<p>${para}</p>`)
+                .join('');
+        } else {
+            bodyContainer.innerHTML = `<p>${meta.description || 'Keine weiteren Details verfügbar.'}</p>`;
+        }
+        
+        // Handle images
+        const mainImg = document.getElementById('modal-main-img');
+        const thumbsContainer = document.getElementById('modal-thumbs');
+        thumbsContainer.innerHTML = '';
+        
+        const mainKey = p.key.split('/').map(encodeURIComponent).join('/');
+        const mainUrl = `${r2PublicUrl}${mainKey}`;
+        
+        mainImg.src = mainUrl;
+        
+        // Collect all images (main + extra)
+        let allImages = [mainUrl];
+        if (meta.extraImages) {
+            const extraKeys = meta.extraImages.split(',');
+            extraKeys.forEach(k => {
+                if (k.trim().length > 0) {
+                    const encodedExtra = k.trim().split('/').map(encodeURIComponent).join('/');
+                    allImages.push(`${r2PublicUrl}${encodedExtra}`);
+                }
+            });
+        }
+        
+        // Render thumbs if more than 1 image
+        if (allImages.length > 1) {
+            thumbsContainer.style.display = 'flex';
+            allImages.forEach((url, imgIndex) => {
+                const thumb = document.createElement('img');
+                thumb.src = url;
+                thumb.className = 'project-modal-thumb' + (imgIndex === 0 ? ' active' : '');
+                thumb.onclick = () => {
+                    mainImg.src = url;
+                    document.querySelectorAll('.project-modal-thumb').forEach((t, i) => {
+                        t.classList.toggle('active', i === imgIndex);
+                    });
+                };
+                thumbsContainer.appendChild(thumb);
+            });
+        } else {
+            thumbsContainer.style.display = 'none';
+        }
+        
+        // Open modal
+        const modal = document.getElementById('project-modal');
+        if (modal) modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeProjectModal = function() {
+        const modal = document.getElementById('project-modal');
+        if (modal) modal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+}
+
+if (track && btnLeft && btnRight) {
+    let x = 0;
+    let cardWidth = 452; // measured dynamically
+    let oneSetWidth = 0; // measured dynamically
+    let isPaused = false;
+    let isTransitioning = false;
+    let autoScrollSpeed = 0.8; // pixels per frame (smooth slow crawl)
+    
     // Dynamic Loading from Backend API
     const apiUrl = "https://weymann-backend.friese-scholz.workers.dev/api/projects";
     const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
+
+    function updateCarouselWidths() {
+        const firstCard = track.firstElementChild;
+        if (firstCard) {
+            const style = window.getComputedStyle(track);
+            const gap = parseFloat(style.gap) || 32;
+            cardWidth = firstCard.getBoundingClientRect().width + gap;
+            oneSetWidth = track.scrollWidth / 2;
+        }
+    }
 
     async function fetchHomepageProjects() {
         try {
@@ -238,7 +333,20 @@ if (track && btnLeft && btnRight) {
             const projects = await res.json();
             
             if (projects && projects.length > 0) {
-                track.innerHTML = projects.map(p => {
+                loadedHomepageProjects = projects;
+                
+                // Scholz & Friese Infinite Loop Logic:
+                // We create a base set of cards. To ensure a seamless infinite scroll even on large monitors,
+                // the base set must contain at least 6 elements (we repeat the projects if necessary).
+                let displayProjects = [];
+                while (displayProjects.length < 6) {
+                    displayProjects = displayProjects.concat(projects.map((p, origIndex) => ({ ...p, origIndex })));
+                }
+                
+                // Duplicate the base set to form the scroll buffer
+                const finalProjects = displayProjects.concat(displayProjects);
+                
+                track.innerHTML = finalProjects.map(p => {
                     const meta = p.customMetadata || {};
                     const encodedKey = p.key.split('/').map(encodeURIComponent).join('/');
                     const category = meta.category || 'Projekt';
@@ -246,7 +354,7 @@ if (track && btnLeft && btnRight) {
                     const desc = meta.description || '';
                     
                     return `
-                        <div class="references-carousel-item" onclick="location.href='projekte.html'">
+                        <div class="references-carousel-item" onclick="openProjectModal(${p.origIndex})">
                             <img src="${r2PublicUrl}${encodedKey}" alt="${title}">
                             <div class="static-info">${category}</div>
                             <div class="references-carousel-overlay">
@@ -260,32 +368,96 @@ if (track && btnLeft && btnRight) {
                     `;
                 }).join("");
                 
-                // Reset scroll position
-                scrollAmount = 0;
+                // Measure sizes immediately after render
+                updateCarouselWidths();
+                
+                // Reset translation
+                x = 0;
                 track.style.transform = `translate3d(0, 0, 0)`;
+                
+                // Start the smooth horizontal auto-scrolling ticker
+                startTicker();
             }
         } catch (err) {
             console.error("Fehler beim Laden der Homepage-Projekte vom Backend:", err);
         }
     }
 
-    fetchHomepageProjects();
+    function startTicker() {
+        function tick() {
+            if (!isPaused && !isTransitioning && oneSetWidth > 0) {
+                x -= autoScrollSpeed;
+                // Seamless jump back to start when we scroll past one set width
+                if (Math.abs(x) >= oneSetWidth) {
+                    x = 0;
+                }
+                track.style.transform = `translate3d(${x}px, 0, 0)`;
+            }
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+
+    function slideTo(target) {
+        if (isTransitioning || oneSetWidth === 0) return;
+        isTransitioning = true;
+        isPaused = true;
+        
+        // Wrap target around boundaries to keep it in range [-oneSetWidth, 0]
+        if (target < -oneSetWidth) {
+            x += oneSetWidth;
+            track.style.transition = 'none';
+            track.style.transform = `translate3d(${x}px, 0, 0)`;
+            track.offsetHeight; // Force layout reflow
+            target += oneSetWidth;
+        } else if (target > 0) {
+            x -= oneSetWidth;
+            track.style.transition = 'none';
+            track.style.transform = `translate3d(${x}px, 0, 0)`;
+            track.offsetHeight;
+            target -= oneSetWidth;
+        }
+        
+        // Apply smooth transition
+        track.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+        x = target;
+        track.style.transform = `translate3d(${x}px, 0, 0)`;
+        
+        // Resume auto-scroll after transition completes
+        setTimeout(() => {
+            track.style.transition = 'none';
+            isTransitioning = false;
+            isPaused = false;
+        }, 600);
+    }
+
+    // Hover state handles
+    track.addEventListener('mouseenter', () => { isPaused = true; });
+    track.addEventListener('mouseleave', () => { if (!isTransitioning) isPaused = false; });
 
     btnRight.addEventListener('click', () => {
-        const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
-        scrollAmount = Math.min(scrollAmount + cardWidth, maxScroll > 0 ? maxScroll : 0);
-        track.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
+        // Slide one card width to the right
+        const currentCardIndex = Math.round(x / cardWidth);
+        const target = (currentCardIndex - 1) * cardWidth;
+        slideTo(target);
     });
 
     btnLeft.addEventListener('click', () => {
-        scrollAmount = Math.max(scrollAmount - cardWidth, 0);
-        track.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
+        // Slide one card width to the left
+        const currentCardIndex = Math.round(x / cardWidth);
+        const target = (currentCardIndex + 1) * cardWidth;
+        slideTo(target);
     });
 
     window.addEventListener('resize', () => {
-        scrollAmount = 0;
+        updateCarouselWidths();
+        // Recenter on resize
+        x = 0;
+        track.style.transition = 'none';
         track.style.transform = `translate3d(0, 0, 0)`;
     });
+
+    fetchHomepageProjects();
 }
 
 // Careers Page: Category Filter & Detailed Job Cards Accordion
