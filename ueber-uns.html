@@ -14,10 +14,10 @@
         .ueber-hero {
             position: relative;
             padding: 13rem 0 8rem;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%);
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #050814 100%);
             color: white;
             text-align: center;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .ueber-hero::before {
@@ -29,6 +29,8 @@
             background-size: 50px 50px;
             z-index: 1;
             pointer-events: none;
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
         }
 
         /* Ambient Glow Effect */
@@ -331,11 +333,12 @@
 
         /* Team Photo Section */
         .team-photo-section {
-            background: linear-gradient(to bottom, #050814 0%, #0a0f1e 20%, var(--bg-light) 60%, #ffffff 100%);
+            background: linear-gradient(to bottom, #050814 0%, #050814 10%, #0a0f1e 30%, var(--bg-light) 65%, #ffffff 100%);
             padding: 0 0 6rem;
             position: relative;
             z-index: 10;
-            margin-top: -3rem;
+            margin-top: -5rem;
+            padding-top: 2rem;
             width: 100%;
         }
 
