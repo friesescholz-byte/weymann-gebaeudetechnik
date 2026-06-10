@@ -329,62 +329,64 @@
             }
         }
 
-        /* Team Gallery Simple Section */
-        .team-gallery-simple-section {
-            background: linear-gradient(to bottom, #050814 0%, var(--bg-light) 50%, #ffffff 100%);
-            padding: 3rem 0 6rem;
+        /* Team Photo Section */
+        .team-photo-section {
+            background: linear-gradient(to bottom, #050814 0%, #0a0f1e 20%, var(--bg-light) 60%, #ffffff 100%);
+            padding: 0 0 6rem;
             position: relative;
             z-index: 10;
-            margin-top: -4.5rem; /* Merges and overlaps nicely with hero */
+            margin-top: -3rem;
             width: 100%;
         }
 
-        .gallery-grid-simple {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-            max-width: 1400px;
+        .team-photo-wrapper {
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        .gallery-item-simple {
+        .team-photo-frame {
             position: relative;
-            height: 270px; /* Larger compact size */
-            background: #ffffff;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(13, 43, 94, 0.05);
-            border: 4px solid #ffffff;
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
-            flex-shrink: 0;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
         }
 
-        .gallery-item-simple img {
-            height: 100%;
-            width: auto;
+        .team-photo-frame img {
+            width: 100%;
+            height: auto;
             display: block;
+            object-fit: cover;
         }
 
-        .gallery-item-simple:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(13, 43, 94, 0.15);
+        .team-photo-caption {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .team-photo-caption strong {
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .team-gallery-simple-section {
-                padding: 2rem 0 4rem;
-                margin-top: -3rem;
+            .team-photo-section {
+                padding: 0 0 4rem;
+                margin-top: -2rem;
             }
-            .gallery-item-simple {
-                height: 180px; /* More compact on mobile */
-                border-width: 3px;
-            }
-            .gallery-grid-simple {
-                gap: 1rem;
+            .team-photo-wrapper {
                 padding: 0 1rem;
+            }
+            .team-photo-frame {
+                border-radius: var(--radius-md);
+            }
+            .team-photo-caption {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -433,65 +435,15 @@
             <h1 class="fade-up-2">Seit über 60 Jahren für die Region Hannover.</h1>
             <p class="lead fade-up-3">Ob Heizung, Wärmepumpe, Klima oder Bad – bei der Karl Weymann Gebäudetechnik erhalten Sie feste Ansprechpartner, eigene Fachkräfte und eine zuverlässige Umsetzung aus einer Hand.</p>
         </div>
-        <!-- Team Gallery Section -->
-    <section class="team-gallery-simple-section">
-        <div class="gallery-grid-simple">
-            <!-- Becker, Noah -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Becker%2C%20Noah_ergebnis.webp" alt="Noah Becker" loading="lazy">
+    </section>
+
+    <!-- Team Photo Section -->
+    <section class="team-photo-section">
+        <div class="team-photo-wrapper">
+            <div class="team-photo-frame">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Team_Weymann.png" alt="Das Team der Karl Weymann GmbH" loading="eager">
             </div>
-            <!-- Behrens, Finn -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Behrens%2C%20Finn_ergebnis.webp" alt="Finn Behrens" loading="lazy">
-            </div>
-            <!-- Bornkamm, Resul -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Bornkamm%2C%20Resul_ergebnis.webp" alt="Resul Bornkamm" loading="lazy">
-            </div>
-            <!-- Dag, Mohamed -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Dag%2C%20Mohamed_ergebnis.webp" alt="Mohamed Dag" loading="lazy">
-            </div>
-            <!-- Dühlmeyer, Nils -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/D%C3%BChlmeyer%2C%20Nils_ergebnis.webp" alt="Nils Dühlmeyer" loading="lazy">
-            </div>
-            <!-- Giffey, Felix -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Giffey%2C%20Felix_ergebnis.webp" alt="Felix Giffey" loading="lazy">
-            </div>
-            <!-- IMG_3298 -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_3298_ergebnis.webp" alt="Teammitglied" loading="lazy">
-            </div>
-            <!-- IMG_6877 -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_6877_ergebnis.webp" alt="Teammitglied" loading="lazy">
-            </div>
-            <!-- Marvin, Noah, Erika -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Marvin%2C%20Noah%2C%20Erika_ergebnis.webp" alt="Marvin, Noah & Erika" loading="lazy">
-            </div>
-            <!-- Lieske, Lennard -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lieske%2C%20Lennard_ergebnis.webp" alt="Lennard Lieske" loading="lazy">
-            </div>
-            <!-- Lajen, Dear -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lajen%2C%20Dear_ergebnis.webp" alt="Dear Lajen" loading="lazy">
-            </div>
-            <!-- Knebel, Nils -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Knebel%2C%20Nils_ergebnis.webp" alt="Nils Knebel" loading="lazy">
-            </div>
-            <!-- Lieske, Sven (1) -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lieske%2C%20Sven%20(1)_ergebnis.webp" alt="Sven Lieske" loading="lazy">
-            </div>
-            <!-- Sanyang, Loui (1) -->
-            <div class="gallery-item-simple">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Sanyang%2C%20Loui%20(1)_ergebnis.webp" alt="Loui Sanyang" loading="lazy">
-            </div>
+            <p class="team-photo-caption">Unser Team – <strong>kompetent, zuverlässig, aus der Region</strong></p>
         </div>
     </section>
 
