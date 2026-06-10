@@ -426,6 +426,16 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
+        .benefit-card-wide {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 992px) {
+            .benefit-card-wide {
+                grid-column: span 2;
+            }
+        }
+
         .benefit-icon {
             width: 56px;
             height: 56px;
@@ -496,9 +506,9 @@
 
         .career-benefits {
             margin-top: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem 2rem;
             padding: 0;
         }
 
@@ -664,6 +674,10 @@
             }
             .career-content h2 {
                 font-size: 2.1rem;
+            }
+            .career-benefits {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
 
@@ -1059,7 +1073,7 @@
                     <p>Kostenloser Kaffee, Wasser und Obst im Betrieb.</p>
                 </div>
                 <!-- Benefit 9 -->
-                <div class="benefit-card">
+                <div class="benefit-card benefit-card-wide">
                     <div class="benefit-icon">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"></path><line x1="12" y1="2" x2="12" y2="9"></line><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line><line x1="1" y1="18" x2="3" y2="18"></line><line x1="21" y1="18" x2="23" y2="18"></line><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line></svg>
                     </div>
@@ -1067,7 +1081,7 @@
                     <p>Wir starten früher ins Wochenende.</p>
                 </div>
                 <!-- Benefit 10 -->
-                <div class="benefit-card">
+                <div class="benefit-card benefit-card-wide">
                     <div class="benefit-icon">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </div>
@@ -1085,10 +1099,16 @@
                 <div class="career-content">
                     <h2>Gute Arbeit verdient gute Bedingungen.</h2>
                     <ul class="career-benefits">
-                        <li><span class="check">✓</span> Ein sicherer Arbeitsplatz in der Region</li>
-                        <li><span class="check">✓</span> Moderne Technik und abwechslungsreiche Projekte</li>
-                        <li><span class="check">✓</span> Übertarifliche Bezahlung &amp; Firmenwagen</li>
-                        <li><span class="check">✓</span> Familiäres, hilfsbereites Team</li>
+                        <li><span class="check">✓</span> Attraktive Vergütung</li>
+                        <li><span class="check">✓</span> 30 Tage Urlaub</li>
+                        <li><span class="check">✓</span> Top Ausstattung &amp; Werkzeug</li>
+                        <li><span class="check">✓</span> Betr. Altersvorsorge</li>
+                        <li><span class="check">✓</span> JobRad-Leasing</li>
+                        <li><span class="check">✓</span> Fort- &amp; Weiterbildung</li>
+                        <li><span class="check">✓</span> Regelmäßige Team-Events</li>
+                        <li><span class="check">✓</span> Gratis Getränke &amp; Obst</li>
+                        <li><span class="check">✓</span> Kurze Freitage</li>
+                        <li><span class="check">✓</span> Familiäres Klima</li>
                     </ul>
                 </div>
                 
