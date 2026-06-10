@@ -320,8 +320,8 @@
 
         /* Hero Team Photo Bridge */
         .hero-photo-bridge {
-            background: linear-gradient(to bottom, #050814 0%, #0a0f1e 35%, #ffffff 100%);
-            padding: 0 0 4rem;
+            background: #050814;
+            padding: 0 0 0;
             position: relative;
         }
 
@@ -330,7 +330,7 @@
             z-index: 10;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 2rem 3rem;
         }
 
         .hero-team-photo .team-photo-frame {
@@ -347,9 +347,23 @@
             object-fit: cover;
         }
 
+        /* Wave Transition */
+        .hero-wave-transition {
+            position: relative;
+            width: 100%;
+            line-height: 0;
+            margin-top: -1px;
+        }
+
+        .hero-wave-transition svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
         /* Designer Divider */
         .designer-divider {
-            padding: 2rem 0 0;
+            padding: 1rem 0 0;
             background: #ffffff;
             position: relative;
         }
@@ -380,17 +394,14 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-photo-bridge {
-                padding: 0 0 3rem;
-            }
             .hero-team-photo {
-                padding: 0 1rem;
+                padding: 0 1rem 2rem;
             }
             .hero-team-photo .team-photo-frame {
                 border-radius: var(--radius-md);
             }
             .designer-divider {
-                padding: 1.5rem 0 0;
+                padding: 0.5rem 0 0;
             }
         }
     </style>
@@ -449,6 +460,23 @@
             </div>
         </div>
     </section>
+
+    <!-- Wave Transition -->
+    <div class="hero-wave-transition">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#050814" />
+                    <stop offset="40%" stop-color="#0a0f1e" />
+                    <stop offset="55%" stop-color="#1a0a12" />
+                    <stop offset="70%" stop-color="#0a0f1e" />
+                    <stop offset="100%" stop-color="#050814" />
+                </linearGradient>
+            </defs>
+            <path d="M0,0 L0,60 Q360,120 720,60 Q1080,0 1440,60 L1440,0 Z" fill="url(#waveGrad)" />
+            <path d="M0,0 L0,55 Q360,115 720,55 Q1080,-5 1440,55 L1440,0 Z" fill="#050814" opacity="0.4" />
+        </svg>
+    </div>
 
     <!-- Designer Divider -->
     <div class="designer-divider">
