@@ -141,75 +141,191 @@
             letter-spacing: 0.5px;
         }
 
-        /* Philosophy Section */
-        .philosophy-section {
+        /* Management Section */
+        .management-section {
             padding: 8rem 0;
-            background-color: var(--bg-light);
+            background-color: #ffffff;
             position: relative;
-            overflow: hidden;
         }
 
-        .philosophy-grid {
+        .management-grid {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 5rem;
-            align-items: center;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: stretch;
+            margin-top: 4rem;
         }
 
-        .philosophy-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+        .management-profiles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
         }
 
-        .philosophy-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .philosophy-images {
-            position: relative;
-            height: 450px;
-        }
-
-        .phil-img-1 {
-            width: 75%;
-            height: 300px;
-            object-fit: cover;
+        .management-card {
+            background: #ffffff;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 10px 30px rgba(13, 43, 94, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(13, 43, 94, 0.04);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .management-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(13, 43, 94, 0.08);
+            border-color: rgba(210, 30, 38, 0.1);
+        }
+
+        .management-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 120%; /* 5:6 Aspect Ratio for portrait */
+            overflow: hidden;
+            background: #f0f3f6;
+        }
+
+        .management-img-wrapper img {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 2;
-            border: 4px solid white;
-        }
-
-        .phil-img-2 {
-            width: 75%;
-            height: 250px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            z-index: 1;
-            border: 4px solid white;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        @media (max-width: 1024px) {
-            .philosophy-grid {
+        .management-card:hover .management-img-wrapper img {
+            transform: scale(1.04);
+        }
+
+        .management-info {
+            padding: 1.5rem;
+            text-align: left;
+        }
+
+        .management-info h3 {
+            font-size: 1.35rem;
+            color: var(--primary-color);
+            margin-bottom: 0.4rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        .management-role {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Quote Card */
+        .management-quote-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #050814 100%);
+            color: white;
+            padding: 3.5rem 2.5rem;
+            border-radius: var(--radius-lg);
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--secondary-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .quote-card::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(210, 30, 38, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            filter: blur(40px);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.04);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .quote-card blockquote {
+            font-size: 1.2rem;
+            line-height: 1.75;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+            font-style: italic;
+        }
+
+        .quote-card cite {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-card cite::before {
+            content: '';
+            display: inline-block;
+            width: 15px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+
+        /* Team Card Description */
+        .team-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(13, 43, 94, 0.1);
+            text-align: left;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1100px) {
+            .management-grid {
                 grid-template-columns: 1fr;
-                gap: 4rem;
+                gap: 3rem;
             }
-            .philosophy-images {
-                height: 380px;
-                max-width: 500px;
-                margin: 0 auto;
-                width: 100%;
+            .quote-card {
+                padding: 3rem 2rem;
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .management-profiles {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
     </style>
@@ -256,7 +372,7 @@
         <div class="container ueber-hero-content">
             <span class="feature-badge fade-up-1" style="color: #ffcc00; background: rgba(255,204,0,0.15); border: none;">Karl Weymann GmbH</span>
             <h1 class="fade-up-2">Seit über 60 Jahren für die Region Hannover.</h1>
-            <p class="lead fade-up-3">Seit über 60 Jahren stehen wir für Qualität, ehrliches Handwerk und partnerschaftliche Zusammenarbeit in Lehrte, Hannover und Region. Lernen Sie uns kennen.</p>
+            <p class="lead fade-up-3">Ob Heizung, Wärmepumpe, Klima oder Bad – bei der Karl Weymann Gebäudetechnik erhalten Sie feste Ansprechpartner, eigene Fachkräfte und eine zuverlässige Umsetzung aus einer Hand.</p>
         </div>
     </section>
 
@@ -269,169 +385,110 @@
         </div>
     </section>
 
-
-    <!-- Team Members Grid -->
-    <section class="team-grid-section">
+    <!-- Geschäftsführer / Management Vorstellung -->
+    <section class="management-section reveal">
         <div class="container">
             <div class="section-title text-center">
-                <h2>Ihre Ansprechpartner & Experten</h2>
-                <div class="title-accent-center"></div>
-                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; margin-top: 1rem;">Meister, Planer, Monteure und Azubis – gemeinsam für Ihr Projekt.</p>
+                <span class="teaser-eyebrow">Geschäftsführung</span>
+                <h2>Die Köpfe hinter dem Meisterbetrieb</h2>
             </div>
-
-            <div class="team-grid">
-                <!-- Geschäftsführer -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_3298_ergebnis.webp" alt="Max Mustermann" loading="lazy" decoding="async">
+            
+            <div class="management-grid">
+                <div class="management-profiles">
+                    <!-- Timo Weymann -->
+                    <div class="management-card">
+                        <div class="management-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop" alt="Timo Weymann">
+                        </div>
+                        <div class="management-info">
+                            <h3>Timo Weymann</h3>
+                            <span class="management-role">Geschäftsführer, Meister, Dipl.-Ing. (BA)</span>
+                        </div>
                     </div>
-                    <div class="team-info">
-                        <h3>Max Mustermann</h3>
-                        <span class="team-role">Geschäftsführer & Meister SHK</span>
-                    </div>
-                </div>
-
-                <!-- Projektleiter -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/D%C3%BChlmeyer,%20Nils_ergebnis.webp" alt="Nils Dühlmeyer" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Nils Dühlmeyer</h3>
-                        <span class="team-role">Projektleiter & Meister</span>
-                    </div>
-                </div>
-
-                <!-- Projektleiter / Service -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/IMG_6877_ergebnis.webp" alt="Max Mustermann" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Max Mustermann</h3>
-                        <span class="team-role">Projektleiter & Kundendienstmeister</span>
+                    
+                    <!-- Mira Weymann -->
+                    <div class="management-card">
+                        <div class="management-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="Mira Weymann">
+                        </div>
+                        <div class="management-info">
+                            <h3>Mira Weymann</h3>
+                            <span class="management-role">Geschäftsführerin, Dipl.-Ing. (BA), Dipl.-Kffr.</span>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Monteur 1 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Becker,%20Noah_ergebnis.webp" alt="Noah Becker" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Noah Becker</h3>
-                        <span class="team-role">Anlagenmechaniker SHK</span>
-                    </div>
-                </div>
-
-                <!-- Monteur 2 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Behrens,%20Finn_ergebnis.webp" alt="Finn Behrens" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Finn Behrens</h3>
-                        <span class="team-role">Kundendiensttechniker</span>
-                    </div>
-                </div>
-
-                <!-- Monteur 3 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Bornkamm,%20Resul_ergebnis.webp" alt="Resul Bornkamm" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Resul Bornkamm</h3>
-                        <span class="team-role">Anlagenmechaniker SHK</span>
-                    </div>
-                </div>
-
-                <!-- Monteur 4 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Knebel,%20Nils_ergebnis.webp" alt="Nils Knebel" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Nils Knebel</h3>
-                        <span class="team-role">Kundendienstmonteur</span>
-                    </div>
-                </div>
-
-                <!-- Monteur 5 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lajen,%20Dear_ergebnis.webp" alt="Dear Lajen" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Dear Lajen</h3>
-                        <span class="team-role">Anlagenmechaniker SHK</span>
-                    </div>
-                </div>
-
-                <!-- Monteur 6 (Elektro) -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Giffey,%20Felix_ergebnis.webp" alt="Felix Giffey" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Felix Giffey</h3>
-                        <span class="team-role">Elektroinstallateur</span>
-                    </div>
-                </div>
-
-                <!-- Azubi 1 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Dag,%20Mohamed_ergebnis.webp" alt="Mohamed Dag" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Mohamed Dag</h3>
-                        <span class="team-role">Auszubildender SHK</span>
-                    </div>
-                </div>
-
-                <!-- Azubi 2 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Lieske,%20Lennard_ergebnis.webp" alt="Lennard Lieske" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Lennard Lieske</h3>
-                        <span class="team-role">Auszubildender SHK</span>
-                    </div>
-                </div>
-
-                <!-- Team in Aktion -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Marvin%2C%20Noah%2C%20Erika_ergebnis.webp" alt="Marvin, Noah, Erika" loading="lazy" decoding="async">
-                    </div>
-                    <div class="team-info">
-                        <h3>Marvin, Noah & Erika</h3>
-                        <span class="team-role">Team in Aktion</span>
+                
+                <div class="management-quote-container">
+                    <div class="quote-card">
+                        <span class="quote-icon">“</span>
+                        <blockquote>
+                            „Als familiengeführtes Unternehmen verbinden wir langjährige Erfahrung mit modernen Lösungen für Heizung, Wärmepumpe, Klima und Bad. Unser Anspruch ist es, Kunden ehrlich zu beraten, Projekte zuverlässig umzusetzen und auch nach Abschluss der Arbeiten ein verlässlicher Ansprechpartner zu bleiben.“
+                        </blockquote>
+                        <cite>Timo &amp; Mira Weymann</cite>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy & Craft Section -->
-    <section class="philosophy-section reveal">
-        <div class="container philosophy-grid">
-            <div class="philosophy-text">
-                <span class="feature-badge">Unsere Philosophie</span>
-                <h2>Handwerk mit Herz, Präzision und Verstand.</h2>
-                <p>Als Meisterbetrieb mit jahrzehntelanger Geschichte sind uns zwei Dinge besonders wichtig: echte, kompromisslose Handwerksqualität und ein starkes Miteinander. TGA-Projekte (Heizung, Sanitär, Klima, Lüftung, Solar und Elektro) sind heute komplexer denn je. Deshalb arbeiten unsere Planer, Meister und Monteure Hand in Hand.</p>
-                <p>Egal ob es um die Installation einer Wärmepumpe für ein Einfamilienhaus, die Badsanierung oder die komplette technische Gebäudeausrüstung eines Industriebtriebs geht: Wir planen vorausschauend, führen sauber aus und sind auch nach dem Einbau verlässlich als Service-Partner an Ihrer Seite.</p>
-                
-                <div style="margin-top: 2.5rem;">
-                    <a href="kontakt.html" class="btn btn-primary">Jetzt Projekt besprechen &rarr;</a>
-                </div>
+    <!-- Team Members Grid -->
+    <section class="team-grid-section bg-light">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="teaser-eyebrow">Ihre Ansprechpartner</span>
+                <h2>Kompetente Betreuung für Ihr Vorhaben</h2>
+                <div class="title-accent-center"></div>
+                <p style="color: var(--text-muted); font-size: 1.15rem; max-width: 600px; margin: 0 auto; margin-top: 1rem;">Feste Ansprechpartner im Büro und direkt vor Ort.</p>
             </div>
-            
-            <div class="philosophy-images">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/beim%20Arbeiten/IMG_0550_ergebnis.webp" alt="Weymann Mitarbeiter bei Rohrleitungsinstallation" class="phil-img-1" loading="lazy" decoding="async">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/beim%20Arbeiten/IMG_5045_ergebnis.webp" alt="Mitarbeiter beim Arbeiten" class="phil-img-2" loading="lazy" decoding="async">
+
+            <div class="team-grid contact-experts-grid">
+                <!-- Andreas Ploner -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop" alt="Andreas Ploner" loading="lazy" decoding="async">
+                    </div>
+                    <div class="team-info">
+                        <h3>Andreas Ploner</h3>
+                        <span class="team-role">Kundenberatung &amp; Bauüberwachung</span>
+                        <p class="team-desc">Kundenberatung vor Ort, Baustellenüberwachung, Einsatzplanung</p>
+                    </div>
+                </div>
+
+                <!-- Marvin Spitzer -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" alt="Marvin Spitzer" loading="lazy" decoding="async">
+                    </div>
+                    <div class="team-info">
+                        <h3>Marvin Spitzer</h3>
+                        <span class="team-role">Kundenberatung &amp; Bauüberwachung</span>
+                        <p class="team-desc">Kundenberatung vor Ort, Baustellenüberwachung, Einsatzplanung</p>
+                    </div>
+                </div>
+
+                <!-- Silke Lindebeck -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop" alt="Silke Lindebeck" loading="lazy" decoding="async">
+                    </div>
+                    <div class="team-info">
+                        <h3>Silke Lindebeck</h3>
+                        <span class="team-role">Servicedisposition &amp; Telefonberatung</span>
+                        <p class="team-desc">Servicedisposition, Telefonberatung zu Wartung und Service, Einsatzplanung Kundendienst, Terminierung von Wartungsverträgen</p>
+                    </div>
+                </div>
+
+                <!-- Anne Wiegand -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="Anne Wiegand" loading="lazy" decoding="async">
+                    </div>
+                    <div class="team-info">
+                        <h3>Anne Wiegand</h3>
+                        <span class="team-role">Servicedisposition &amp; Telefonberatung</span>
+                        <p class="team-desc">Servicedisposition, Telefonberatung zu Wartung und Service, Einsatzplanung Kundendienst, Terminierung von Wartungsverträgen</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
