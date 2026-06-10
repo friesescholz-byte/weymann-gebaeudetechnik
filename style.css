@@ -1537,6 +1537,7 @@ img {
 .logoloop {
   position: relative;
   overflow: hidden;
+  padding: 15px 0;
   --logoloop-gap: 50px;
   --logoloop-logoHeight: 90px;
   --logoloop-fadeColorAuto: #f4f7f6; /* Matches bg-light */
