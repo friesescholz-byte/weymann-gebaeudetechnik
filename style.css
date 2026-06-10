@@ -2680,3 +2680,157 @@ img {
 .nav-insta-link::after {
     display: none !important;
 }
+
+/* Redesigned Corporate Introduction Teaser Section (Scholz & Friese UX Pro Max) */
+.teaser-glow-1 {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(13, 43, 94, 0.04) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+.teaser-glow-2 {
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(210, 30, 38, 0.03) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Eyebrow Badge */
+.teaser-eyebrow {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-color);
+    background: rgba(13, 43, 94, 0.04);
+    border: 1px solid rgba(13, 43, 94, 0.08);
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(13, 43, 94, 0.02);
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Teaser Stats Grid */
+.teaser-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+    border-top: 1px dashed rgba(0,0,0,0.08);
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+    padding: 1.5rem 0;
+    z-index: 2;
+    position: relative;
+}
+.teaser-stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.teaser-stat-item .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+.teaser-stat-item .stat-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Premium Button Teaser */
+.btn-teaser-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.2rem;
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(13, 43, 94, 0.04);
+    position: relative;
+    z-index: 2;
+}
+.btn-teaser-premium:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(13, 43, 94, 0.2);
+}
+.btn-teaser-premium .arrow-icon {
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.btn-teaser-premium:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* Experience Floating Badge */
+.about-teaser-img-container {
+    position: relative;
+    padding: 1rem;
+}
+.teaser-experience-badge {
+    position: absolute;
+    bottom: 2rem;
+    left: -2rem;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 13, 35, 0.12);
+    z-index: 3;
+    animation: float-badge 6s ease-in-out infinite alternate;
+}
+.teaser-experience-badge .badge-num {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+.teaser-experience-badge .badge-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    line-height: 1.3;
+}
+
+@keyframes float-badge {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+}
+
+@media (max-width: 992px) {
+    .teaser-experience-badge {
+        left: 2rem;
+        bottom: -1rem;
+    }
+}
+

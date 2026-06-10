@@ -88,22 +88,54 @@
         <!-- Custom Shape Divider -->
         <div class="custom-shape-divider-bottom">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,30 C300,100 600,0 900,80 C1050,120 1150,80 1200,60 V120 H0 Z" style="fill: var(--secondary-color); opacity: 0.05;"></path>
+                <path d="M0,0 C150,90 350,10 600,60 C850,110 1050,30 1200,90 V120 H0 Z" style="fill: var(--primary-color); opacity: 0.08;"></path>
                 <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
             </svg>
         </div>
     </section>
 
     <!-- Unternehmensvorstellung -->
-    <section class="about-teaser-section reveal" style="padding-top: 14rem; margin-top: -12rem; position: relative; z-index: 10;">
+    <section class="about-teaser-section reveal" style="position: relative; z-index: 10;">
+        <!-- Glowing Designer Background Blobs -->
+        <div class="teaser-glow-1"></div>
+        <div class="teaser-glow-2"></div>
+        
         <div class="container about-teaser-grid">
             <div class="about-teaser-text">
-                <span class="feature-badge" style="background: rgba(13, 43, 94, 0.05); color: var(--primary-color);">Unternehmensvorstellung</span>
-                <h2>Willkommen bei der Karl Weymann GmbH</h2>
+                <span class="teaser-eyebrow">Unternehmensvorstellung</span>
+                <h2>Willkommen bei der <span class="gradient-text">Karl Weymann GmbH</span></h2>
                 <p>Die Karl Weymann GmbH ist Ihr Partner für moderne Heizungen, Wärmepumpen, Klimaanlagen und Badsanierungen in der Region Hannover. Mit individueller Beratung, professioneller Planung und fachgerechter Umsetzung schaffen wir Lösungen, die Ihren Komfort steigern, Energie sparen und langfristig zuverlässig funktionieren – für Privatkunden sowie Gewerbeobjekte wie Hotels, Arztpraxen und Bürogebäude.</p>
-                <a href="ueber-uns.html" class="btn btn-outline" style="margin-top: 1rem;">Lernen Sie unser Team kennen &rarr;</a>
+                
+                <div class="teaser-stats-grid">
+                    <div class="teaser-stat-item">
+                        <span class="stat-number">60+</span>
+                        <span class="stat-label">Jahre Erfahrung</span>
+                    </div>
+                    <div class="teaser-stat-item">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">Fachkräfte</span>
+                    </div>
+                    <div class="teaser-stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Zuverlässig</span>
+                    </div>
+                </div>
+
+                <a href="ueber-uns.html" class="btn btn-teaser-premium">
+                    Lernen Sie unser Team kennen
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
             </div>
-            <div class="about-teaser-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Mira & Timo - Karl Weymann GmbH" class="about-teaser-img">
+            
+            <div class="about-teaser-img-container">
+                <div class="about-teaser-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Mira & Timo - Karl Weymann GmbH" class="about-teaser-img">
+                    <div class="teaser-experience-badge">
+                        <span class="badge-num">60+</span>
+                        <span class="badge-label">Jahre<br>Erfahrung</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
