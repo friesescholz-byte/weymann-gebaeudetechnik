@@ -2522,7 +2522,7 @@ img {
     border: 2px solid var(--secondary-color);
     background: linear-gradient(145deg, #ffffff, #fffdfd);
     box-shadow: 0 20px 40px rgba(210, 30, 38, 0.08);
-    overflow: visible; /* Prevent clipping of the bottom badge */
+    overflow: hidden; /* Changed from visible to hidden to clip hover bar correctly */
 }
 .premium-tile.featured-tile:hover {
     box-shadow: 0 25px 50px rgba(210, 30, 38, 0.15);
@@ -2568,7 +2568,8 @@ img {
     white-space: nowrap;
     transition: var(--transition);
 }
-.premium-tile.featured-tile:hover .tile-badge-bottom {
+.premium-tile.featured-tile:hover ~ .tile-badge-bottom {
+    transform: translate(-50%, calc(50% - 12px));
     background: #a3151c;
     box-shadow: 0 6px 15px rgba(163, 21, 28, 0.35);
 }
@@ -2648,4 +2649,34 @@ img {
     }
 }
 
+/* Premium Tile Wrapper to hold featured tile with bottom badge */
+.premium-tile-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
+.premium-tile-wrapper .premium-tile {
+    height: 100%;
+    flex: 1;
+}
+
+/* Instagram Header Link Custom Hover Transition */
+.nav-insta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    vertical-align: middle;
+}
+
+.nav-insta-link:hover {
+    color: var(--secondary-color);
+    transform: scale(1.12) rotate(8deg);
+}
+
+.nav-insta-link::after {
+    display: none !important;
+}
