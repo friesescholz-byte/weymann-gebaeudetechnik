@@ -235,19 +235,21 @@ if (track) {
         const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
         
         // Set text content
-        document.getElementById('modal-title').textContent = meta.title || 'Ohne Titel';
+        document.getElementById('modal-title').textContent = (meta.title || 'Ohne Titel').replace(/\\n/g, ' ');
         document.getElementById('modal-category').textContent = meta.category || 'Projekt';
-        document.getElementById('modal-desc').textContent = meta.description || '';
+        document.getElementById('modal-desc').textContent = (meta.description || '').replace(/\\n/g, '\n');
         
         // Format body text
         const bodyContainer = document.getElementById('modal-body');
         if (meta.bodyText) {
-            bodyContainer.innerHTML = meta.bodyText.split('\n')
+            const cleanBody = meta.bodyText.replace(/\\n/g, '\n');
+            bodyContainer.innerHTML = cleanBody.split('\n')
                 .filter(para => para.trim().length > 0)
                 .map(para => `<p>${para}</p>`)
                 .join('');
         } else {
-            bodyContainer.innerHTML = `<p>${meta.description || 'Keine weiteren Details verfügbar.'}</p>`;
+            const cleanDesc = (meta.description || '').replace(/\\n/g, '\n');
+            bodyContainer.innerHTML = `<p>${cleanDesc || 'Keine weiteren Details verfügbar.'}</p>`;
         }
         
         // Handle images
@@ -350,18 +352,18 @@ if (track && btnLeft && btnRight) {
                     const meta = p.customMetadata || {};
                     const encodedKey = p.key.split('/').map(encodeURIComponent).join('/');
                     const category = meta.category || 'Projekt';
-                    const title = meta.title || 'Ohne Titel';
-                    const desc = meta.description || '';
+                    const cleanTitle = (meta.title || 'Ohne Titel').replace(/\\n/g, ' ');
+                    const cleanDesc = (meta.description || '').replace(/\\n/g, ' ');
                     
                     return `
                         <div class="references-carousel-item" onclick="openProjectModal(${p.origIndex})">
-                            <img src="${r2PublicUrl}${encodedKey}" alt="${title}">
+                            <img src="${r2PublicUrl}${encodedKey}" alt="${cleanTitle}">
                             <div class="static-info">${category}</div>
                             <div class="references-carousel-overlay">
                                 <div class="references-carousel-info">
                                     <span class="references-carousel-category">${category}</span>
-                                    <h3>${title}</h3>
-                                    <p>${desc}</p>
+                                    <h3>${cleanTitle}</h3>
+                                    <p>${cleanDesc}</p>
                                 </div>
                             </div>
                         </div>
