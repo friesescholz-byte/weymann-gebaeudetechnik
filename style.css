@@ -109,6 +109,19 @@ img {
     color: var(--text-light);
 }
 
+.btn-red {
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(227, 34, 42, 0.2);
+}
+
+.btn-red:hover {
+    background-color: #c61d24;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(227, 34, 42, 0.3);
+    color: white;
+}
+
 .btn-secondary {
     background-color: var(--accent-color);
     color: var(--text-light);
