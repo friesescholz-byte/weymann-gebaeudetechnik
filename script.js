@@ -227,6 +227,50 @@ if (track && btnLeft && btnRight) {
     let scrollAmount = 0;
     const cardWidth = 452; // Card width 420px + gap 32px
 
+    // Dynamic Loading from Backend API
+    const apiUrl = "https://weymann-backend.friese-scholz.workers.dev/api/projects";
+    const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
+
+    async function fetchHomepageProjects() {
+        try {
+            const res = await fetch(apiUrl);
+            if (!res.ok) throw new Error("Fehler beim Laden");
+            const projects = await res.json();
+            
+            if (projects && projects.length > 0) {
+                track.innerHTML = projects.map(p => {
+                    const meta = p.customMetadata || {};
+                    const encodedKey = p.key.split('/').map(encodeURIComponent).join('/');
+                    const category = meta.category || 'Projekt';
+                    const title = meta.title || 'Ohne Titel';
+                    const desc = meta.description || '';
+                    
+                    return `
+                        <div class="references-carousel-item" onclick="location.href='projekte.html'">
+                            <img src="${r2PublicUrl}${encodedKey}" alt="${title}">
+                            <div class="static-info">${category}</div>
+                            <div class="references-carousel-overlay">
+                                <div class="references-carousel-info">
+                                    <span class="references-carousel-category">${category}</span>
+                                    <h3>${title}</h3>
+                                    <p>${desc}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+                
+                // Reset scroll position
+                scrollAmount = 0;
+                track.style.transform = `translate3d(0, 0, 0)`;
+            }
+        } catch (err) {
+            console.error("Fehler beim Laden der Homepage-Projekte vom Backend:", err);
+        }
+    }
+
+    fetchHomepageProjects();
+
     btnRight.addEventListener('click', () => {
         const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
         scrollAmount = Math.min(scrollAmount + cardWidth, maxScroll > 0 ? maxScroll : 0);

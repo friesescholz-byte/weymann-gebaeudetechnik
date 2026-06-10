@@ -1523,7 +1523,7 @@ img {
   overflow: hidden;
   --logoloop-gap: 50px;
   --logoloop-logoHeight: 65px;
-  --logoloop-fadeColorAuto: #f8f9fa; /* Matches bg-light */
+  --logoloop-fadeColorAuto: #f4f7f6; /* Matches bg-light */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -2521,6 +2521,7 @@ img {
     border: 2px solid var(--secondary-color);
     background: linear-gradient(145deg, #ffffff, #fffdfd);
     box-shadow: 0 20px 40px rgba(210, 30, 38, 0.08);
+    overflow: visible; /* Prevent clipping of the bottom badge */
 }
 .premium-tile.featured-tile:hover {
     box-shadow: 0 25px 50px rgba(210, 30, 38, 0.15);
@@ -2548,6 +2549,28 @@ img {
     box-shadow: 0 4px 10px rgba(210, 30, 38, 0.2);
     z-index: 3;
 }
+.tile-badge-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%); /* Sits exactly on the bottom border */
+    background: var(--secondary-color);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(210, 30, 38, 0.25);
+    z-index: 10;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+.premium-tile.featured-tile:hover .tile-badge-bottom {
+    background: var(--primary-color);
+    box-shadow: 0 6px 15px rgba(13, 43, 94, 0.3);
+}
 .reveal-badge {
     position: absolute;
     top: 1.5rem;
@@ -2566,6 +2589,62 @@ img {
 }
 .reveal-card:hover .reveal-badge {
     transform: scale(1.05);
+}
+
+/* Side Carousel Arrow Placement */
+.references-carousel-outer {
+    position: relative;
+    width: 100%;
+}
+.references-carousel-outer .carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    margin: 0;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.references-carousel-outer .carousel-nav-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-52%) scale(1.05); /* Slight lift effect */
+}
+.references-carousel-outer .carousel-nav-btn#carousel-btn-left {
+    left: -25px;
+}
+.references-carousel-outer .carousel-nav-btn#carousel-btn-right {
+    right: -25px;
+}
+@media (max-width: 1300px) {
+    .references-carousel-outer .carousel-nav-btn#carousel-btn-left {
+        left: 10px;
+    }
+    .references-carousel-outer .carousel-nav-btn#carousel-btn-right {
+        right: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .references-carousel-outer .carousel-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .references-carousel-outer .carousel-nav-btn#carousel-btn-left {
+        left: 5px;
+    }
+    .references-carousel-outer .carousel-nav-btn#carousel-btn-right {
+        right: 5px;
+    }
 }
 
 
