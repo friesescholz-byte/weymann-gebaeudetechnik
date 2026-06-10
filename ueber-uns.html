@@ -13,7 +13,7 @@
         /* Page specific styling */
         .ueber-hero {
             position: relative;
-            padding: 13rem 0 8rem;
+            padding: 13rem 0 6rem;
             background: linear-gradient(180deg, var(--bg-dark) 0%, #050814 100%);
             color: white;
             text-align: center;
@@ -331,65 +331,71 @@
             }
         }
 
-        /* Team Photo Section */
-        .team-photo-section {
-            background: linear-gradient(to bottom, #050814 0%, #050814 10%, #0a0f1e 30%, var(--bg-light) 65%, #ffffff 100%);
-            padding: 0 0 6rem;
+        /* Hero Team Photo (integrated) */
+        .hero-team-photo {
             position: relative;
             z-index: 10;
-            margin-top: -5rem;
-            padding-top: 2rem;
-            width: 100%;
-        }
-
-        .team-photo-wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
+            max-width: 1000px;
+            margin: 3.5rem auto 0;
             padding: 0 2rem;
         }
 
-        .team-photo-frame {
+        .hero-team-photo .team-photo-frame {
             position: relative;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
         }
 
-        .team-photo-frame img {
+        .hero-team-photo .team-photo-frame img {
             width: 100%;
             height: auto;
             display: block;
             object-fit: cover;
         }
 
-        .team-photo-caption {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            letter-spacing: 0.02em;
+        /* Designer Divider */
+        .designer-divider {
+            padding: 5rem 0 0;
+            background: #ffffff;
+            position: relative;
         }
 
-        .team-photo-caption strong {
-            color: var(--primary-color);
-            font-weight: 600;
+        .designer-divider-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Responsive Adjustments */
+        .designer-divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(13, 43, 94, 0.12) 50%, transparent 100%);
+        }
+
+        .designer-divider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .team-photo-section {
-                padding: 0 0 4rem;
-                margin-top: -2rem;
-            }
-            .team-photo-wrapper {
+            .hero-team-photo {
+                margin-top: 2.5rem;
                 padding: 0 1rem;
             }
-            .team-photo-frame {
+            .hero-team-photo .team-photo-frame {
                 border-radius: var(--radius-md);
             }
-            .team-photo-caption {
-                font-size: 0.9rem;
+            .designer-divider {
+                padding: 3rem 0 0;
             }
         }
     </style>
@@ -432,23 +438,29 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="ueber-hero" style="padding-bottom: 6rem;">
+    <section class="ueber-hero">
         <div class="container ueber-hero-content">
             <span class="feature-badge fade-up-1" style="color: #ffcc00; background: rgba(255,204,0,0.15); border: none;">Karl Weymann GmbH</span>
             <h1 class="fade-up-2">Seit über 60 Jahren für die Region Hannover.</h1>
             <p class="lead fade-up-3">Ob Heizung, Wärmepumpe, Klima oder Bad – bei der Karl Weymann Gebäudetechnik erhalten Sie feste Ansprechpartner, eigene Fachkräfte und eine zuverlässige Umsetzung aus einer Hand.</p>
         </div>
-    </section>
 
-    <!-- Team Photo Section -->
-    <section class="team-photo-section">
-        <div class="team-photo-wrapper">
+        <!-- Team Photo inside Hero -->
+        <div class="hero-team-photo fade-up-3">
             <div class="team-photo-frame">
                 <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Weymann-Geb%C3%A4udetechnik/Mitarbeiter/Team_Weymann.png" alt="Das Team der Karl Weymann GmbH" loading="eager">
             </div>
-            <p class="team-photo-caption">Unser Team – <strong>kompetent, zuverlässig, aus der Region</strong></p>
         </div>
     </section>
+
+    <!-- Designer Divider -->
+    <div class="designer-divider">
+        <div class="designer-divider-inner">
+            <div class="designer-divider-line"></div>
+            <div class="designer-divider-dot"></div>
+            <div class="designer-divider-line"></div>
+        </div>
+    </div>
 
     <!-- Geschäftsführer / Management Vorstellung -->
     <section class="management-section reveal">
