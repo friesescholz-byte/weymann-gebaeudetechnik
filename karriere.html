@@ -703,7 +703,17 @@
             </a>
             
             <nav class="nav-menu">
-                <a href="index.html#leistungen" class="nav-link">Leistungen</a>
+                <div class="nav-dropdown-wrapper">
+                    <a href="index.html#leistungen" class="nav-link" style="display: inline-flex; align-items: center; gap: 0.25rem;">
+                        Leistungen
+                        <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition: transform 0.2s ease;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <div class="nav-dropdown">
+                        <a href="heizung-waermepumpe-anfrage.html">Heizung &amp; Wärmepumpe</a>
+                        <a href="klimaanlage-anfrage.html">Klimaanlage</a>
+                        <a href="badsanierungs-anfrage.html">Badsanierung</a>
+                    </div>
+                </div>
                 <a href="index.html#referenzen" class="nav-link">Projekte</a>
                 <a href="ueber-uns.html" class="nav-link">Über uns</a>
                 <a href="karriere.html" class="nav-link active">Karriere</a>
@@ -1185,7 +1195,14 @@
             <button class="mobile-drawer-close">&times;</button>
         </div>
         <div class="mobile-drawer-links">
-            <a href="index.html#leistungen" class="mobile-drawer-link">Leistungen</a>
+            <div class="mobile-drawer-dropdown">
+                <a href="index.html#leistungen" class="mobile-drawer-link" style="display: block; margin-bottom: 0.5rem;">Leistungen</a>
+                <div class="mobile-drawer-sublinks" style="display: flex; flex-direction: column; gap: 0.8rem; padding-left: 1rem; margin-bottom: 0.8rem; border-left: 2px solid rgba(255,255,255,0.15);">
+                    <a href="heizung-waermepumpe-anfrage.html" class="mobile-drawer-sublink" style="color: rgba(255,255,255,0.75); font-size: 1.05rem; font-weight: 500; text-decoration: none; transition: color 0.2s;">Heizung &amp; Wärmepumpe</a>
+                    <a href="klimaanlage-anfrage.html" class="mobile-drawer-sublink" style="color: rgba(255,255,255,0.75); font-size: 1.05rem; font-weight: 500; text-decoration: none; transition: color 0.2s;">Klimaanlage</a>
+                    <a href="badsanierungs-anfrage.html" class="mobile-drawer-sublink" style="color: rgba(255,255,255,0.75); font-size: 1.05rem; font-weight: 500; text-decoration: none; transition: color 0.2s;">Badsanierung</a>
+                </div>
+            </div>
             <a href="index.html#referenzen" class="mobile-drawer-link">Projekte</a>
             <a href="ueber-uns.html" class="mobile-drawer-link">Über uns</a>
             <a href="karriere.html" class="mobile-drawer-link active">Karriere</a>
