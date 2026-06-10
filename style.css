@@ -965,6 +965,15 @@ img {
     transform: scale(1.05);
 }
 
+.premium-process-step .process-icon {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.4s ease;
+}
+
+.premium-process-step:hover .process-icon {
+    transform: scale(1.15) rotate(5deg);
+    color: var(--primary-color) !important;
+}
+
 .premium-process-step h4 {
     position: relative;
     z-index: 2;
@@ -1356,16 +1365,6 @@ img {
     color: #ffffff;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
-    /* High-end 3D metallic/embossed effect */
-    text-shadow: 
-        0px 1px 0px #b0b0b0,
-        0px 2px 0px #a0a0a0,
-        0px 3px 0px #909090,
-        0px 4px 0px #808080,
-        0px 5px 0px #707070,
-        0px 6px 15px rgba(0,0,0,0.6),
-        0px 15px 30px rgba(0,0,0,0.4),
-        0px 25px 50px rgba(0,0,0,0.3);
 }
 
 
@@ -1931,3 +1930,580 @@ img {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* -------------------------------------
+   New Layout Components & Redesign Styles
+-------------------------------------- */
+
+/* Hero Background Image Slider */
+.hero-slider {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+}
+.hero-slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+.hero-slide.active {
+    opacity: 0.5;
+}
+
+/* Unternehmensvorstellung Section */
+.about-teaser-section {
+    padding: 7rem 0;
+    background-color: var(--bg-main);
+    position: relative;
+}
+.about-teaser-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+    align-items: center;
+}
+.about-teaser-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+.about-teaser-text p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+.about-teaser-img-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.about-teaser-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+}
+.about-teaser-img-wrapper:hover .about-teaser-img {
+    transform: scale(1.03);
+}
+@media (max-width: 992px) {
+    .about-teaser-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+/* Partner Logos Section Redesign */
+.partner-grid-section {
+    padding: 6rem 0;
+    background-color: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.partner-logos-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    margin-top: 3rem;
+}
+.partner-logo-card {
+    background: white;
+    border: 1px solid rgba(13, 43, 94, 0.05);
+    border-radius: var(--radius-md);
+    padding: 1.2rem;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: var(--transition);
+}
+.partner-logo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--secondary-color);
+}
+.partner-logo-card .logo-placeholder {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    text-align: center;
+}
+.partner-logo-card .logo-subtext {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    font-weight: 600;
+}
+@media (max-width: 992px) {
+    .partner-logos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+@media (max-width: 576px) {
+    .partner-logos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Social Proof Reviews Grid */
+.reviews-section {
+    padding: 7rem 0;
+    background: linear-gradient(to bottom, #ffffff 0%, var(--bg-light) 100%);
+}
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+}
+.review-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+}
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(13, 43, 94, 0.05);
+}
+.review-rating {
+    color: #fbbc04;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+.review-text {
+    color: var(--text-main);
+    font-style: italic;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-size: 0.98rem;
+}
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.review-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(13, 43, 94, 0.1);
+    color: var(--primary-color);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+.review-meta h5 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+.review-meta span {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+@media (max-width: 992px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Arrow References Carousel */
+.references-carousel-section {
+    padding: 7rem 0;
+    background-color: var(--bg-light);
+    position: relative;
+    overflow: hidden;
+}
+.carousel-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+}
+.carousel-nav-controls {
+    display: flex;
+    gap: 1rem;
+}
+.carousel-nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: white;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: var(--transition);
+}
+.carousel-nav-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.references-carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+.references-carousel-track {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform;
+}
+.references-carousel-item {
+    flex: 0 0 420px;
+    height: 520px;
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    background: #000;
+}
+.references-carousel-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+.references-carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.95;
+    transition: transform 0.8s ease, opacity 0.5s ease;
+}
+.references-carousel-item:hover img {
+    transform: scale(1.05);
+    opacity: 0.45;
+}
+.references-carousel-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(10, 17, 40, 0.95) 0%, rgba(10, 17, 40, 0.4) 50%, transparent 100%);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+.references-carousel-item:hover .references-carousel-overlay {
+    opacity: 1;
+}
+.references-carousel-info {
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.references-carousel-item:hover .references-carousel-info {
+    transform: translateY(0);
+}
+.references-carousel-category {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    margin-bottom: 0.8rem;
+}
+.references-carousel-info h3 {
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+.references-carousel-info p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+.references-carousel-item .static-info {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(13, 43, 94, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-md);
+    color: white;
+    z-index: 1;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: opacity 0.3s ease;
+}
+.references-carousel-item:hover .static-info {
+    opacity: 0;
+}
+@media (max-width: 768px) {
+    .references-carousel-item {
+        flex: 0 0 85vw;
+        height: 420px;
+    }
+    .references-carousel-item .static-info {
+        display: none;
+    }
+    .references-carousel-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(10, 17, 40, 0.95) 0%, rgba(10, 17, 40, 0.6) 80%);
+    }
+    .references-carousel-info {
+        transform: translateY(0);
+    }
+    .carousel-header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    .carousel-nav-controls {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* Sliding Mobile Nav Drawer */
+.mobile-nav-drawer {
+    position: fixed;
+    top: 0; right: -100%; width: 340px; height: 100vh;
+    background: var(--bg-dark);
+    box-shadow: var(--shadow-lg);
+    z-index: 2000;
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 3.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mobile-nav-drawer.open {
+    right: 0;
+}
+.mobile-drawer-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 17, 40, 0.65);
+    backdrop-filter: blur(5px);
+    z-index: 1999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.mobile-drawer-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.mobile-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mobile-drawer-close {
+    font-size: 2.2rem;
+    color: white;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+.mobile-drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin-top: -3rem;
+}
+.mobile-drawer-link {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: white;
+    font-family: var(--font-heading);
+}
+.mobile-drawer-link:hover, .mobile-drawer-link.active {
+    color: var(--secondary-color);
+}
+.mobile-drawer-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+}
+.mobile-drawer-footer a {
+    color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+}
+.mobile-drawer-footer a:hover {
+    color: #ffcc00;
+}
+
+/* Detailed Job Cards (Careers Page) */
+.job-openings-section {
+    padding: 6rem 0 3rem;
+    background-color: var(--bg-main);
+}
+.jobs-list-detailed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+.job-detail-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: white;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+}
+.job-detail-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+.job-card-header {
+    padding: 1.8rem 2.5rem;
+    background: var(--bg-light);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+.job-card-header h4 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.job-card-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    transition: var(--transition);
+}
+.job-detail-card.active .job-card-toggle {
+    transform: rotate(45deg);
+    background: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+.job-card-body {
+    padding: 0 2.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease;
+}
+.job-detail-card.active .job-card-body {
+    padding: 2.5rem;
+    max-height: 1200px;
+}
+.job-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+}
+.job-details-column h5 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+.job-details-column ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+}
+.job-details-column li {
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+    list-style: none;
+    color: var(--text-main);
+}
+.job-details-column li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.job-apply-trigger {
+    display: inline-flex;
+    margin-top: 2.5rem;
+    padding: 0.9rem 2.2rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.job-apply-trigger:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+@media (max-width: 768px) {
+    .job-details-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .job-card-header {
+        padding: 1.5rem 1.8rem;
+    }
+    .job-card-header h4 {
+        font-size: 1.1rem;
+    }
+    .job-card-body {
+        padding: 0 1.8rem;
+    }
+    .job-detail-card.active .job-card-body {
+        padding: 1.8rem;
+    }
+}
+

@@ -10,13 +10,26 @@ if (header) {
     });
 }
 
-// Mobile Menu Toggle
+// Sliding Mobile Menu Drawer
 const burger = document.querySelector('.burger-menu');
-if(burger) {
-    burger.addEventListener('click', () => {
-        alert('Mobile Menu wird hier geöffnet!');
-    });
+const mobileDrawer = document.querySelector('.mobile-nav-drawer');
+const drawerOverlay = document.querySelector('.mobile-drawer-overlay');
+const drawerClose = document.querySelector('.mobile-drawer-close');
+const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+function toggleDrawer() {
+    if (mobileDrawer && drawerOverlay) {
+        mobileDrawer.classList.toggle('open');
+        drawerOverlay.classList.toggle('open');
+    }
 }
+
+if (burger) burger.addEventListener('click', toggleDrawer);
+if (drawerClose) drawerClose.addEventListener('click', toggleDrawer);
+if (drawerOverlay) drawerOverlay.addEventListener('click', toggleDrawer);
+drawerLinks.forEach(link => {
+    link.addEventListener('click', toggleDrawer);
+});
 
 // Smooth Scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -194,38 +207,58 @@ contactForms.forEach(form => {
     });
 });
 
-// Sticky Horizontal Scroll for CM Gallery
-const scrollContainer = document.querySelector('.gallery-scroll-container');
-const stickyWrapper = document.querySelector('.gallery-sticky-wrapper');
-const galleryTrack = document.getElementById('gallery-track');
+// Hero Background Crossfade Slider
+const slides = document.querySelectorAll('.hero-slide');
+if (slides.length > 0) {
+    let currentSlide = 0;
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 5000); // 5 seconds
+}
 
-if (scrollContainer && stickyWrapper && galleryTrack) {
-    window.addEventListener('scroll', () => {
-        const containerTop = scrollContainer.offsetTop;
-        const containerHeight = scrollContainer.offsetHeight;
-        const windowHeight = window.innerHeight;
-        
-        // The scrollable distance inside the container
-        const scrollableDistance = containerHeight - windowHeight;
-        
-        // Current scroll position relative to the container
-        let scrollY = window.scrollY - containerTop;
-        
-        // Clamp scrollY between 0 and scrollableDistance
-        scrollY = Math.max(0, Math.min(scrollY, scrollableDistance));
-        
-        // Calculate progress (0 to 1)
-        const progress = scrollY / scrollableDistance;
-        
-        // Calculate max horizontal scroll distance
-        const maxScrollLeft = galleryTrack.offsetWidth - window.innerWidth;
-        
-        // Apply transform if there is enough content to scroll
-        if(maxScrollLeft > 0) {
-            galleryTrack.style.transform = `translate3d(-${progress * maxScrollLeft}px, 0, 0)`;
-        }
+// Horizontal Arrow References Carousel
+const track = document.querySelector('.references-carousel-track');
+const btnLeft = document.getElementById('carousel-btn-left');
+const btnRight = document.getElementById('carousel-btn-right');
+
+if (track && btnLeft && btnRight) {
+    let scrollAmount = 0;
+    const cardWidth = 452; // Card width 420px + gap 32px
+
+    btnRight.addEventListener('click', () => {
+        const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
+        scrollAmount = Math.min(scrollAmount + cardWidth, maxScroll > 0 ? maxScroll : 0);
+        track.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
+    });
+
+    btnLeft.addEventListener('click', () => {
+        scrollAmount = Math.max(scrollAmount - cardWidth, 0);
+        track.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
+    });
+
+    window.addEventListener('resize', () => {
+        scrollAmount = 0;
+        track.style.transform = `translate3d(0, 0, 0)`;
     });
 }
+
+// Careers Page Detailed Job Cards Accordion
+const jobCards = document.querySelectorAll('.job-detail-card');
+jobCards.forEach(card => {
+    const header = card.querySelector('.job-card-header');
+    if (header) {
+        header.addEventListener('click', () => {
+            jobCards.forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.classList.remove('active');
+                }
+            });
+            card.classList.toggle('active');
+        });
+    }
+});
 
 // Scroll Reveal Observer
 const revealElements = document.querySelectorAll('.reveal');
