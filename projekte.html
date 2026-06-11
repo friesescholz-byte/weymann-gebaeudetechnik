@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -175,7 +175,7 @@
             if (!p) return;
             
             const meta = p.customMetadata || {};
-            const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
+            const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
             
             // Set text content
             document.getElementById('modal-title').textContent = (meta.title || 'Ohne Titel').replace(/\\n/g, ' ');
@@ -201,7 +201,7 @@
             thumbsContainer.innerHTML = '';
             
             const mainKey = p.key.split('/').map(encodeURIComponent).join('/');
-            const mainUrl = `${r2PublicUrl}${mainKey}`;
+            const mainUrl = `${imgProxy}${mainKey}`;
             
             mainImg.src = mainUrl;
             
@@ -212,7 +212,7 @@
                 extraKeys.forEach(k => {
                     if (k.trim().length > 0) {
                         const encodedExtra = k.trim().split('/').map(encodeURIComponent).join('/');
-                        allImages.push(`${r2PublicUrl}${encodedExtra}`);
+                        allImages.push(`${imgProxy}${encodedExtra}`);
                     }
                 });
             }
@@ -283,7 +283,7 @@
             const gallery = document.getElementById("dynamic-gallery");
             const filterContainer = document.getElementById("gallery-filters");
             const apiUrl = "https://weymann-backend.friese-scholz.workers.dev/api/projects";
-            const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
+            const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
 
             try {
                 const res = await fetch(apiUrl);
@@ -308,7 +308,7 @@
                     const cleanDesc = (meta.description || '').replace(/\\n/g, ' ');
                     return `
                         <div class="project-card" data-category="${category}" onclick="openProjectModal(${index})">
-                            <img src="${r2PublicUrl}${encodedKey}" alt="${cleanTitle}" class="project-img" loading="lazy">
+                            <img src="${imgProxy}${encodedKey}" alt="${cleanTitle}" class="project-img" loading="lazy">
                             <div class="project-overlay">
                                 <div class="project-info">
                                     <span class="project-category">${category}</span>
