@@ -3100,6 +3100,49 @@ img {
     margin-bottom: 0;
 }
 
+.project-modal-body h3.project-details-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.project-modal-body h4.project-details-heading {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.project-modal-body ul.project-details-list {
+    margin-bottom: 1.5rem;
+    padding-left: 1.2rem;
+    list-style: none;
+}
+
+.project-modal-body ul.project-details-list li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.project-modal-body ul.project-details-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+}
+
 @media (max-width: 992px) {
     .project-modal-grid {
         grid-template-columns: 1fr;
