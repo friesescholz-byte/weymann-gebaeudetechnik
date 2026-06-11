@@ -274,6 +274,40 @@ if (track) {
             });
         }
         
+        let currentImgIndex = 0;
+        const navLeft = document.getElementById('modal-nav-left');
+        const navRight = document.getElementById('modal-nav-right');
+        
+        function updateModalImage(imgIndex) {
+            currentImgIndex = imgIndex;
+            mainImg.src = allImages[imgIndex];
+            document.querySelectorAll('.project-modal-thumb').forEach((t, i) => {
+                t.classList.toggle('active', i === imgIndex);
+            });
+        }
+        
+        if (allImages.length > 1) {
+            navLeft.classList.remove('hidden');
+            navRight.classList.remove('hidden');
+            
+            navLeft.onclick = (e) => {
+                e.stopPropagation();
+                let nextIdx = currentImgIndex - 1;
+                if (nextIdx < 0) nextIdx = allImages.length - 1;
+                updateModalImage(nextIdx);
+            };
+            
+            navRight.onclick = (e) => {
+                e.stopPropagation();
+                let nextIdx = currentImgIndex + 1;
+                if (nextIdx >= allImages.length) nextIdx = 0;
+                updateModalImage(nextIdx);
+            };
+        } else {
+            navLeft.classList.add('hidden');
+            navRight.classList.add('hidden');
+        }
+        
         // Render thumbs if more than 1 image
         if (allImages.length > 1) {
             thumbsContainer.style.display = 'flex';
@@ -282,10 +316,7 @@ if (track) {
                 thumb.src = url;
                 thumb.className = 'project-modal-thumb' + (imgIndex === 0 ? ' active' : '');
                 thumb.onclick = () => {
-                    mainImg.src = url;
-                    document.querySelectorAll('.project-modal-thumb').forEach((t, i) => {
-                        t.classList.toggle('active', i === imgIndex);
-                    });
+                    updateModalImage(imgIndex);
                 };
                 thumbsContainer.appendChild(thumb);
             });

@@ -3126,3 +3126,51 @@ img {
     }
 }
 
+/* Modal Navigation Buttons (Scholz & Friese UI/UX Pro Max) */
+.project-modal-main-wrapper {
+    position: relative;
+}
+
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 10;
+    line-height: 1;
+}
+
+.modal-nav-btn:hover {
+    background: #ffffff;
+    color: #d21e26; /* theme secondary red */
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.modal-nav-left {
+    left: 1rem;
+}
+
+.modal-nav-right {
+    right: 1rem;
+}
+
+.modal-nav-btn.hidden {
+    display: none !important;
+}
+
