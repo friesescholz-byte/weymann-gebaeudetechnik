@@ -239,17 +239,86 @@ if (track) {
         document.getElementById('modal-category').textContent = meta.category || 'Projekt';
         document.getElementById('modal-desc').textContent = (meta.description || '').replace(/\\n/g, '\n');
         
+        function parseInlineMarkdown(txt) {
+            return txt
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/__(.*?)__/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/_(.*?)_/g, '<em>$1</em>')
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+        }
+
+        function formatBodyText(txt) {
+            if (!txt) return '';
+            const cleanTxt = txt.replace(/\\n/g, '\n').trim();
+            const lines = cleanTxt.split('\n');
+            let html = [];
+            let inList = false;
+            
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                if (line.length === 0) {
+                    if (inList) {
+                        html.push('</ul>');
+                        inList = false;
+                    }
+                    continue;
+                }
+                
+                // Check if list item
+                const listMatch = line.match(/^\s*([•\-\*\+])\s*(.*)/);
+                if (listMatch) {
+                    if (!inList) {
+                        html.push('<ul class="project-details-list">');
+                        inList = true;
+                    }
+                    const content = parseInlineMarkdown(listMatch[2]);
+                    html.push(`<li>${content}</li>`);
+                    continue;
+                }
+                
+                if (inList) {
+                    html.push('</ul>');
+                    inList = false;
+                }
+                
+                // Check if standard Markdown heading
+                const headerMatch = line.match(/^\s*(#{1,6})\s+(.*)/);
+                if (headerMatch) {
+                    const level = headerMatch[1].length;
+                    const content = parseInlineMarkdown(headerMatch[2]);
+                    const hLevel = (level % 2 === 1) ? 3 : 4;
+                    html.push(`<h${hLevel} class="project-details-heading">${content}</h${hLevel}>`);
+                    continue;
+                }
+                
+                // Auto-detect heading
+                const isShort = line.length < 80;
+                const noEndingPunctuation = !/[.\?!]$/.test(line);
+                
+                if (isShort && noEndingPunctuation) {
+                    const content = parseInlineMarkdown(line);
+                    html.push(`<h3 class="project-details-heading">${content}</h3>`);
+                } else {
+                    const content = parseInlineMarkdown(line);
+                    html.push(`<p>${content}</p>`);
+                }
+            }
+            
+            if (inList) {
+                html.push('</ul>');
+            }
+            
+            return html.join('\n');
+        }
+
         // Format body text
         const bodyContainer = document.getElementById('modal-body');
         if (meta.bodyText) {
-            const cleanBody = meta.bodyText.replace(/\\n/g, '\n');
-            bodyContainer.innerHTML = cleanBody.split('\n')
-                .filter(para => para.trim().length > 0)
-                .map(para => `<p>${para}</p>`)
-                .join('');
+            bodyContainer.innerHTML = formatBodyText(meta.bodyText);
         } else {
             const cleanDesc = (meta.description || '').replace(/\\n/g, '\n');
-            bodyContainer.innerHTML = `<p>${cleanDesc || 'Keine weiteren Details verfügbar.'}</p>`;
+            bodyContainer.innerHTML = formatBodyText(cleanDesc || 'Keine weiteren Details verfügbar.');
         }
         
         // Handle images
