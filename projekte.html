@@ -160,10 +160,11 @@
                     <span class="project-modal-category" id="modal-category">Kategorie</span>
                     <h2 class="project-modal-title" id="modal-title">Projekttitel</h2>
                     <p class="project-modal-desc" id="modal-desc">Kurzbeschreibung</p>
-                    <div class="project-modal-divider"></div>
-                    <div class="project-modal-body" id="modal-body"></div>
                 </div>
             </div>
+            <!-- Detailed body below the grid for full-width layout -->
+            <div class="project-modal-divider"></div>
+            <div class="project-modal-body" id="modal-body"></div>
         </div>
     </div>
 
@@ -233,7 +234,7 @@
                     if (headerMatch) {
                         const level = headerMatch[1].length;
                         const content = parseInlineMarkdown(headerMatch[2]);
-                        const hLevel = level + 2 > 6 ? 6 : level + 2;
+                        const hLevel = (level % 2 === 1) ? 3 : 4;
                         html.push(`<h${hLevel} class="project-details-heading">${content}</h${hLevel}>`);
                         continue;
                     }

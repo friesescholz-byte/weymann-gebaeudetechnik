@@ -3083,13 +3083,15 @@ img {
 .project-modal-divider {
     height: 1px;
     background: rgba(0, 0, 0, 0.08);
-    margin: 1.5rem 0;
+    margin: 2.5rem 0 2rem 0;
 }
 
 .project-modal-body {
-    font-size: 0.98rem;
+    font-size: 1.05rem;
     color: var(--text-main);
     line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .project-modal-body p {
