@@ -477,8 +477,8 @@ if (track && btnLeft && btnRight) {
                 x = 0;
                 track.style.transform = `translate3d(0, 0, 0)`;
                 
-                // Start the smooth horizontal auto-scrolling ticker
-                startTicker();
+                // Start the smooth horizontal auto-scrolling ticker (disabled as requested)
+                // startTicker();
             }
         } catch (err) {
             console.error("Fehler beim Laden der Homepage-Projekte vom Backend:", err);
