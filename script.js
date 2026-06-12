@@ -232,7 +232,7 @@ if (track) {
         if (!p) return;
         
         const meta = p.customMetadata || {};
-        const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
+        const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
         
         // Set text content
         document.getElementById('modal-title').textContent = (meta.title || 'Ohne Titel').replace(/\\n/g, ' ');
@@ -327,7 +327,7 @@ if (track) {
         thumbsContainer.innerHTML = '';
         
         const mainKey = p.key.split('/').map(encodeURIComponent).join('/');
-        const mainUrl = `${r2PublicUrl}${mainKey}`;
+        const mainUrl = `${imgProxy}${mainKey}`;
         
         mainImg.src = mainUrl;
         
@@ -338,7 +338,7 @@ if (track) {
             extraKeys.forEach(k => {
                 if (k.trim().length > 0) {
                     const encodedExtra = k.trim().split('/').map(encodeURIComponent).join('/');
-                    allImages.push(`${r2PublicUrl}${encodedExtra}`);
+                    allImages.push(`${imgProxy}${encodedExtra}`);
                 }
             });
         }
@@ -416,7 +416,7 @@ if (track && btnLeft && btnRight) {
     
     // Dynamic Loading from Backend API
     const apiUrl = "https://weymann-backend.friese-scholz.workers.dev/api/projects";
-    const r2PublicUrl = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/";
+    const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
 
     function updateCarouselWidths() {
         const firstCard = track.firstElementChild;
@@ -457,7 +457,7 @@ if (track && btnLeft && btnRight) {
                     
                     return `
                         <div class="references-carousel-item" onclick="openProjectModal(${p.origIndex})">
-                            <img src="${r2PublicUrl}${encodedKey}" alt="${cleanTitle}">
+                            <img src="${imgProxy}${encodedKey}" alt="${cleanTitle}" loading="lazy">
                             <div class="static-info">${category}</div>
                             <div class="references-carousel-overlay">
                                 <div class="references-carousel-info">
