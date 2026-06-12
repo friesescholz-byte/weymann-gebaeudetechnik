@@ -215,7 +215,7 @@ if (slides.length > 0) {
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
-    }, 5000); // 5 seconds
+    }, 10000); // 10 seconds (half as fast as 5 seconds)
 }
 
 // Horizontal Arrow References Carousel
