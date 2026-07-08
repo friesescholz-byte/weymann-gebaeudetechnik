@@ -207,16 +207,16 @@ contactForms.forEach(form => {
     });
 });
 
-// Hero Background Crossfade Slider
-const slides = document.querySelectorAll('.hero-slide');
-if (slides.length > 0) {
-    let currentSlide = 0;
-    setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }, 10000); // 10 seconds (half as fast as 5 seconds)
-}
+// Hero Background Crossfade Slider (disabled – replaced by video background)
+// const slides = document.querySelectorAll('.hero-slide');
+// if (slides.length > 0) {
+//     let currentSlide = 0;
+//     setInterval(() => {
+//         slides[currentSlide].classList.remove('active');
+//         currentSlide = (currentSlide + 1) % slides.length;
+//         slides[currentSlide].classList.add('active');
+//     }, 10000);
+// }
 
 // Horizontal Arrow References Carousel
 const track = document.querySelector('.references-carousel-track');
