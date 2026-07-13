@@ -253,12 +253,24 @@ export default {
 
     if (url.pathname === "/api/projects" && method === "GET") {
       try {
-        const listed = await env.BUCKET.list({
-          prefix: "weymann-gebaeudetechnik/Gallerie/",
-          include: ["customMetadata"],
-        });
+        // R2 list with customMetadata has low page limits due to metadata size.
+        // We must paginate to get ALL objects.
+        let allObjects = [];
+        let cursor = undefined;
+        let truncated = true;
+        while (truncated) {
+          const opts = {
+            prefix: "weymann-gebaeudetechnik/Gallerie/",
+            include: ["customMetadata"],
+          };
+          if (cursor) opts.cursor = cursor;
+          const listed = await env.BUCKET.list(opts);
+          allObjects = allObjects.concat(listed.objects);
+          truncated = listed.truncated;
+          cursor = listed.cursor;
+        }
         
-        const mainProjects = listed.objects.filter(obj => {
+        const mainProjects = allObjects.filter(obj => {
           return obj.key.includes("_main.") || (!obj.key.includes("_extra_") && obj.key.includes("projekt_"));
         });
 
