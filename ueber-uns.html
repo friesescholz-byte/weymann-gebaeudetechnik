@@ -72,6 +72,26 @@
             justify-content: center;
         }
 
+        .contact-experts-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            max-width: 1050px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 992px) {
+            .contact-experts-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-experts-grid {
+                grid-template-columns: 1fr !important;
+                max-width: 320px;
+            }
+        }
+
         .team-card {
             background: #ffffff;
             border-radius: var(--radius-lg);
@@ -511,7 +531,7 @@
                     <!-- Timo Weymann -->
                     <div class="management-card">
                         <div class="management-img-wrapper">
-                            <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/uber-uns/Timo_ergebnis.webp" alt="Timo Weymann">
+                            <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/uber-uns/Timo_ergebnis.webp" alt="Timo Weymann" style="object-position: 75% center;">
                         </div>
                         <div class="management-info">
                             <h3>Timo Weymann</h3>
