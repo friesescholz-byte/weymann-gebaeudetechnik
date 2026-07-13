@@ -744,47 +744,43 @@
             }
         }
 
-        /* Team Event Benefit Card Styles */
-        .team-event-benefit-card {
-            grid-column: span 2;
-            display: flex;
-            gap: 2.5rem;
+        /* Team Run Banner Styles */
+        .team-run-banner {
+            margin-top: 4.5rem;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 4rem;
             align-items: center;
-            background: rgba(255, 255, 255, 0.02) !important;
-            border: 1px solid rgba(255, 255, 255, 0.06) !important;
-            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-xl);
+            padding: 3.5rem;
+            overflow: hidden;
+            position: relative;
         }
 
-        .team-event-benefit-card:hover {
-            border-color: rgba(210, 30, 38, 0.25) !important;
-            background: rgba(255, 255, 255, 0.04) !important;
-        }
-
-        .team-event-benefit-card img {
-            width: 280px;
-            height: 190px;
+        .team-run-banner img {
+            width: 100%;
+            height: 380px;
             object-fit: cover;
-            border-radius: var(--radius-md);
-            flex-shrink: 0;
+            border-radius: var(--radius-lg);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
             transition: transform 0.4s ease;
         }
 
-        .team-event-benefit-card:hover img {
-            transform: scale(1.03);
+        .team-run-banner:hover img {
+            transform: scale(1.02);
         }
 
         @media (max-width: 992px) {
-            .team-event-benefit-card {
-                grid-column: span 1;
-                flex-direction: column;
-                align-items: flex-start !important;
-                gap: 1.5rem !important;
+            .team-run-banner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 2.5rem 2rem;
             }
-            .team-event-benefit-card img {
-                width: 100% !important;
-                height: 200px !important;
+            .team-run-banner img {
+                height: 260px;
             }
         }
     </style>
@@ -1160,39 +1156,20 @@
                 <!-- Benefit 5 -->
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
-                    </div>
-                    <h4>JobRad</h4>
-                    <p>Lease dein Wunschrad über die Firma.</p>
-                </div>
-                <!-- Benefit 6 -->
-                <div class="benefit-card">
-                    <div class="benefit-icon">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
                     </div>
                     <h4>Fortbildung</h4>
                     <p>Wir fördern deine Entwicklung durch interne und externe Schulungen.</p>
                 </div>
-                <!-- Benefit 7 (Wide with Photo) -->
-                <div class="benefit-card team-event-benefit-card">
-                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_6274_ergebnis.webp" alt="Teamevent Firmenlauf Lehrte">
-                    <div>
-                        <div class="benefit-icon" style="margin-bottom: 1rem; width: 44px; height: 44px;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        </div>
-                        <h4>Team-Events &amp; Zusammenhalt</h4>
-                        <p>Ob beim jährlichen Lehrter Firmenlauf oder beim gemeinsamen Grillen im Betrieb – Teamgeist und Zusammenhalt werden bei uns großgeschrieben.</p>
-                    </div>
-                </div>
-                <!-- Benefit 8 -->
+                <!-- Benefit 6 -->
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
-                    <h4>Getränke &amp; Snacks</h4>
-                    <p>Kostenloser Kaffee, Wasser und Obst im Betrieb.</p>
+                    <h4>Team-Events</h4>
+                    <p>Gemeinsame Grillabende, Weihnachtsfeiern, Ausflüge und Sport.</p>
                 </div>
-                <!-- Benefit 9 -->
+                <!-- Benefit 7 -->
                 <div class="benefit-card benefit-card-wide">
                     <div class="benefit-icon">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"></path><line x1="12" y1="2" x2="12" y2="9"></line><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line><line x1="1" y1="18" x2="3" y2="18"></line><line x1="21" y1="18" x2="23" y2="18"></line><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line></svg>
@@ -1200,13 +1177,25 @@
                     <h4>Kurze Freitage</h4>
                     <p>Wir starten früher ins Wochenende.</p>
                 </div>
-                <!-- Benefit 10 -->
+                <!-- Benefit 8 -->
                 <div class="benefit-card benefit-card-wide">
                     <div class="benefit-icon">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </div>
                     <h4>Familiäres Klima</h4>
                     <p>Bei uns bist du keine Nummer, sondern Teil der Familie.</p>
+                </div>
+            </div>
+
+            <!-- Team Run Banner -->
+            <div class="team-run-banner">
+                <div>
+                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_6274_ergebnis.webp" alt="Team Karl Weymann GmbH beim Lehrter Firmenlauf">
+                </div>
+                <div style="text-align: left;">
+                    <span style="color: var(--secondary-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; display: inline-block; margin-bottom: 0.8rem;">Teamgeist &amp; Zusammenhalt</span>
+                    <h3 style="color: white; font-size: 2rem; margin-bottom: 1.2rem; font-family: var(--font-heading); line-height: 1.2;">Gemeinsam stark beim Lehrter Firmenlauf</h3>
+                    <p style="color: rgba(255, 255, 255, 0.75); font-size: 1.05rem; line-height: 1.65; margin: 0;">Wir arbeiten nicht nur erfolgreich zusammen, sondern haben auch abseits der Baustellen Spaß. Ob beim alljährlichen Lehrter Firmenlauf, bei sommerlichen Grillabenden oder Teamevents – unser Zusammenhalt zeichnet uns aus und macht uns zu einer starken Gemeinschaft.</p>
                 </div>
             </div>
         </div>
@@ -1224,15 +1213,13 @@
                         <li><span class="check">✓</span> 30 Tage Urlaub</li>
                         <li><span class="check">✓</span> Top Ausstattung &amp; Werkzeug</li>
                         <li><span class="check">✓</span> Betr. Altersvorsorge</li>
-                        <li><span class="check">✓</span> JobRad-Leasing</li>
                         <li><span class="check">✓</span> Fort- &amp; Weiterbildung</li>
                         <li><span class="check">✓</span> Regelmäßige Team-Events</li>
-                        <li><span class="check">✓</span> Gratis Getränke &amp; Obst</li>
                         <li><span class="check">✓</span> Kurze Freitage</li>
                         <li><span class="check">✓</span> Familiäres Klima</li>
                     </ul>
                     <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); margin-top: 3rem; background: #f0f3f6;">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_5035_ergebnis.webp" alt="Profi-Ausrüstung bei Karl Weymann GmbH" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_5035_ergebnis.webp" alt="Profi-Ausrüstung bei Karl Weymann GmbH" style="width: 100%; height: 500px; object-fit: cover; display: block; object-position: center center;">
                         <div style="position: absolute; top: 1.25rem; left: 1.25rem; background: var(--secondary-color); color: white; padding: 0.45rem 1.1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 5px 15px rgba(210,30,38,0.3); z-index: 2;">
                             Profi-Ausrüstung
                         </div>
