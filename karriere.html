@@ -744,55 +744,47 @@
             }
         }
 
-        /* Work Gallery Styles */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 4rem;
+        /* Team Event Benefit Card Styles */
+        .team-event-benefit-card {
+            grid-column: span 2;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            text-align: left;
         }
 
-        .work-item {
-            position: relative;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            aspect-ratio: 4/5;
-            background: #f0f3f6;
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+        .team-event-benefit-card:hover {
+            border-color: rgba(210, 30, 38, 0.25) !important;
+            background: rgba(255, 255, 255, 0.04) !important;
         }
 
-        .work-item:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(210, 30, 38, 0.2);
-        }
-
-        .work-item img {
-            width: 100%;
-            height: 100%;
+        .team-event-benefit-card img {
+            width: 280px;
+            height: 190px;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease;
         }
 
-        .work-item:hover img {
-            transform: scale(1.06);
+        .team-event-benefit-card:hover img {
+            transform: scale(1.03);
         }
 
         @media (max-width: 992px) {
-            .work-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.25rem;
+            .team-event-benefit-card {
+                grid-column: span 1;
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 1.5rem !important;
             }
-        }
-
-        @media (max-width: 576px) {
-            .work-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                max-width: 350px;
-                margin: 0 auto;
+            .team-event-benefit-card img {
+                width: 100% !important;
+                height: 200px !important;
             }
         }
     </style>
@@ -862,7 +854,7 @@
     <section class="hero-photo-bridge">
         <div class="hero-team-photo">
             <div class="team-photo-frame">
-                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_4326_ergebnis.webp" alt="Arbeiten bei Karl Weymann GmbH">
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/985b5fc6-be7e-4d4a-9128-509e551515c9_ergebnis.webp" alt="Arbeiten bei Karl Weymann GmbH">
             </div>
         </div>
         
@@ -1181,13 +1173,16 @@
                     <h4>Fortbildung</h4>
                     <p>Wir fördern deine Entwicklung durch interne und externe Schulungen.</p>
                 </div>
-                <!-- Benefit 7 -->
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <!-- Benefit 7 (Wide with Photo) -->
+                <div class="benefit-card team-event-benefit-card">
+                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_6274_ergebnis.webp" alt="Teamevent Firmenlauf Lehrte">
+                    <div>
+                        <div class="benefit-icon" style="margin-bottom: 1rem; width: 44px; height: 44px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h4>Team-Events &amp; Zusammenhalt</h4>
+                        <p>Ob beim jährlichen Lehrter Firmenlauf oder beim gemeinsamen Grillen im Betrieb – Teamgeist und Zusammenhalt werden bei uns großgeschrieben.</p>
                     </div>
-                    <h4>Team-Events</h4>
-                    <p>Gemeinsame Grillabende, Weihnachtsfeiern und Ausflüge.</p>
                 </div>
                 <!-- Benefit 8 -->
                 <div class="benefit-card">
@@ -1217,36 +1212,6 @@
         </div>
     </section>
 
-    <!-- Work Life Gallery -->
-    <section class="work-gallery-section reveal" style="padding: 6rem 0; background-color: var(--bg-main);">
-        <div class="container">
-            <div class="section-title text-center" style="margin-bottom: 3.5rem;">
-                <span class="feature-badge" style="background: rgba(13, 43, 94, 0.05); color: var(--primary-color);">Einblicke</span>
-                <h2>Arbeiten bei Karl Weymann GmbH</h2>
-                <div class="title-accent-center"></div>
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.5rem;">Echte Eindrücke von unseren Baustellen, Projekten und aus dem Teamalltag.</p>
-            </div>
-            
-            <div class="work-grid">
-                <!-- 1. Baustelle -->
-                <div class="work-item">
-                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_2517_ergebnis.webp" alt="Baustelle Weymann" loading="lazy" decoding="async">
-                </div>
-                <!-- 2. Sanierung -->
-                <div class="work-item">
-                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_6274_ergebnis.webp" alt="Sanierung Weymann" loading="lazy" decoding="async">
-                </div>
-                <!-- 3. Heizungsbau -->
-                <div class="work-item">
-                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_5035_ergebnis.webp" alt="Heizungsbau Weymann" loading="lazy" decoding="async">
-                </div>
-                <!-- 4. TGA -->
-                <div class="work-item">
-                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/985b5fc6-be7e-4d4a-9128-509e551515c9_ergebnis.webp" alt="TGA Weymann" loading="lazy" decoding="async">
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Career Content & Form Section -->
     <section class="career-wrapper-section" id="bewerben">
@@ -1266,9 +1231,11 @@
                         <li><span class="check">✓</span> Kurze Freitage</li>
                         <li><span class="check">✓</span> Familiäres Klima</li>
                     </ul>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3rem;">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_2517_ergebnis.webp" alt="Monteure bei der Arbeit" style="width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_6274_ergebnis.webp" alt="Sanierung und Installation" style="width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+                    <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); margin-top: 3rem; background: #f0f3f6;">
+                        <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_5035_ergebnis.webp" alt="Profi-Ausrüstung bei Karl Weymann GmbH" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                        <div style="position: absolute; top: 1.25rem; left: 1.25rem; background: var(--secondary-color); color: white; padding: 0.45rem 1.1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 5px 15px rgba(210,30,38,0.3); z-index: 2;">
+                            Profi-Ausrüstung
+                        </div>
                     </div>
                 </div>
                 
