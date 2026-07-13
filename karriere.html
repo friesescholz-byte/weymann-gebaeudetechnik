@@ -747,41 +747,24 @@
         /* Team Run Banner Styles */
         .team-run-banner {
             margin-top: 4.5rem;
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: var(--radius-xl);
-            padding: 3.5rem;
             overflow: hidden;
-            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            line-height: 0;
         }
 
         .team-run-banner img {
             width: 100%;
-            height: 380px;
+            height: auto;
+            max-height: 520px;
             object-fit: cover;
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-            transition: transform 0.4s ease;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .team-run-banner:hover img {
             transform: scale(1.02);
-        }
-
-        @media (max-width: 992px) {
-            .team-run-banner {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                padding: 2.5rem 2rem;
-            }
-            .team-run-banner img {
-                height: 260px;
-            }
         }
     </style>
 </head>
@@ -1189,14 +1172,7 @@
 
             <!-- Team Run Banner -->
             <div class="team-run-banner">
-                <div>
-                    <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_6274_ergebnis.webp" alt="Team Karl Weymann GmbH beim Lehrter Firmenlauf">
-                </div>
-                <div style="text-align: left;">
-                    <span style="color: var(--secondary-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; display: inline-block; margin-bottom: 0.8rem;">Teamgeist &amp; Zusammenhalt</span>
-                    <h3 style="color: white; font-size: 2rem; margin-bottom: 1.2rem; font-family: var(--font-heading); line-height: 1.2;">Gemeinsam stark beim Lehrter Firmenlauf</h3>
-                    <p style="color: rgba(255, 255, 255, 0.75); font-size: 1.05rem; line-height: 1.65; margin: 0;">Wir arbeiten nicht nur erfolgreich zusammen, sondern haben auch abseits der Baustellen Spaß. Ob beim alljährlichen Lehrter Firmenlauf, bei sommerlichen Grillabenden oder Teamevents – unser Zusammenhalt zeichnet uns aus und macht uns zu einer starken Gemeinschaft.</p>
-                </div>
+                <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/beim%20Arbeiten/IMG_6274_ergebnis.webp" alt="Team Karl Weymann GmbH beim Lehrter Firmenlauf" loading="lazy" decoding="async">
             </div>
         </div>
     </section>

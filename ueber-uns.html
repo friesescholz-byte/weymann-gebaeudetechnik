@@ -436,10 +436,8 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 250px;
             gap: 1.5rem;
             margin-top: 4rem;
-            grid-auto-flow: dense;
         }
 
         .gallery-item {
@@ -448,14 +446,17 @@
             border-radius: var(--radius-lg);
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            aspect-ratio: 1 / 1.35;
             box-shadow: var(--shadow-sm);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
         }
 
         .gallery-item:hover {
-            transform: translateY(-6px);
+            transform: translate3d(0, -6px, 0);
             box-shadow: var(--shadow-lg);
-            border-color: rgba(210, 30, 38, 0.2);
+            border-color: rgba(210, 30, 38, 0.25);
         }
 
         .gallery-item img {
@@ -463,31 +464,19 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            object-position: center 20%;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Varied sizes (Asymmetric Grid) */
-        .gallery-item.wide {
-            grid-column: span 2;
-        }
-
-        .gallery-item.tall {
-            grid-row: span 2;
-        }
-
-        .gallery-item.large {
-            grid-column: span 2;
-            grid-row: span 2;
+            transform: scale(1.04) translate3d(0, 0, 0);
         }
 
         @media (max-width: 1024px) {
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
-                grid-auto-rows: 200px;
                 gap: 1.25rem;
             }
         }
@@ -495,12 +484,17 @@
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 160px;
                 gap: 1rem;
             }
-            .gallery-item.wide, .gallery-item.large, .gallery-item.tall {
-                grid-column: span 1;
-                grid-row: span 1;
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                max-width: 320px;
+                margin: 0 auto;
+                margin-top: 3rem;
             }
         }
     </style>
@@ -751,8 +745,8 @@
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/Sanyang%2C%20Loui%20(1)_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
-                <!-- 2. Team im Einsatz 1 (Wide) -->
-                <div class="gallery-item wide">
+                <!-- 2. Team im Einsatz 1 -->
+                <div class="gallery-item">
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/IMG_7348_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
@@ -761,18 +755,18 @@
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/Becker%2C%20Noah_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
-                <!-- 4. Marvin, Noah & Erika (Wide) -->
-                <div class="gallery-item wide">
+                <!-- 4. Marvin, Noah & Erika -->
+                <div class="gallery-item">
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/Marvin%2C%20Noah%2C%20Erika_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
-                <!-- 5. Finn Behrens (Tall) -->
-                <div class="gallery-item tall">
+                <!-- 5. Finn Behrens -->
+                <div class="gallery-item">
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/Behrens%2C%20Finn_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
-                <!-- 6. Team im Einsatz 2 (Wide) -->
-                <div class="gallery-item wide">
+                <!-- 6. Team im Einsatz 2 -->
+                <div class="gallery-item">
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/IMG_7330_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
@@ -791,18 +785,18 @@
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/D%C3%BChlmeyer%2C%20Nils_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
-                <!-- 10. Dear Lajen (Tall) -->
-                <div class="gallery-item tall">
+                <!-- 10. Dear Lajen -->
+                <div class="gallery-item">
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/Lajen%2C%20Dear_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
-                <!-- 11. Team im Einsatz 3 (Wide) -->
-                <div class="gallery-item wide">
+                <!-- 11. Team im Einsatz 3 -->
+                <div class="gallery-item">
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/IMG_7327_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
-                <!-- 12. Felix Giffey (Tall) -->
-                <div class="gallery-item tall">
+                <!-- 12. Felix Giffey -->
+                <div class="gallery-item">
                     <img src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Mitarbeiter/Giffey%2C%20Felix_ergebnis.webp" alt="Karl Weymann GmbH Team" loading="lazy" decoding="async">
                 </div>
 
