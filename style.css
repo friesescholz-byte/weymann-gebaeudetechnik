@@ -1993,8 +1993,8 @@ img {
 }
 .about-teaser-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
     align-items: center;
 }
 .about-teaser-text h2 {
