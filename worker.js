@@ -627,14 +627,19 @@ export default {
             <form id="project-form">
                 <div class="form-group">
                     <label>Kategorie</label>
-                    <select id="project-category" required>
+                    <select id="project-category" required onchange="toggleProjectCategoryField()">
                         <option value="" disabled selected>Bitte wählen...</option>
                         <option value="Wärmepumpen">Wärmepumpen</option>
                         <option value="Heizung & Solar">Heizung & Solar</option>
                         <option value="Badsanierung">Badsanierung</option>
                         <option value="Klima & Lüftung">Klima & Lüftung</option>
                         <option value="Wartung & Service">Wartung & Service</option>
+                        <option value="custom">+ Neue Kategorie erstellen...</option>
                     </select>
+                </div>
+                <div class="form-group hidden" id="project-custom-category-group">
+                    <label>Name der neuen Kategorie</label>
+                    <input type="text" id="project-custom-category-name" placeholder="z.B. Photovoltaik">
                 </div>
                 <div class="form-group">
                     <label>Titel des Projekts</label>
@@ -893,6 +898,9 @@ export default {
             document.getElementById("project-new-extras").innerHTML = "";
             document.getElementById("project-cancel-btn").classList.add("hidden");
             document.getElementById("project-submit-btn").textContent = "Hochladen & Veröffentlichen";
+            document.getElementById("project-custom-category-group").classList.add("hidden");
+            document.getElementById("project-custom-category-name").required = false;
+            document.getElementById("project-custom-category-name").value = "";
         };
 
         window.editProject = function(key) {
@@ -962,7 +970,11 @@ export default {
                 formData.append("key", editingProjectKey);
                 formData.append("deleted_extra_images", deletedExtraImages.join(","));
             }
-            formData.append("category", document.getElementById("project-category").value);
+            let projectCategory = document.getElementById("project-category").value;
+            if (projectCategory === "custom") {
+                projectCategory = document.getElementById("project-custom-category-name").value.trim();
+            }
+            formData.append("category", projectCategory);
             formData.append("title", document.getElementById("project-title").value);
             formData.append("description", document.getElementById("project-description").value);
             formData.append("bodyText", htmlToPlainText(document.getElementById("project-bodyText").innerHTML));
@@ -996,7 +1008,7 @@ export default {
             if (res.ok) {
                 showStatus(isEdit ? "Projekt erfolgreich aktualisiert!" : "Projekt erfolgreich veröffentlicht!");
                 resetProjectForm();
-                loadProjects();
+                setTimeout(() => loadProjects(), 2000);
             } else {
                 let errMsg = isEdit ? "Fehler beim Aktualisieren." : "Fehler beim Hochladen.";
                 try {
@@ -1033,8 +1045,21 @@ export default {
                 .replace(/ü/g, 'ue')
                 .replace(/ß/g, 'ss')
                 .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)+/g, '');
+                .replace(/(^-|-\$)+/g, '');
         }
+
+        window.toggleProjectCategoryField = function() {
+            const select = document.getElementById("project-category");
+            const customGroup = document.getElementById("project-custom-category-group");
+            if (select.value === "custom") {
+                customGroup.classList.remove("hidden");
+                document.getElementById("project-custom-category-name").required = true;
+            } else {
+                customGroup.classList.add("hidden");
+                document.getElementById("project-custom-category-name").required = false;
+                document.getElementById("project-custom-category-name").value = "";
+            }
+        };
 
         function getCategoryName(key) {
             switch (key) {
