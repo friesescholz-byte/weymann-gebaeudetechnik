@@ -1149,9 +1149,9 @@ export default {
             document.getElementById("job-title").value = j.title || "";
             document.getElementById("job-tags").value = (j.tags || []).join(", ");
             document.getElementById("job-intro").value = j.intro || "";
-            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\n");
-            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\n");
-            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\n");
+            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\\n");
+            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\\n");
+            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\\n");
             document.getElementById("job-active").checked = !!j.active;
             
             const customGroup = document.getElementById("custom-category-group");
@@ -1175,9 +1175,9 @@ export default {
             document.getElementById("job-title").value = (j.title || "") + " (Kopie)";
             document.getElementById("job-tags").value = (j.tags || []).join(", ");
             document.getElementById("job-intro").value = j.intro || "";
-            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\n");
-            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\n");
-            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\n");
+            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\\n");
+            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\\n");
+            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\\n");
             document.getElementById("job-active").checked = !!j.active;
             
             document.getElementById("custom-category-group").classList.add("hidden");
@@ -1213,9 +1213,9 @@ export default {
                 categoryName: catName,
                 tags: document.getElementById("job-tags").value.split(",").map(t => t.trim()).filter(t => t.length > 0),
                 intro: document.getElementById("job-intro").value,
-                aufgaben: document.getElementById("job-aufgaben").value.split("\n").map(l => l.trim()).filter(l => l.length > 0),
-                anforderungen: document.getElementById("job-anforderungen").value.split("\n").map(l => l.trim()).filter(l => l.length > 0),
-                vorteile: document.getElementById("job-vorteile").value.split("\n").map(l => l.trim()).filter(l => l.length > 0),
+                aufgaben: document.getElementById("job-aufgaben").value.split("\\n").map(l => l.trim()).filter(l => l.length > 0),
+                anforderungen: document.getElementById("job-anforderungen").value.split("\\n").map(l => l.trim()).filter(l => l.length > 0),
+                vorteile: document.getElementById("job-vorteile").value.split("\\n").map(l => l.trim()).filter(l => l.length > 0),
                 active: document.getElementById("job-active").checked
             };
 

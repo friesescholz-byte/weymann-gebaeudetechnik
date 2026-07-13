@@ -17,8 +17,5 @@
       "binding": "BUCKET",
       "bucket_name": "website-datein"
     }
-  ],
-  "vars": {
-    "Passwort": "Weymann-Website-2026"
-  }
+  ]
 }
