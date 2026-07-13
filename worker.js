@@ -679,13 +679,18 @@ export default {
             <form id="job-form">
                 <div class="form-group">
                     <label>Kategorie</label>
-                    <select id="job-category" required>
+                    <select id="job-category" required onchange="toggleCustomCategoryField()">
                         <option value="" disabled selected>Bitte wählen...</option>
                         <option value="shk">Anlagenmechaniker SHK (shk)</option>
                         <option value="service">Kundendiensttechniker (service)</option>
                         <option value="elektro">Elektroniker (elektro)</option>
                         <option value="azubi">Ausbildung (azubi)</option>
+                        <option value="custom">+ Neue Kategorie erstellen...</option>
                     </select>
+                </div>
+                <div class="form-group hidden" id="custom-category-group">
+                    <label>Name der neuen Kategorie</label>
+                    <input type="text" id="job-custom-category-name" placeholder="z.B. Büro & Verwaltung">
                 </div>
                 <div class="form-group">
                     <label>Stellentitel</label>
@@ -993,18 +998,86 @@ export default {
 
         // --- JOBS ADMIN ---
 
+        function slugify(text) {
+            return text.toLowerCase()
+                .replace(/ä/g, 'ae')
+                .replace(/ö/g, 'oe')
+                .replace(/ü/g, 'ue')
+                .replace(/ß/g, 'ss')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)+/g, '');
+        }
+
+        function getCategoryName(key) {
+            switch (key) {
+                case 'shk': return 'Anlagenmechaniker SHK';
+                case 'service': return 'Kundendiensttechniker';
+                case 'elektro': return 'Elektroniker';
+                case 'azubi': return 'Ausbildung';
+                default: return key;
+            }
+        }
+
+        window.toggleCustomCategoryField = function() {
+            const select = document.getElementById("job-category");
+            const customGroup = document.getElementById("custom-category-group");
+            if (select.value === "custom") {
+                customGroup.classList.remove("hidden");
+                document.getElementById("job-custom-category-name").required = true;
+            } else {
+                customGroup.classList.add("hidden");
+                document.getElementById("job-custom-category-name").required = false;
+                document.getElementById("job-custom-category-name").value = "";
+            }
+        };
+
+        function populateCategoryDropdown() {
+            const select = document.getElementById("job-category");
+            const val = select.value;
+            
+            select.innerHTML = \`
+                <option value="" disabled selected>Bitte wählen...</option>
+                <option value="shk">Anlagenmechaniker SHK (shk)</option>
+                <option value="service">Kundendiensttechniker (service)</option>
+                <option value="elektro">Elektroniker (elektro)</option>
+                <option value="azubi">Ausbildung (azubi)</option>
+            \`;
+            
+            const customCats = {};
+            loadedJobsList.forEach(j => {
+                if (j.category && !["shk", "service", "elektro", "azubi"].includes(j.category)) {
+                    customCats[j.category] = j.categoryName || j.category;
+                }
+            });
+            
+            for (const [key, label] of Object.entries(customCats)) {
+                const opt = document.createElement("option");
+                opt.value = key;
+                opt.textContent = label + " (" + key + ")";
+                select.appendChild(opt);
+            }
+            
+            const optCustom = document.createElement("option");
+            optCustom.value = "custom";
+            optCustom.textContent = "+ Neue Kategorie erstellen...";
+            select.appendChild(optCustom);
+            
+            select.value = val;
+        }
+
         async function loadJobs() {
             const wrapper = document.getElementById("jobs-list-wrapper");
             const res = await fetch("/api/jobs");
             if (res.ok) {
                 const jobs = await res.json();
                 loadedJobsList = jobs;
+                populateCategoryDropdown();
                 if (jobs.length === 0) {
                     wrapper.innerHTML = "<p>Keine Stellenanzeigen gefunden.</p>";
                     return;
                 }
                 wrapper.innerHTML = jobs.map(j => {
-                    const catLabel = document.querySelector('#job-category option[value="' + j.category + '"]') ?.textContent || j.category;
+                    const catLabel = j.categoryName || j.category;
                     const activeBadge = j.active ? "<span style='background:#e8f5e9; color:#2e7d32; font-size:0.75rem; padding:0.15rem 0.4rem; border-radius:4px; font-weight:600; margin-left:0.5rem;'>Aktiv</span>" : "<span style='background:#ffebee; color:#c62828; font-size:0.75rem; padding:0.15rem 0.4rem; border-radius:4px; font-weight:600; margin-left:0.5rem;'>Entwurf</span>";
                     const tagsStr = (j.tags || []).map(t => '<span class="item-tag">' + t + '</span>').join("");
                     return \`
@@ -1032,6 +1105,8 @@ export default {
             document.getElementById("job-active").checked = true;
             document.getElementById("job-cancel-btn").classList.add("hidden");
             document.getElementById("job-submit-btn").textContent = "Stellenanzeige speichern";
+            document.getElementById("custom-category-group").classList.add("hidden");
+            document.getElementById("job-custom-category-name").required = false;
         };
 
         window.editJob = function(id) {
@@ -1039,15 +1114,21 @@ export default {
             if (!j) return;
             editingJobId = id;
             
+            populateCategoryDropdown();
+            
             document.getElementById("job-form-title").textContent = "Stellenanzeige bearbeiten";
             document.getElementById("job-category").value = j.category || "";
             document.getElementById("job-title").value = j.title || "";
             document.getElementById("job-tags").value = (j.tags || []).join(", ");
             document.getElementById("job-intro").value = j.intro || "";
-            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\\n");
-            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\\n");
-            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\\n");
+            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\n");
+            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\n");
+            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\n");
             document.getElementById("job-active").checked = !!j.active;
+            
+            const customGroup = document.getElementById("custom-category-group");
+            customGroup.classList.add("hidden");
+            document.getElementById("job-custom-category-name").required = false;
             
             document.getElementById("job-cancel-btn").classList.remove("hidden");
             document.getElementById("job-submit-btn").textContent = "Änderungen speichern";
@@ -1057,17 +1138,22 @@ export default {
         window.duplicateJob = function(id) {
             const j = loadedJobsList.find(job => job.id === id);
             if (!j) return;
-            editingJobId = null; // Clear ID to save as a new job
+            editingJobId = null;
+            
+            populateCategoryDropdown();
             
             document.getElementById("job-form-title").textContent = "Stellenanzeige duplizieren";
             document.getElementById("job-category").value = j.category || "";
             document.getElementById("job-title").value = (j.title || "") + " (Kopie)";
             document.getElementById("job-tags").value = (j.tags || []).join(", ");
             document.getElementById("job-intro").value = j.intro || "";
-            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\\n");
-            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\\n");
-            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\\n");
+            document.getElementById("job-aufgaben").value = (j.aufgaben || []).join("\n");
+            document.getElementById("job-anforderungen").value = (j.anforderungen || []).join("\n");
+            document.getElementById("job-vorteile").value = (j.vorteile || []).join("\n");
             document.getElementById("job-active").checked = !!j.active;
+            
+            document.getElementById("custom-category-group").classList.add("hidden");
+            document.getElementById("job-custom-category-name").required = false;
             
             document.getElementById("job-cancel-btn").classList.remove("hidden");
             document.getElementById("job-submit-btn").textContent = "Stellenanzeige speichern";
@@ -1079,15 +1165,29 @@ export default {
             const btn = document.getElementById("job-submit-btn");
             btn.disabled = true;
             
+            const select = document.getElementById("job-category");
+            let catKey = select.value;
+            let catName = "";
+            
+            if (catKey === "custom") {
+                const newCatName = document.getElementById("job-custom-category-name").value.trim();
+                catKey = slugify(newCatName);
+                catName = newCatName;
+            } else {
+                const existingJob = loadedJobsList.find(j => j.category === catKey);
+                catName = existingJob ? (existingJob.categoryName || existingJob.category) : getCategoryName(catKey);
+            }
+            
             const payload = {
                 id: editingJobId,
                 title: document.getElementById("job-title").value,
-                category: document.getElementById("job-category").value,
+                category: catKey,
+                categoryName: catName,
                 tags: document.getElementById("job-tags").value.split(",").map(t => t.trim()).filter(t => t.length > 0),
                 intro: document.getElementById("job-intro").value,
-                aufgaben: document.getElementById("job-aufgaben").value.split("\\n").map(l => l.trim()).filter(l => l.length > 0),
-                anforderungen: document.getElementById("job-anforderungen").value.split("\\n").map(l => l.trim()).filter(l => l.length > 0),
-                vorteile: document.getElementById("job-vorteile").value.split("\\n").map(l => l.trim()).filter(l => l.length > 0),
+                aufgaben: document.getElementById("job-aufgaben").value.split("\n").map(l => l.trim()).filter(l => l.length > 0),
+                anforderungen: document.getElementById("job-anforderungen").value.split("\n").map(l => l.trim()).filter(l => l.length > 0),
+                vorteile: document.getElementById("job-vorteile").value.split("\n").map(l => l.trim()).filter(l => l.length > 0),
                 active: document.getElementById("job-active").checked
             };
 

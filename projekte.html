@@ -176,7 +176,7 @@
             if (!p) return;
             
             const meta = p.customMetadata || {};
-            const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
+            const imgProxy = "/img/";
             
             // Set text content
             document.getElementById('modal-title').textContent = (meta.title || 'Ohne Titel').replace(/\\n/g, ' ');
@@ -355,8 +355,8 @@
         document.addEventListener("DOMContentLoaded", async () => {
             const gallery = document.getElementById("dynamic-gallery");
             const filterContainer = document.getElementById("gallery-filters");
-            const apiUrl = "https://weymann-backend.friese-scholz.workers.dev/api/projects";
-            const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
+            const apiUrl = "/api/projects";
+            const imgProxy = "/img/";
 
             try {
                 const res = await fetch(apiUrl);

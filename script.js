@@ -232,7 +232,7 @@ if (track) {
         if (!p) return;
         
         const meta = p.customMetadata || {};
-        const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
+        const imgProxy = "/img/";
         
         // Set text content
         document.getElementById('modal-title').textContent = (meta.title || 'Ohne Titel').replace(/\\n/g, ' ');
@@ -415,8 +415,8 @@ if (track && btnLeft && btnRight) {
     let autoScrollSpeed = 0.8; // pixels per frame (smooth slow crawl)
     
     // Dynamic Loading from Backend API
-    const apiUrl = "https://weymann-backend.friese-scholz.workers.dev/api/projects";
-    const imgProxy = "https://weymann-backend.friese-scholz.workers.dev/img/";
+    const apiUrl = "/api/projects";
+    const imgProxy = "/img/";
 
     function updateCarouselWidths() {
         const firstCard = track.firstElementChild;
@@ -621,6 +621,34 @@ function initCareersAccordionAndFilters() {
     }
 }
 
+function updateCategoryFilters(activeJobs) {
+    const container = document.querySelector('.job-filter-container');
+    if (!container) return;
+
+    const defaultLabels = {
+        'shk': 'Heizung & Sanitär',
+        'service': 'Kundendienst',
+        'elektro': 'Elektrotechnik',
+        'azubi': 'Ausbildung'
+    };
+
+    const categoriesMap = {};
+    activeJobs.forEach(job => {
+        if (job.category) {
+            const key = job.category;
+            const label = job.categoryName || defaultLabels[key] || key;
+            categoriesMap[key] = label;
+        }
+    });
+
+    let html = '<button class="job-filter-tab active" data-category="all">Alle Stellen</button>';
+    for (const [key, label] of Object.entries(categoriesMap)) {
+        html += `<button class="job-filter-tab" data-category="${key}">${label}</button>`;
+    }
+
+    container.innerHTML = html;
+}
+
 function getJobIcon(category) {
     switch (category) {
         case 'shk':
@@ -706,6 +734,7 @@ async function fetchAndRenderJobs() {
 
         listContainer.innerHTML = html;
         updateApplicationDropdown(activeJobs);
+        updateCategoryFilters(activeJobs);
         initCareersAccordionAndFilters();
         bindApplyTriggers();
     } catch (e) {
