@@ -563,50 +563,205 @@ if (track && btnLeft && btnRight) {
 }
 
 // Careers Page: Category Filter & Detailed Job Cards Accordion
-const jobCards = document.querySelectorAll('.job-detail-card');
-if (jobCards.length > 0) {
-    jobCards.forEach(card => {
-        const header = card.querySelector('.job-card-header');
-        if (header) {
-            header.addEventListener('click', () => {
-                jobCards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        otherCard.classList.remove('active');
+function initCareersAccordionAndFilters() {
+    const jobCards = document.querySelectorAll('.job-detail-card');
+    if (jobCards.length > 0) {
+        jobCards.forEach(card => {
+            const header = card.querySelector('.job-card-header');
+            if (header) {
+                // Clone header to remove old listeners if re-initialized
+                const newHeader = header.cloneNode(true);
+                header.parentNode.replaceChild(newHeader, header);
+                
+                newHeader.addEventListener('click', () => {
+                    // Fetch latest node list since elements might change
+                    const currentCards = document.querySelectorAll('.job-detail-card');
+                    currentCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('active');
+                        }
+                    });
+                    card.classList.toggle('active');
+                });
+            }
+        });
+
+        // Category Filter Logic
+        const filterTabs = document.querySelectorAll('.job-filter-tab');
+        filterTabs.forEach(tab => {
+            const newTab = tab.cloneNode(true);
+            tab.parentNode.replaceChild(newTab, tab);
+
+            newTab.addEventListener('click', () => {
+                const currentTabs = document.querySelectorAll('.job-filter-tab');
+                currentTabs.forEach(t => t.classList.remove('active'));
+                newTab.classList.add('active');
+                const category = newTab.dataset.category;
+                
+                const currentCards = document.querySelectorAll('.job-detail-card');
+                currentCards.forEach(card => {
+                    // Close active cards when filtering
+                    card.classList.remove('active');
+                    
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            card.style.transition = 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.display = 'none';
                     }
                 });
-                card.classList.toggle('active');
             });
+        });
+    }
+}
+
+function getJobIcon(category) {
+    switch (category) {
+        case 'shk':
+            return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`;
+        case 'service':
+            return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`;
+        case 'elektro':
+            return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>`;
+        case 'azubi':
+        default:
+            return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="job-icon"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>`;
+    }
+}
+
+async function fetchAndRenderJobs() {
+    const listContainer = document.querySelector('.jobs-list-detailed');
+    if (!listContainer) return;
+
+    try {
+        const res = await fetch('/api/jobs');
+        if (!res.ok) return;
+        const jobs = await res.json();
+        
+        const activeJobs = jobs.filter(j => j.active !== false);
+        if (activeJobs.length === 0) {
+            listContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 3rem 0; font-size: 1.1rem; width: 100%;">Aktuell sind keine Stellen ausgeschrieben. Du kannst dich jedoch gerne initiativ bewerben!</p>';
+            updateApplicationDropdown([]);
+            return;
         }
+
+        let html = '';
+        activeJobs.forEach((job, index) => {
+            const isActive = index === 0 ? ' active' : '';
+            const tagsHtml = (job.tags || []).map(t => `<span class="job-tag">${t}</span>`).join('');
+            
+            const aufgabenHtml = (job.aufgaben || []).map(a => `<li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>${a}</li>`).join('');
+            const anforderungenHtml = (job.anforderungen || []).map(a => `<li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>${a}</li>`).join('');
+            
+            const middleColHeader = job.category === 'azubi' ? 'Das bringst du mit' : 'Das solltest du mitbringen';
+            const rightColHeader = job.category === 'azubi' ? 'Das bieten wir dir' : 'Das erwartet dich bei uns';
+            
+            const vorteileHtml = (job.vorteile || []).map(v => `<li><svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>${v}</li>`).join('');
+
+            html += `
+                <div class="job-detail-card${isActive}" data-category="${job.category}">
+                    <div class="job-card-header">
+                        <div class="job-card-title-group">
+                            <div class="job-icon-box">
+                                ${getJobIcon(job.category)}
+                            </div>
+                            <div>
+                                <h4>${job.title}</h4>
+                                <div class="job-tags">${tagsHtml}</div>
+                            </div>
+                        </div>
+                        <div class="job-card-toggle">+</div>
+                    </div>
+                    <div class="job-card-body-wrapper">
+                        <div class="job-card-body">
+                            <p class="job-intro">${job.intro}</p>
+                            <div class="job-details-grid">
+                                <div class="job-details-column">
+                                    <h5>${job.category === 'azubi' ? 'Das lernst du bei uns' : 'Deine Aufgaben'}</h5>
+                                    <ul>${aufgabenHtml}</ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>${middleColHeader}</h5>
+                                    <ul>${anforderungenHtml}</ul>
+                                </div>
+                                <div class="job-details-column">
+                                    <h5>${rightColHeader}</h5>
+                                    <ul>${vorteileHtml}</ul>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <a href="#bewerben" class="job-apply-trigger">Direkt bewerben &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        listContainer.innerHTML = html;
+        updateApplicationDropdown(activeJobs);
+        initCareersAccordionAndFilters();
+        bindApplyTriggers();
+    } catch (e) {
+        console.error('Error fetching jobs:', e);
+    }
+}
+
+function updateApplicationDropdown(activeJobs) {
+    const select = document.querySelector('#karriere-form select[name="position"]');
+    if (!select) return;
+
+    select.innerHTML = '';
+    
+    const defOpt = document.createElement('option');
+    defOpt.value = '';
+    defOpt.disabled = true;
+    defOpt.selected = true;
+    defOpt.textContent = 'Als was möchtest du starten?';
+    select.appendChild(defOpt);
+
+    activeJobs.forEach(job => {
+        const opt = document.createElement('option');
+        opt.textContent = job.title;
+        select.appendChild(opt);
     });
 
-    // Category Filter Logic
-    const filterTabs = document.querySelectorAll('.job-filter-tab');
-    filterTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            filterTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const category = tab.dataset.category;
-            
-            jobCards.forEach(card => {
-                // Close active cards when filtering
-                card.classList.remove('active');
-                
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(10px)';
-                    setTimeout(() => {
-                        card.style.transition = 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50);
-                } else {
-                    card.style.display = 'none';
+    const initOpt = document.createElement('option');
+    initOpt.textContent = 'Initiativbewerbung';
+    select.appendChild(initOpt);
+}
+
+function bindApplyTriggers() {
+    const applyTriggers = document.querySelectorAll('.job-apply-trigger');
+    const positionSelect = document.querySelector('#karriere-form select[name="position"]');
+    if (applyTriggers.length > 0 && positionSelect) {
+        applyTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                const card = trigger.closest('.job-detail-card');
+                if (card) {
+                    const title = card.querySelector('.job-card-title-group h4').textContent;
+                    for (let option of positionSelect.options) {
+                        if (option.text === title) {
+                            positionSelect.value = option.value;
+                            break;
+                        }
+                    }
                 }
             });
         });
-    });
+    }
 }
+
+// Initial binding for accordion/filters and start dynamic job fetch
+initCareersAccordionAndFilters();
+fetchAndRenderJobs();
+bindApplyTriggers();
 
 // Scroll Reveal Observer
 const revealElements = document.querySelectorAll('.reveal');
