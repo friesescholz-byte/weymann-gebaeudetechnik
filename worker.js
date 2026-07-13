@@ -110,6 +110,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const method = request.method;
+    const ADMIN_PASSWORD = env.Passwort || "Weymann-Website-2026";
 
     // CORS Headers
     const corsHeaders = {
@@ -161,7 +162,7 @@ export default {
     // Save Job (Create, Update, Duplicate)
     if (url.pathname === "/api/jobs/save" && method === "POST") {
       const password = request.headers.get("X-Admin-Password");
-      if (password !== env.Passwort) {
+      if (password !== ADMIN_PASSWORD) {
         return new Response(JSON.stringify({ error: "Nicht autorisiert" }), { status: 401, headers: corsHeaders });
       }
 
@@ -208,7 +209,7 @@ export default {
     // Delete Job
     if (url.pathname === "/api/jobs/delete" && method === "POST") {
       const password = request.headers.get("X-Admin-Password");
-      if (password !== env.Passwort) {
+      if (password !== ADMIN_PASSWORD) {
         return new Response(JSON.stringify({ error: "Nicht autorisiert" }), { status: 401, headers: corsHeaders });
       }
 
@@ -245,7 +246,7 @@ export default {
     if (url.pathname === "/api/test-env" && method === "GET") {
       return new Response(JSON.stringify({
         hasBucket: !!env.BUCKET,
-        hasPasswort: !!env.Passwort,
+        hasPasswort: !!ADMIN_PASSWORD,
       }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
@@ -296,7 +297,7 @@ export default {
 
     if (url.pathname === "/api/login" && method === "POST") {
       const { password } = await request.json();
-      if (password === env.Passwort) {
+      if (password === ADMIN_PASSWORD) {
         return new Response(JSON.stringify({ success: true }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
       } else {
         return new Response(JSON.stringify({ error: "Falsches Passwort" }), { status: 401, headers: corsHeaders });
@@ -305,7 +306,7 @@ export default {
 
     if (url.pathname === "/api/upload" && method === "POST") {
       const password = request.headers.get("X-Admin-Password");
-      if (password !== env.Passwort) {
+      if (password !== ADMIN_PASSWORD) {
         return new Response(JSON.stringify({ error: "Nicht autorisiert" }), { status: 401, headers: corsHeaders });
       }
 
@@ -374,7 +375,7 @@ export default {
 
     if (url.pathname === "/api/delete" && method === "POST") {
       const password = request.headers.get("X-Admin-Password");
-      if (password !== env.Passwort) {
+      if (password !== ADMIN_PASSWORD) {
         return new Response(JSON.stringify({ error: "Nicht autorisiert" }), { status: 401, headers: corsHeaders });
       }
 
@@ -399,7 +400,7 @@ export default {
 
     if (url.pathname === "/api/update" && method === "POST") {
       const password = request.headers.get("X-Admin-Password");
-      if (password !== env.Passwort) {
+      if (password !== ADMIN_PASSWORD) {
         return new Response(JSON.stringify({ error: "Nicht autorisiert" }), { status: 401, headers: corsHeaders });
       }
 
