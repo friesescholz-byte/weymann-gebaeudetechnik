@@ -110,6 +110,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const method = request.method;
+    // Environment variable 'Passwort' must be set securely in Cloudflare Dashboard -> Pages Settings
     const ADMIN_PASSWORD = env.Passwort;
 
     // CORS Headers
