@@ -736,6 +736,15 @@ export default {
     </div>
 
     <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            const errDiv = document.getElementById("login-error");
+            if (errDiv) {
+                errDiv.textContent = "JavaScript-Fehler: " + message + " (Zeile " + lineno + ", Spalte " + colno + ")";
+                errDiv.classList.remove("hidden");
+            }
+            return false;
+        };
+
         let savedPassword = localStorage.getItem("weymann_admin_pw");
         let activeTab = "projects";
         
