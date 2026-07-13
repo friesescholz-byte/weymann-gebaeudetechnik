@@ -110,7 +110,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const method = request.method;
-    const ADMIN_PASSWORD = env.Passwort || "Weymann-Website-2026";
+    const ADMIN_PASSWORD = env.Passwort;
 
     // CORS Headers
     const corsHeaders = {
