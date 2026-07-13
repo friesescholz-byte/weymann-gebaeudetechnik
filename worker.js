@@ -756,35 +756,52 @@ export default {
         }
 
         async function verifyPasswordAndShow() {
-            const res = await fetch("/api/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ password: savedPassword })
-            });
-            if (res.ok) {
-                showDashboard();
-            } else {
-                localStorage.removeItem("weymann_admin_pw");
-                document.getElementById("login-error").textContent = "Sitzung abgelaufen. Bitte erneut anmelden.";
+            try {
+                const res = await fetch("/api/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ password: savedPassword })
+                });
+                if (res.ok) {
+                    showDashboard();
+                } else {
+                    localStorage.removeItem("weymann_admin_pw");
+                    document.getElementById("login-error").textContent = "Sitzung abgelaufen. Bitte erneut anmelden.";
+                    document.getElementById("login-error").classList.remove("hidden");
+                }
+            } catch (err) {
+                document.getElementById("login-error").textContent = "Verbindungsfehler: " + err.message;
                 document.getElementById("login-error").classList.remove("hidden");
             }
         }
 
         document.getElementById("login-form").addEventListener("submit", async (e) => {
             e.preventDefault();
+            const errorDiv = document.getElementById("login-error");
+            errorDiv.classList.add("hidden");
             const pw = document.getElementById("password").value;
-            const res = await fetch("/api/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ password: pw })
-            });
-            if (res.ok) {
-                savedPassword = pw;
-                localStorage.setItem("weymann_admin_pw", pw);
-                showDashboard();
-            } else {
-                document.getElementById("login-error").textContent = "Falsches Passwort";
-                document.getElementById("login-error").classList.remove("hidden");
+            try {
+                const res = await fetch("/api/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ password: pw })
+                });
+                if (res.ok) {
+                    savedPassword = pw;
+                    localStorage.setItem("weymann_admin_pw", pw);
+                    showDashboard();
+                } else {
+                    let errMsg = "Falsches Passwort";
+                    try {
+                        const errJson = await res.json();
+                        if (errJson && errJson.error) errMsg += " (" + errJson.error + ")";
+                    } catch(err) {}
+                    errorDiv.textContent = errMsg;
+                    errorDiv.classList.remove("hidden");
+                }
+            } catch (err) {
+                errorDiv.textContent = "Verbindungsfehler: " + err.message;
+                errorDiv.classList.remove("hidden");
             }
         });
 
