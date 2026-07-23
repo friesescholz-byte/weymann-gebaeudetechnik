@@ -123,15 +123,15 @@ img {
 }
 
 .btn-secondary {
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
     color: var(--text-light);
-    box-shadow: 0 4px 15px rgba(0, 168, 204, 0.2);
+    box-shadow: 0 4px 15px rgba(13, 43, 94, 0.2);
 }
 
 .btn-secondary:hover {
-    background-color: #0096b7;
+    background-color: #071b38;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 168, 204, 0.3);
+    box-shadow: 0 8px 25px rgba(13, 43, 94, 0.3);
     color: var(--text-light);
 }
 
@@ -2545,7 +2545,7 @@ img {
 }
 .job-detail-card.active .job-card-body {
     padding: 2.5rem;
-    max-height: 1200px;
+    max-height: 9999px !important;
 }
 .job-details-grid {
     display: grid;
@@ -3328,3 +3328,39 @@ img {
     }
 }
 
+
+
+/* Fix Hero Card top overlap and header spacing on service pages */
+.wp-hero-wrapper {
+    padding: 1rem !important;
+    padding-top: 6.5rem !important;
+    padding-bottom: 0 !important;
+    background: #ffffff !important;
+}
+
+.wp-hero-content p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Mobile-only CTA block helper */
+.mobile-only-cta {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .wp-hero-wrapper {
+        padding-top: 5.5rem !important;
+    }
+    .job-detail-card.active .job-card-body {
+        padding: 1.5rem !important;
+        max-height: 9999px !important;
+    }
+    .mobile-only-cta {
+        display: block !important;
+        text-align: center !important;
+        margin: 2.5rem 0 !important;
+    }
+}
