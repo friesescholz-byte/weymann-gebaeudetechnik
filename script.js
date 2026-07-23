@@ -146,6 +146,7 @@ contactForms.forEach(form => {
             const formData = new FormData(form);
             const payload = {
                 source: 'weymann-gebaeudetechnik',
+                recipientEmail: 't.weymann@karl-weymann-gmbh.de',
                 turnstileToken: turnstileToken,
                 attachments: attachments
             };
