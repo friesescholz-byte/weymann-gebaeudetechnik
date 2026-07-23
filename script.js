@@ -435,14 +435,16 @@ if (track && btnLeft && btnRight) {
             const projects = await res.json();
             
             if (projects && projects.length > 0) {
-                loadedHomepageProjects = projects;
+                // Limit the homepage carousel to the 8 most recent projects to prevent memory crashes on mobile
+                const featuredProjects = projects.slice(0, 8);
+                loadedHomepageProjects = featuredProjects;
                 
                 // Scholz & Friese Infinite Loop Logic:
                 // We create a base set of cards. To ensure a seamless infinite scroll even on large monitors,
                 // the base set must contain at least 6 elements (we repeat the projects if necessary).
                 let displayProjects = [];
                 while (displayProjects.length < 6) {
-                    displayProjects = displayProjects.concat(projects.map((p, origIndex) => ({ ...p, origIndex })));
+                    displayProjects = displayProjects.concat(featuredProjects.map((p, origIndex) => ({ ...p, origIndex })));
                 }
                 
                 // Duplicate the base set to form the scroll buffer

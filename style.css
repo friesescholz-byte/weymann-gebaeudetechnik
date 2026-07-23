@@ -794,6 +794,9 @@ img {
     .reveal-grid {
         grid-template-columns: 1fr;
     }
+    .reveal-grid .reveal-card {
+        grid-column: span 1 !important;
+    }
 }
 
 /* CM Gallery (Horizontal Scroll on Vertical Scroll) */
