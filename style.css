@@ -1611,11 +1611,7 @@ img {
   --logoloop-fadeColorAuto: #f4f7f6; /* Matches bg-light */
 }
 
-@media (prefers-color-scheme: dark) {
-  .logoloop {
-    --logoloop-fadeColorAuto: #0b0b0b;
-  }
-}
+
 
 @keyframes logoloop-scroll {
   0% { transform: translate3d(0, 0, 0); }
@@ -3462,5 +3458,24 @@ img {
         transform: scale(0.92);
         transform-origin: center center;
         margin: 0 auto !important;
+    }
+}
+
+
+/* Responsive Form Grid 2-Columns */
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .form-grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    
+    .logoloop {
+        --logoloop-logoHeight: 65px !important;
     }
 }
