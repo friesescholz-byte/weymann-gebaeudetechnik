@@ -3350,14 +3350,62 @@ img {
     display: none;
 }
 
+.footer-bottom p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.2rem;
+    line-height: 1.6;
+}
+
 @media (max-width: 768px) {
     .wp-hero-wrapper {
         padding-top: 5.5rem !important;
     }
+    
+    /* Footer Mobile Optimization */
+    .footer-bottom {
+        padding: 2.5rem 1rem 2rem !important;
+        text-align: center !important;
+    }
+    .footer-bottom p {
+        flex-direction: column !important;
+        gap: 0.6rem !important;
+        font-size: 0.88rem !important;
+    }
+    .footer-legal-bar {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.5rem 0.8rem !important;
+        margin-top: 0.2rem !important;
+    }
+
+    /* Career Section Mobile Optimization */
+    .career-section {
+        grid-template-columns: 1fr !important;
+        padding: 2rem 1.25rem !important;
+        gap: 2.5rem !important;
+    }
+    .career-content h2 {
+        font-size: 1.75rem !important;
+        line-height: 1.25 !important;
+    }
+    .career-content img {
+        height: 250px !important;
+        margin-top: 1.5rem !important;
+    }
+    .career-form-box {
+        padding: 1.75rem 1.25rem !important;
+    }
+
+    /* Permanent Fix for Job Accordion Expansion */
     .job-detail-card.active .job-card-body {
         padding: 1.5rem !important;
         max-height: 9999px !important;
     }
+
     .mobile-only-cta {
         display: block !important;
         text-align: center !important;
