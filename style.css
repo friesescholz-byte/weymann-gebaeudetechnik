@@ -3020,6 +3020,7 @@ img {
 .project-modal-left {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .project-modal-main-wrapper {
@@ -3046,6 +3047,7 @@ img {
     margin-top: 1rem;
     overflow-x: auto;
     padding-bottom: 0.5rem;
+    width: 100%;
 }
 
 .project-modal-thumb {
@@ -3073,6 +3075,7 @@ img {
 .project-modal-right {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .project-modal-category {
