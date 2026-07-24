@@ -1593,17 +1593,34 @@ export default {
       return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
     }
 
-    // R2 Media Proxy: serve R2 images & videos directly through domain with range streaming
+    // R2 Media Proxy: serve R2 images & videos directly through domain with robust range streaming
     if (url.pathname.startsWith("/img/")) {
       try {
         const key = decodeURIComponent(url.pathname.slice(5)); // Remove "/img/"
         const rangeHeader = request.headers.get("range");
-        const getOptions = {};
-        if (rangeHeader) {
-          getOptions.range = request.headers;
+        let getOptions = {};
+
+        if (rangeHeader && rangeHeader.startsWith("bytes=")) {
+          const parts = rangeHeader.replace("bytes=", "").split("-");
+          const start = parseInt(parts[0], 10);
+          const end = parts[1] ? parseInt(parts[1], 10) : undefined;
+          if (!isNaN(start)) {
+            if (end !== undefined && !isNaN(end)) {
+              getOptions.range = { offset: start, length: end - start + 1 };
+            } else {
+              getOptions.range = { offset: start };
+            }
+          }
         }
 
-        const obj = await env.BUCKET.get(key, getOptions);
+        let obj;
+        try {
+          obj = await env.BUCKET.get(key, getOptions);
+        } catch (err) {
+          // Fallback to full fetch if range fetch fails
+          obj = await env.BUCKET.get(key);
+        }
+
         if (!obj) {
           return new Response(JSON.stringify({ error: "File not found", key }), { 
             status: 404, 
@@ -1614,8 +1631,8 @@ export default {
         const headers = new Headers(corsHeaders);
         let contentType = obj.httpMetadata?.contentType;
         if (!contentType || contentType === "application/octet-stream") {
-          if (key.endsWith(".mp4")) contentType = "video/mp4";
-          else if (key.endsWith(".webp")) contentType = "image/webp";
+          if (key.toLowerCase().endsWith(".mp4")) contentType = "video/mp4";
+          else if (key.toLowerCase().endsWith(".webp")) contentType = "image/webp";
           else contentType = "image/jpeg";
         }
         headers.set("Content-Type", contentType);
@@ -1623,8 +1640,10 @@ export default {
         headers.set("Cache-Control", "public, max-age=31536000, immutable");
 
         if (obj.range) {
-          headers.set("Content-Range", `bytes ${obj.range.offset}-${obj.range.offset + obj.range.length - 1}/${obj.size}`);
-          headers.set("Content-Length", obj.range.length.toString());
+          const startByte = obj.range.offset || 0;
+          const lengthByte = obj.range.length || (obj.size - startByte);
+          headers.set("Content-Range", `bytes ${startByte}-${startByte + lengthByte - 1}/${obj.size}`);
+          headers.set("Content-Length", lengthByte.toString());
           return new Response(obj.body, { status: 206, headers });
         }
 
