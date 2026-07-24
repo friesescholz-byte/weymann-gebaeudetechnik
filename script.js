@@ -821,29 +821,42 @@ if (revealElements.length > 0) {
     const video = document.querySelector('.hero-video');
     if (!video) return;
 
+    video.defaultMuted = true;
     video.muted = true;
+    video.volume = 0;
     video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('autoplay', '');
 
-    const playVideo = () => {
+    const tryPlay = () => {
         const promise = video.play();
         if (promise !== undefined) {
-            promise.catch(() => {
-                const playOnUserGesture = () => {
+            promise.catch(err => {
+                console.log('Autoplay deferred, waiting for user gesture:', err);
+                const forcePlay = () => {
+                    video.muted = true;
                     video.play().catch(() => {});
-                    window.removeEventListener('click', playOnUserGesture);
-                    window.removeEventListener('touchstart', playOnUserGesture);
-                    window.removeEventListener('scroll', playOnUserGesture);
+                    window.removeEventListener('click', forcePlay);
+                    window.removeEventListener('touchstart', forcePlay);
+                    window.removeEventListener('scroll', forcePlay);
+                    window.removeEventListener('mousemove', forcePlay);
                 };
-                window.addEventListener('click', playOnUserGesture, { once: true });
-                window.addEventListener('touchstart', playOnUserGesture, { once: true });
-                window.addEventListener('scroll', playOnUserGesture, { once: true });
+                window.addEventListener('click', forcePlay, { once: true });
+                window.addEventListener('touchstart', forcePlay, { once: true });
+                window.addEventListener('scroll', forcePlay, { once: true });
+                window.addEventListener('mousemove', forcePlay, { once: true });
             });
         }
     };
 
+    video.addEventListener('loadeddata', tryPlay, { once: true });
+    video.addEventListener('canplay', tryPlay, { once: true });
+
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        playVideo();
+        tryPlay();
     } else {
-        document.addEventListener('DOMContentLoaded', playVideo);
+        document.addEventListener('DOMContentLoaded', tryPlay);
     }
 })();
