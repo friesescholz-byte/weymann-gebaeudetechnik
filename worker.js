@@ -1593,21 +1593,43 @@ export default {
       return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
     }
 
-    // Image Proxy: serve R2 images directly through this worker
+    // R2 Media Proxy: serve R2 images & videos directly through domain with range streaming
     if (url.pathname.startsWith("/img/")) {
       try {
         const key = decodeURIComponent(url.pathname.slice(5)); // Remove "/img/"
-        const obj = await env.BUCKET.get(key);
+        const rangeHeader = request.headers.get("range");
+        const getOptions = {};
+        if (rangeHeader) {
+          getOptions.range = request.headers;
+        }
+
+        const obj = await env.BUCKET.get(key, getOptions);
         if (!obj) {
-          return new Response(JSON.stringify({ error: "Image not found", key, pathLen: url.pathname.length }), { 
+          return new Response(JSON.stringify({ error: "File not found", key }), { 
             status: 404, 
             headers: { ...corsHeaders, "Content-Type": "application/json" } 
           });
         }
+
         const headers = new Headers(corsHeaders);
-        headers.set("Content-Type", obj.httpMetadata?.contentType || "image/jpeg");
+        let contentType = obj.httpMetadata?.contentType;
+        if (!contentType || contentType === "application/octet-stream") {
+          if (key.endsWith(".mp4")) contentType = "video/mp4";
+          else if (key.endsWith(".webp")) contentType = "image/webp";
+          else contentType = "image/jpeg";
+        }
+        headers.set("Content-Type", contentType);
+        headers.set("Accept-Ranges", "bytes");
         headers.set("Cache-Control", "public, max-age=31536000, immutable");
-        return new Response(obj.body, { headers });
+
+        if (obj.range) {
+          headers.set("Content-Range", `bytes ${obj.range.offset}-${obj.range.offset + obj.range.length - 1}/${obj.size}`);
+          headers.set("Content-Length", obj.range.length.toString());
+          return new Response(obj.body, { status: 206, headers });
+        }
+
+        headers.set("Content-Length", obj.size.toString());
+        return new Response(obj.body, { status: 200, headers });
       } catch (e) {
         return new Response(JSON.stringify({ error: e.message, stack: e.stack }), { 
           status: 500, 
