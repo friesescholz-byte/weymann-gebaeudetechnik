@@ -2030,6 +2030,7 @@ img {
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: 0;
     overflow: hidden;
+    background: #071B33 url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/weymann-gebaeudetechnik/Hero%20slider/Header%20NEU_ergebnis.webp') center/cover no-repeat;
 }
 .hero-video-wrapper::after {
     content: '';

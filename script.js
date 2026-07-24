@@ -813,3 +813,37 @@ if (revealElements.length > 0) {
         revealObserver.observe(el);
     });
 }
+
+/* -------------------------------------
+   Hero Video Robust Autoplay Enforcer
+-------------------------------------- */
+(function initHeroVideoAutoplay() {
+    const video = document.querySelector('.hero-video');
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+
+    const playVideo = () => {
+        const promise = video.play();
+        if (promise !== undefined) {
+            promise.catch(() => {
+                const playOnUserGesture = () => {
+                    video.play().catch(() => {});
+                    window.removeEventListener('click', playOnUserGesture);
+                    window.removeEventListener('touchstart', playOnUserGesture);
+                    window.removeEventListener('scroll', playOnUserGesture);
+                };
+                window.addEventListener('click', playOnUserGesture, { once: true });
+                window.addEventListener('touchstart', playOnUserGesture, { once: true });
+                window.addEventListener('scroll', playOnUserGesture, { once: true });
+            });
+        }
+    };
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        playVideo();
+    } else {
+        document.addEventListener('DOMContentLoaded', playVideo);
+    }
+})();
