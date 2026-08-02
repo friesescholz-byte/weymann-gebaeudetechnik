@@ -2935,8 +2935,19 @@ img {
 
 @media (max-width: 992px) {
     .teaser-experience-badge {
-        left: 2rem;
-        bottom: -1rem;
+        left: 1rem !important;
+        bottom: 1rem !important;
+        padding: 0.8rem 1.2rem !important;
+        border-radius: 14px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    .teaser-experience-badge .badge-num {
+        font-size: 1.75rem !important;
+    }
+    
+    .teaser-experience-badge .badge-label {
+        font-size: 0.75rem !important;
     }
 }
 
