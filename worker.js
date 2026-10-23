@@ -309,11 +309,45 @@ export default {
     }
 
     if (url.pathname === "/api/login" && method === "POST") {
-      const { password } = await request.json();
-      if (password === ADMIN_PASSWORD) {
-        return new Response(JSON.stringify({ success: true }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
-      } else {
-        return new Response(JSON.stringify({ error: "Falsches Passwort" }), { status: 401, headers: corsHeaders });
+      try {
+        const { password, turnstileToken } = await request.json();
+        const turnstileSecret = env.TURNSTILE_SECRET_KEY;
+
+        if (turnstileSecret) {
+          if (!turnstileToken) {
+            return new Response(JSON.stringify({ error: "Bitte bestätigen Sie das Turnstile Sicherheits-Widget." }), {
+              status: 400,
+              headers: { ...corsHeaders, "Content-Type": "application/json" }
+            });
+          }
+
+          const verifyFormData = new FormData();
+          verifyFormData.append("secret", turnstileSecret);
+          verifyFormData.append("response", turnstileToken);
+          const ip = request.headers.get("CF-Connecting-IP");
+          if (ip) verifyFormData.append("remoteip", ip);
+
+          const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+            method: "POST",
+            body: verifyFormData
+          });
+
+          const verifyOutcome = await verifyRes.json();
+          if (!verifyOutcome.success) {
+            return new Response(JSON.stringify({ error: "Sicherheitsprüfung fehlgeschlagen. Bitte erneut versuchen." }), {
+              status: 403,
+              headers: { ...corsHeaders, "Content-Type": "application/json" }
+            });
+          }
+        }
+
+        if (password === ADMIN_PASSWORD) {
+          return new Response(JSON.stringify({ success: true }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+        } else {
+          return new Response(JSON.stringify({ error: "Falsches Passwort" }), { status: 401, headers: corsHeaders });
+        }
+      } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
       }
     }
 
@@ -534,6 +568,7 @@ export default {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weymann Admin Dashboard</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         :root { --primary: #0d2b5e; --secondary: #d21e26; --bg: #f4f7f6; --text: #333; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -619,6 +654,9 @@ export default {
             <div class="form-group">
                 <label>Passwort</label>
                 <input type="password" id="password" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 1.5rem; display: flex; justify-content: center;">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAADfUUdahhiaJWyzX" data-theme="light"></div>
             </div>
             <button type="submit">Einloggen</button>
         </form>
@@ -778,27 +816,8 @@ export default {
 
         // Init
         if (savedPassword) {
-            verifyPasswordAndShow();
-        }
-
-        async function verifyPasswordAndShow() {
-            try {
-                const res = await fetch("/api/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ password: savedPassword })
-                });
-                if (res.ok) {
-                    showDashboard();
-                } else {
-                    localStorage.removeItem("weymann_admin_pw");
-                    document.getElementById("login-error").textContent = "Sitzung abgelaufen. Bitte erneut anmelden.";
-                    document.getElementById("login-error").classList.remove("hidden");
-                }
-            } catch (err) {
-                document.getElementById("login-error").textContent = "Verbindungsfehler: " + err.message;
-                document.getElementById("login-error").classList.remove("hidden");
-            }
+            const pwInput = document.getElementById("password");
+            if (pwInput) pwInput.value = savedPassword;
         }
 
         document.getElementById("login-form").addEventListener("submit", async (e) => {
@@ -806,11 +825,20 @@ export default {
             const errorDiv = document.getElementById("login-error");
             errorDiv.classList.add("hidden");
             const pw = document.getElementById("password").value;
+            const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
+            const turnstileToken = turnstileInput ? turnstileInput.value : '';
+
+            if (!turnstileToken) {
+                errorDiv.textContent = "Bitte bestätigen Sie das Cloudflare Turnstile Sicherheits-Widget.";
+                errorDiv.classList.remove("hidden");
+                return;
+            }
+
             try {
                 const res = await fetch("/api/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ password: pw })
+                    body: JSON.stringify({ password: pw, turnstileToken: turnstileToken })
                 });
                 if (res.ok) {
                     savedPassword = pw;
@@ -820,14 +848,20 @@ export default {
                     let errMsg = "Falsches Passwort";
                     try {
                         const errJson = await res.json();
-                        if (errJson && errJson.error) errMsg += " (" + errJson.error + ")";
+                        if (errJson && errJson.error) errMsg = errJson.error;
                     } catch(err) {}
                     errorDiv.textContent = errMsg;
                     errorDiv.classList.remove("hidden");
+                    if (window.turnstile) {
+                        try { window.turnstile.reset(); } catch(tErr) {}
+                    }
                 }
             } catch (err) {
                 errorDiv.textContent = "Verbindungsfehler: " + err.message;
                 errorDiv.classList.remove("hidden");
+                if (window.turnstile) {
+                    try { window.turnstile.reset(); } catch(tErr) {}
+                }
             }
         });
 
@@ -1590,7 +1624,14 @@ export default {
 </body>
 </html>
       `;
-      return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
+      return new Response(html, {
+        headers: {
+          "Content-Type": "text/html;charset=UTF-8",
+          "X-Frame-Options": "DENY",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "strict-origin-when-cross-origin"
+        }
+      });
     }
 
     // R2 Media Proxy: serve R2 images & videos directly through domain with robust range streaming
@@ -1657,7 +1698,16 @@ export default {
       }
     }
 
-    // Fallback: Serve static assets
-    return env.ASSETS.fetch(request);
+    // Fallback: Serve static assets with security headers
+    const assetResponse = await env.ASSETS.fetch(request);
+    const secHeaders = new Headers(assetResponse.headers);
+    secHeaders.set("X-Frame-Options", "DENY");
+    secHeaders.set("X-Content-Type-Options", "nosniff");
+    secHeaders.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    return new Response(assetResponse.body, {
+      status: assetResponse.status,
+      statusText: assetResponse.statusText,
+      headers: secHeaders
+    });
   }
 }
