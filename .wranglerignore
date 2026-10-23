@@ -1,1 +1,12 @@
 .git
+.git/**
+.dev.vars
+.dev.vars*
+.env
+.env*
+node_modules
+node_modules/**
+worker.js
+wrangler.jsonc
+package*.json
+*.log

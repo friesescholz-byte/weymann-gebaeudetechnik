@@ -1,0 +1,12 @@
+.git
+.git/**
+.dev.vars
+.dev.vars*
+.env
+.env*
+.wrangler
+.wrangler/**
+.wranglerignore
+worker.js
+wrangler.jsonc
+*.log
